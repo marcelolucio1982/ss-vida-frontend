@@ -1,7 +1,7 @@
 {
-  "name": "angular-example",
-  "version": "1.0.0-SNAPSHOT",
-  "description": "Angular Example",
+  "name": "ss-vida-frontend",
+  "version": "1.0.0",
+  "description": "SS VIDA Frontend",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
