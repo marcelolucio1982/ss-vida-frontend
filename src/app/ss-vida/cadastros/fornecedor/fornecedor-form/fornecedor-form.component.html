@@ -1,0 +1,59 @@
+<!-- Tela de Cadastrar Fornecedores  -->
+<div class="mainContent">
+  <h5>Fornecedores</h5>
+
+  <div class="clearfix"></div>
+  <div class="col s12">
+  <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()" >
+    <div class="row">
+      <div class="input-field col s4">
+        <label class="active" for="codigoFornecedor">Código</label>
+        <input id="codigoFornecedor" name="codigoFornecedor" type="text">
+      </div>
+  
+      <div class="input-field col s4">
+        <label class="active" for="nomeFornecedor">Nome fornecedor</label>
+        <input id="nomeFornecedor" name="nomeFornecedor" type="text">
+      </div>
+  
+      <div class="input-field col s4">
+        <label class="active" for="razaoSocialFornecedor">Razão social fornecedor</label>
+        <input id="razaoSocialFornecedor" name="razaoSocialFornecedor" type="text">
+      </div>
+
+      <div class="input-field col s4">
+        <label class="active" for="cnpjFornecedor">CNPJ</label>
+        <input id="cnpjFornecedor" name="cnpjFornecedor" type="text">
+      </div>
+
+      <div class="input-field col s4">
+        <label class="active" for="contatoFornecedorCaixa">Contato fornecedor Caixa</label>
+        <input id="contatoFornecedorCaixa" name="contatoFornecedorCaixa" type="text">
+      </div>
+
+      <div class="input-field col s4">
+        <label class="active" for="contatoFornecedorCliente">Contato fornecedor cliente</label>
+        <input id="contatoFornecedorCliente" name="contatoFornecedorCliente" type="text">
+      </div>
+
+      <div class="input-field col s4">
+        <label class="active" for="dataInicioVigencia">Data de início de vigência</label>
+        <input id="dataInicioVigencia" name="dataInicioVigencia" class="datepicker" type="text" materialize="pickadate">
+      </div>
+
+      <div class="input-field col s4">
+        <label class="active" for="dataFimVigencia">Data de fim de vigência</label>
+        <input id="dataFimVigencia" name="dataFimVigencia" class="datepicker" type="text" materialize="pickadate">
+      </div>
+  
+      <div class="box-buttons">
+          <button  class="waves-effect waves-light btn btnPrimary">Salvar</button>
+          <button  class="waves-effect waves-light btn btnPrimary">Aprovar</button>
+          <button  class="waves-effect waves-light btn btnSecondary" (click)="pesquisarFornecedor()">Cancelar</button>          
+      </div>
+      <div class="grid-divider"></div>
+    </div>
+  </form>
+   </div>
+</div>
+<!-- ############# FIM DA TELA DE CADASTRAR FORNECEDORES ################ -->

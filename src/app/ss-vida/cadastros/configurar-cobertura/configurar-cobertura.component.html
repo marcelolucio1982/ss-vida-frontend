@@ -1,0 +1,433 @@
+<div class="mainContent">
+   <!-- ######################## COBERTURA #######################  -->
+
+   <h5>Informações do Produto</h5>
+   <div class="boxNext row"></div>
+
+   <div class="clearfix"></div>
+   <div class="col s12">
+       <form class="form-horizontal" [formGroup]="formulario">
+           <div class="row">
+
+               <div class="input-field col s4">
+                   <label class="active" for="codigoCobertura">Código</label>
+                   <input class="viewList" disabled="disabled" id="codigoCobertura" formControlName="codigoCobertura" name="codigoCobertura" type="text" value="XXXX">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="nomeCobertura">Nome</label>
+                   <input class="viewList" disabled="disabled" id="nomeCobertura" formControlName="nomeCobertura" name="nomeCobertura" type="text" value="FARMA FÁCIL MICROSEGURO ">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="processoSusepCobertura">Processo SUSEP</label>
+                   <input class="viewList" disabled="disabled" id="processoSusepCobertura" formControlName="processoSusepCobertura" name="processoSusepCobertura" type="text" value="XXXX">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="versaoCobertura">Versão</label>
+                   <input class="viewList" disabled="disabled" id="versaoCobertura" formControlName="versaoCobertura" name="versaoCobertura" type="text" value="2">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="situacaoCobertura">Situação</label>
+                   <input class="viewList" disabled="disabled" id="situacaoCobertura" formControlName="situacaoCobertura" name="situacaoCobertura" type="text" value="Pendente">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="inicioComercializacaoCobertura">Início da comercialização</label>
+                   <input class="viewList" disabled="disabled" id="inicioComercializacaoCobertura" formControlName="inicioComercializacaoCobertura" name="inicioComercializacaoCobertura"
+                       type="text" value="XXX">
+               </div>
+
+               <h5>Configuração da Cobertura</h5>
+               <div class="boxNext row"></div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="parceiroCobertura">Parceiro</label>
+                   <select id="parceiroCobertura" class="noUppercase" formControlName="parceiroCobertura" name="parceiroCobertura" materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="tipoLocalVendaCobertura">Tipo de local de venda</label>
+                   <select id="tipoLocalVendaCobertura" class="noUppercase" formControlName="tipoLocalVendaCobertura" name="tipoLocalVendaCobertura"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="enquadramentoCobertura">Enquandramento</label>
+                   <select id="enquadramentoCobertura" class="enquadramentoCobertura" formControlName="enquadramentoCobertura" name="enquadramentoCobertura"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="arquivoPlanoCobertura">Arquivo do plano</label>
+                   <select id="arquivoPlanoCobertura" class="noUppercase" formControlName="arquivoPlanoCobertura" name="arquivoPlanoCobertura"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <div class="box-buttons-wizard">
+                       <button type="submit" class="waves-effect waves-light btn btnPrimary">
+                           <i class="material-icons left">save</i> Salvar Plano</button>
+                   </div>
+               </div>
+
+               <div class="clearfix"></div>
+
+               <h5 class="subTitle">Detalhes da Cobertura</h5>
+               <div class="boxNextSubTitle row"></div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="processoSusepCobertura">Cobertura</label>
+                   <input id="cobertura" formControlName="cobertura" name="cobertura" type="text">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="tipoCobertura">Tipo cobertura</label>
+                   <select id="tipoCobertura" class="noUppercase" formControlName="tipoCobertura" name="tipoCobertura" materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="formaContratacaoCobertura">Forma de contratação</label>
+                   <select id="formaContratacaoCobertura" class="noUppercase" formControlName="formaContratacaoCobertura" name="formaContratacaoCobertura"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="tabuaCobertura">Tábua</label>
+                   <input id="tabuaCobertura" formControlName="tabuaCobertura" name="tabuaCobertura" type="text">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="grupoSusepCobertura">Grupo SUSEP</label>
+                   <select id="grupoSusepCobertura" class="noUppercase" formControlName="grupoSusepCobertura" name="grupoSusepCobertura" materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="ramoSusepCobertura">Ramo SUSEP</label>
+                   <select id="ramoSusepCobertura" class="noUppercase" formControlName="ramoSusepCobertura" name="ramoSusepCobertura" materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="ramoCaixaSegurosCobertura">Ramo Caixa Seguros</label>
+                   <input id="ramoCaixaSegurosCobertura" formControlName="ramoCaixaSegurosCobertura" name="ramoCaixaSegurosCobertura" type="text">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="numeroProcessoSusepCobertura">Número Processo SUSEP</label>
+                   <input id="numeroProcessoSusepCobertura" formControlName="numeroProcessoSusepCobertura" name="numeroProcessoSusepCobertura"
+                       type="text">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="codigoPlnCobertura">Código PLN</label>
+                   <input id="codigoPlnCobertura" formControlName="codigoPlnCobertura" name="codigoPlnCobertura" type="text">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="remissaoParcelaCobertura">Remissão de parcela</label>
+                   <select id="remissaoParcelaCobertura" class="noUppercase" formControlName="remissaoParcelaCobertura" name="remissaoParcelaCobertura"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="prazoRemissaoCobertura">Prazo da remissão</label>
+                   <input id="prazoRemissaoCobertura" formControlName="prazoRemissaoCobertura" name="prazoRemissaoCobertura" type="text">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="quantidadeCobertura">Quantidade</label>
+                   <input id="quantidadeCobertura" formControlName="quantidadeCobertura" name="quantidadeCobertura" type="text">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="algumaCoberturaRelacionada">Alguma cobertura relacionada?</label>
+                   <select id="algumaCoberturaRelacionada" class="noUppercase" formControlName="algumaCoberturaRelacionada" name="algumaCoberturaRelacionada"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="coberturaRelacionadaCobertura">Cobertura relacionada</label>
+                   <input id="coberturaRelacionadaCobertura" formControlName="coberturaRelacionadaCobertura" name="coberturaRelacionadaCobertura"
+                       type="text">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="moedaCobertura">Moeda de cobertura</label>
+                   <select id="moedaCobertura" class="noUppercase" formControlName="moedaCobertura" name="moedaCobertura" materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="possuiCarenciaCobertura">Possui carência?</label>
+                   <select id="possuiCarenciaCobertura" class="noUppercase" formControlName="possuiCarenciaCobertura" name="possuiCarenciaCobertura"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="periodoCarenciaCobertura">Período de carência</label>
+                   <select id="periodoCarenciaCobertura" class="noUppercase" formControlName="periodoCarenciaCobertura" name="periodoCarenciaCobertura"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="quantidadeCarenciaCobertura">Quantidade</label>
+                   <input id="quantidadeCarenciaCobertura" formControlName="quantidadeCarenciaCobertura" name="quantidadeCarenciaCobertura"
+                       type="text">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="existeIdadeMaximaContratacaoCobertura">Existe idade máxima para contratação?</label>
+                   <select id="existeIdadeMaximaContratacaoCobertura" class="noUppercase" formControlName="existeIdadeMaximaContratacaoCobertura"
+                       name="existeIdadeMaximaContratacaoCobertura" materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="idadeMaximaContratacaoCobertura">Idade máxima</label>
+                   <input id="idadeMaximaContratacaoCobertura" formControlName="idadeMaximaContratacaoCobertura" name="idadeMaximaContratacaoCobertura"
+                       type="text">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="tabelaReenquadramentoCobertura">Tabela de reenquadramento</label>
+                   <select id="tabelaReenquadramentoCobertura" class="noUppercase" formControlName="tabelaReenquadramentoCobertura" name="tabelaReenquadramentoCobertura"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="garantiaPossuiAcumuloRiscoCobertura">Garantia possui acúmulo de risco?</label>
+                   <select id="garantiaPossuiAcumuloRiscoCobertura" class="noUppercase" formControlName="garantiaPossuiAcumuloRiscoCobertura"
+                       name="garantiaPossuiAcumuloRiscoCobertura" materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="valorMaximoAcumuloCobertura">Valor máximo</label>
+                   <input id="valorMaximoAcumuloCobertura" formControlName="valorMaximoAcumuloCobertura" name="valorMaximoAcumuloCobertura"
+                       type="text">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="regimeReparticaoFinanceiraCobertura">Regime de repartição financeira</label>
+                   <select id="regimeReparticaoFinanceiraCobertura" class="noUppercase" formControlName="regimeReparticaoFinanceiraCobertura"
+                       name="regimeReparticaoFinanceiraCobertura" materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <div class="box-buttons-wizard">
+                       <button type="submit" class="waves-effect waves-light btn btnPrimary">
+                           <i class="material-icons left">save</i> Farma</button>
+                   </div>
+               </div>
+
+               <div class="clearfix"></div>
+
+               <h5 class="subTitle">Capital Segurado</h5>
+               <div class="boxNextSubTitle row"></div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="possuiCapitalSeguradoCobertura">Possui capitap segurado?</label>
+                   <select id="possuiCapitalSeguradoCobertura" class="noUppercase" formControlName="possuiCapitalSeguradoCobertura" name="possuiCapitalSeguradoCobertura"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="utilizaCoberturaReferencia">Utiliza alguma cobertura como referência?</label>
+                   <select id="utilizaCoberturaReferencia" class="noUppercase" formControlName="utilizaCoberturaReferencia" name="utilizaCoberturaReferencia"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="coberturaReferenciaCobertura">Cobertura de referência</label>
+                   <input id="coberturaReferenciaCobertura" formControlName="coberturaReferenciaCobertura" name="coberturaReferenciaCobertura"
+                       type="text">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="minimoCoberturaReferenciaCobertura">Mínimo</label>
+                   <input id="minimoCoberturaReferenciaCobertura" formControlName="minimoCoberturaReferenciaCobertura" name="minimoCoberturaReferenciaCobertura"
+                       type="text">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="maximoCoberturaReferenciaCobertura">Máximo</label>
+                   <input id="maximoCoberturaReferenciaCobertura" formControlName="maximoCoberturaReferenciaCobertura" name="maximoCoberturaReferenciaCobertura"
+                       type="text">
+               </div>
+
+               <div class="clearfix"></div>
+
+               <h5 class="subTitle">Sinistro</h5>
+               <div class="boxNextSubTitle row"></div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="sinistroCancelaSeguroCobertura">O sinistro cancela o seguro?</label>
+                   <select id="sinistroCancelaSeguroCobertura" class="noUppercase" formControlName="sinistroCancelaSeguroCobertura" name="sinistroCancelaSeguroCobertura"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="podeIndenizarMaisUmaVezCobertura">Pode indenizar mais de uma vez?</label>
+                   <select id="podeIndenizarMaisUmaVezCobertura" class="noUppercase" formControlName="podeIndenizarMaisUmaVezCobertura" name="podeIndenizarMaisUmaVezCobertura"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="reintegracaoAutomaticaCobertura">Reintegração automática</label>
+                   <select id="reintegracaoAutomaticaCobertura" class="noUppercase" formControlName="reintegracaoAutomaticaCobertura" name="reintegracaoAutomaticaCobertura"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="existeIdadeMaximaCobertura">Existe idade máxima para cobertura?</label>
+                   <select id="existeIdadeMaximaCobertura" class="noUppercase" formControlName="existeIdadeMaximaCobertura" name="existeIdadeMaximaCobertura"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="idadeMaximaCampoCobertura">Idade máxima</label>
+                   <input id="idadeMaximaCampoCobertura" formControlName="idadeMaximaCampoCobertura" name="idadeMaximaCampoCobertura" type="text">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="possuiFranquiaCobertura">Possui franquia?</label>
+                   <select id="possuiFranquiaCobertura" class="noUppercase" formControlName="possuiFranquiaCobertura" name="possuiFranquiaCobertura"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="periodoFranquiaCobertura">Período de franquia</label>
+                   <select id="periodoFranquiaCobertura" class="noUppercase" formControlName="periodoFranquiaCobertura" name="periodoFranquiaCobertura"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="quantidadeFranquiaCobertura">Quantidade</label>
+                   <input id="quantidadeFranquiaCobertura" formControlName="quantidadeFranquiaCobertura" name="quantidadeFranquiaCobertura"
+                       type="text">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="tipoSinistroCampoCobertura">Tipo de sinistro</label>
+                   <select id="tipoSinistroCampoCobertura" class="noUppercase" formControlName="tipoSinistroCampoCobertura" name="tipoSinistroCampoCobertura"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="sinistroCancelaGarantiaCampoCobertura">Sinistro cancela garantia?</label>
+                   <select id="sinistroCancelaGarantiaCampoCobertura" class="noUppercase" formControlName="sinistroCancelaGarantiaCampoCobertura"
+                       name="sinistroCancelaGarantiaCampoCobertura" materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="cancelamentosSinistroCobertura">Cancelamentos</label>
+                   <select id="cancelamentosSinistroCobertura" class="noUppercase" formControlName="cancelamentosSinistroCobertura" name="cancelamentosSinistroCobertura"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <div class="box-buttons-wizard">
+                       <button type="submit" class="waves-effect waves-light btn btnPrimary">
+                           <i class="material-icons left">add</i> Adicionar</button>
+                   </div>
+               </div>
+
+               <div class="clearfix"></div>
+
+               <div class="clearfix"></div>
+               <div class="box-buttons">
+                   <button type="submit" class="waves-effect waves-light btn btnPrimary">Salvar Plano</button>
+                   <button type="submit" class="waves-effect waves-light btn btnSecondary">Voltar</button>
+                   <button type="submit" class="waves-effect waves-light btn btnSecondary">Fechar</button>
+               </div>
+           </div>
+       </form>
+
+   </div>
+
+   <!-- ######################## FIM DE COBERTURA #######################  -->
+
+</div>

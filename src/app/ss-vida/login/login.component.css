@@ -1,0 +1,174 @@
+html {
+  height: 100%;
+}
+
+.bg-full {
+    background-image: url("/assets/img/predio-cs.jpg");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-y: none;
+    position: relative
+}
+
+
+.grid {
+  right:50%;
+  top:46%;
+  margin-left:-150px; /* Metade do valor da Largura */
+  margin-top:-100px; /* Metade da valor da Altura */
+  position:absolute;
+  width:300px; /* Valor da Largura */
+  height:200px; /* Valor da Altura */
+  color:#fff;
+  z-index: 999;
+  float: right;
+}
+
+.logo {
+  width: 135px;
+  margin: 0 auto;
+}
+
+.logo img {
+  height: 50px;
+}
+
+.filet-center {
+  top:50%;
+  margin-top:-200px; /* Metade da valor da Altura */
+  position:fixed !important;
+  width:100%; /* Valor da Largura */
+  height:400px; /* Valor da Altura */
+  background-color: #005FC8;
+  z-index: 555;
+  background-image: url("/assets/img/bg-4.png");
+  filter:alpha(opacity=50);
+     opacity: 0.8;
+     -moz-opacity:0.8;
+     -webkit-opacity:0.8;
+     float: right;
+     margin-left: -300px;
+}
+
+.filet-center-effect-2 {
+  background-image: url("/assets/img/fill.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  top:50%;
+  margin-top:-425px; /* Metade da valor da Altura */
+  position:fixed !important;
+  width:100%; /* Valor da Largura */
+  height:850px; /* Valor da Altura */
+  z-index: 555;
+  filter:alpha(opacity=50);
+     opacity: 0.8;
+     -moz-opacity:0.8;
+     -webkit-opacity:0.8;
+     float: right;
+}
+
+.filet-center-effect {
+  top:4%;
+  position:fixed !important;
+  width:100px; /* Valor da Largura */
+  height:90%; /* Valor da Altura */
+  z-index: 555;
+  float: right;
+  right: 0%;
+  z-index: 777;
+  border-style: solid;
+  border-top-color: transparent;
+  border-right-color: #0039ba;
+  border-bottom-color: transparent;
+  border-left-color: transparent; /* arrow color */
+  border-width: 238px 300px 220px 100px;
+  opacity: 1.0;
+  -moz-opacity:1.0;
+  -webkit-opacity:1.0;
+
+}
+
+.filet-center-base {
+  top:50%;
+  margin-top:-300px; /* Metade da valor da Altura */
+  position:absolute;
+  width:30%; /* Valor da Largura */
+  height:600px; /* Valor da Altura */
+  background-color: #005FC8;
+  z-index: 555;
+  float: right;
+  right: 0px;
+  z-index: 888;
+  background-image: url("/assets/img/bg-4.png");
+  filter:alpha(opacity=50);
+     opacity: 0.8;
+     -moz-opacity:0.8;
+     -webkit-opacity:0.8;
+
+}
+
+/* Tags de Alinhamento */
+.pull-right {
+  text-align: right;
+  float: right;
+}
+
+/* Materialize Hack */
+
+.btn, .btn-large {
+  background-color: #ff9141 !important;
+}
+
+.input-field .prefix.active {
+  color: #ff9141 !important;
+}
+
+.input-field label {
+  color: #fff !important;
+}
+
+input:not([type]):focus:not([readonly]),
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=url]:not(.browser-default):focus:not([readonly]),
+input[type=time]:not(.browser-default):focus:not([readonly]),
+input[type=date]:not(.browser-default):focus:not([readonly]),
+input[type=datetime]:not(.browser-default):focus:not([readonly]),
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]),
+input[type=tel]:not(.browser-default):focus:not([readonly]),
+input[type=number]:not(.browser-default):focus:not([readonly]),
+input[type=search]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #ff9141;
+  -webkit-box-shadow: 0 1px 0 0 #ff9141;
+          box-shadow: 0 1px 0 0 #ff9141;
+}
+
+input:not([type]):focus:not([readonly]) + label,
+input[type=text]:not(.browser-default):focus:not([readonly]) + label,
+input[type=password]:not(.browser-default):focus:not([readonly]) + label,
+input[type=email]:not(.browser-default):focus:not([readonly]) + label,
+input[type=url]:not(.browser-default):focus:not([readonly]) + label,
+input[type=time]:not(.browser-default):focus:not([readonly]) + label,
+input[type=date]:not(.browser-default):focus:not([readonly]) + label,
+input[type=datetime]:not(.browser-default):focus:not([readonly]) + label,
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]) + label,
+input[type=tel]:not(.browser-default):focus:not([readonly]) + label,
+input[type=number]:not(.browser-default):focus:not([readonly]) + label,
+input[type=search]:not(.browser-default):focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label {
+  color: #ff9141;
+}
+
+input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
+  border-bottom:1px solid #fff; 
+}
+
+input.valid:not([type]), input.valid:not([type]):focus, input[type=text].valid:not(.browser-default), input[type=text].valid:not(.browser-default):focus, input[type=password].valid:not(.browser-default), input[type=password].valid:not(.browser-default):focus, input[type=email].valid:not(.browser-default), input[type=email].valid:not(.browser-default):focus, input[type=url].valid:not(.browser-default), input[type=url].valid:not(.browser-default):focus, input[type=time].valid:not(.browser-default), input[type=time].valid:not(.browser-default):focus, input[type=date].valid:not(.browser-default), input[type=date].valid:not(.browser-default):focus, input[type=datetime].valid:not(.browser-default), input[type=datetime].valid:not(.browser-default):focus, input[type=datetime-local].valid:not(.browser-default), input[type=datetime-local].valid:not(.browser-default):focus, input[type=tel].valid:not(.browser-default), input[type=tel].valid:not(.browser-default):focus, input[type=number].valid:not(.browser-default), input[type=number].valid:not(.browser-default):focus, input[type=search].valid:not(.browser-default), input[type=search].valid:not(.browser-default):focus, textarea.materialize-textarea.valid, textarea.materialize-textarea.valid:focus, .select-wrapper.valid > input.select-dropdown {
+  border-bottom: 1px solid #ff9141;
+  box-shadow: 0 1px 0 0 #ff9141;
+}

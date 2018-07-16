@@ -1,0 +1,89 @@
+<div class="mainContent">
+    <!-- ######################## IMPORTAÇÃO #######################  -->
+
+    <h5>Pesquisar produto (Configuração)</h5>
+    <div class="boxNext row"></div>
+
+    <div class="clearfix"></div>
+    <div class="col s12">
+        <form class="form-horizontal" [formGroup]="formulario">
+            <div class="row">
+
+                <div class="input-field col s4">
+                    <label class="active" for="codigoImportacao">Código</label>
+                    <input id="codigoImportacao" formControlName="codigoImportacao" name="codigoImportacao" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="nomeProdutoImportacao">Nome do produto</label>
+                    <input id="nomeProdutoImportacao" formControlName="nomeProdutoImportacao" name="nomeProdutoImportacao" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <div class="box-buttons-wizard">
+                        <button type="submit" class="waves-effect waves-light btn btnPrimary">
+                            <i class="material-icons left">search</i> Pesquisar</button>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="box-buttons">
+                    <button type="submit" class="waves-effect waves-light btn btnSecondary">Fechar</button>
+                </div>
+
+                <div class="clearfix"></div>
+                <h5 class="subTitle">Resultado da pesquisa</h5>
+                <div class="boxNextSubTitle row"></div>
+                <div class="grid-divider"></div>
+
+                <div class="row">
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nome do produto</th>
+                                <th>Versão</th>
+                                <th>Situação</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="box-buttons">
+                    <button type="submit" class="waves-effect waves-light btn btnSecondary">Fechar</button>
+                </div>
+                
+            </div>
+        </form>
+
+    </div>
+
+    <!-- ######################## FIM DE IMPORTAÇÃO #######################  -->
+</div>

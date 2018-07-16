@@ -1,0 +1,655 @@
+<div class="mainContent">
+
+  <h5 class="subTitle dadosGerais" (click)="dadosGerais()" ><span class="acordeonArrow"><i class="material-icons">arrow_drop_down</i></span>Dados Gerais</h5>
+  <div class="boxNextSubTitle row"></div>
+  <div class="clearfix"></div>
+
+  <div class="s12 dadosGerais boxBorder">
+
+    <div class="row">
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.dataInicioVigencia">
+          <label class="active" for="codigo">Início da Comercializaçao da Versão</label>
+          <span class="spanResult">{{ utilService.formatarDataVisao( produtoDetalhe.dataInicioVigencia ) }}</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.indiceReajuste?.nomeMoeda">
+          <label class="active" for="codigo">Índice de Atualização</label>
+          <span class="spanResult">{{ produtoDetalhe?.indiceReajuste?.nomeMoeda }}</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.taxaJurosMora">
+          <label class="active" for="codigo">Taxa de Juros de Mora Mensal (%)</label>
+          <span class="spanResult">{{ utilService.formatarPercentualVisao( produtoDetalhe?.taxaJurosMora ) }}</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.periodicidadeReajuste.descricao">
+        <label class="active" for="codigo">Atualização de Reajuste</label>
+        <span class="spanResult">{{ produtoDetalhe?.periodicidadeReajuste.descricao }}</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.qtdPeriodosVigencia">
+        <label class="active" for="codigo">Período de Vigência Padrão da Apólice</label>
+        <span class="spanResult">{{ produtoDetalhe?.qtdPeriodosVigencia }} Mês (es)</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.contrataBilhete.descricao">
+        <label class="active" for="codigo">Contratação na Forma de Bilhete</label>
+        <span class="spanResult">{{ produtoDetalhe?.contrataBilhete.descricao }}</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.renovacaoAutomatica.descricao">
+        <label class="active" for="codigo">Recontratação Automática</label>
+        <span class="spanResult">{{ produtoDetalhe?.recontratacaoAutomatica.descricao }}</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.qtdRecontratacaoAutomatica">
+        <label class="active" for="codigo">Quantidade de Recontratação</label>
+        <span class="spanResult">{{ produtoDetalhe?.qtdRecontratacaoAutomatica }}</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.moedaPremio.nomeMoeda">
+        <label class="active" for="codigo">Moeda do Prêmio</label>
+        <span class="spanResult">{{ produtoDetalhe?.moedaPremio.nomeMoeda }}</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.reenquadramentoPremio.descricao">
+        <label class="active" for="codigo">Reenquadramento do Prêmio</label>
+        <span class="spanResult">{{ produtoDetalhe?.reenquadramentoPremio.descricao }}</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.geraNumeroApoliceOnLine.descricao">
+        <label class="active" for="codigo">Gerar Número de Apólice OnLine</label>
+        <span class="spanResult">{{ produtoDetalhe?.geraNumeroApoliceOnLine.descricao }}</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.quantidadeDiasIndenizacao">
+        <label class="active" for="codigo">Prazo de Indenização do Sinistro (em dias)</label>
+        <span class="spanResult">{{ produtoDetalhe?.quantidadeDiasIndenizacao }}</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.quantidadeDiasSuspensao">
+        <label class="active" for="codigo">Prazo de Suspensão do Sinistro (em dias)</label>
+        <span class="spanResult">{{ produtoDetalhe?.quantidadeDiasSuspensao }}</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.emiteApoliceManualmente.descricao">
+        <label class="active" for="codigo">Emissão Manual</label>
+        <span class="spanResult">{{ produtoDetalhe?.emiteApoliceManualmente.descricao }}</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.possuiAssistencia.descricao">
+        <label class="active" for="codigo">Possui Assistências e Serviços</label>
+        <span class="spanResult">{{ produtoDetalhe?.possuiAssistencia.descricao }}</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.qtdMinAssistenciaFacultativa">
+        <label class="active" for="codigo">Qtde. Mín. de Assistências Facultativas</label>
+        <span class="spanResult">{{ produtoDetalhe?.qtdMinAssistenciaFacultativa }}</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.qtdMaxAssistenciaFacultativa">
+        <label class="active" for="codigo">Qtde. Máx. de Assistências Facultativas</label>
+        <span class="spanResult">{{ produtoDetalhe?.qtdMaxAssistenciaFacultativa }}</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.possuiDPS.descricao">
+        <label class="active" for="codigo">Possui DPS?</label>
+        <span class="spanResult">{{ produtoDetalhe?.possuiDPS.descricao }}</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.possuiAcoplados.descricao">
+        <label class="active" for="codigo">Possui Acoplados?</label>
+        <span class="spanResult">{{ produtoDetalhe?.possuiAcoplados.descricao }}</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.possuiComunicadoVendaPosVenda.descricao">
+        <label class="active" for="codigo">Possui Comunicação Venda / Pós-Venda?</label>
+        <span class="spanResult">{{ produtoDetalhe?.possuiComunicadoVendaPosVenda.descricao }}</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.possuiResseguro.descricao">
+        <label class="active" for="codigo">Possui Resseguro</label>
+        <span class="spanResult">{{ produtoDetalhe?.possuiResseguro.descricao }}</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.possuiCosseguro.descricao">
+        <label class="active" for="codigo">Possui Cosseguro?</label>
+        <span class="spanResult">{{ produtoDetalhe?.possuiCosseguro.descricao }}</span>
+      </div>
+
+    </div>
+  </div>
+
+  <h5 class="subTitle periodicidadePagamento" (click)="periodicidadePagamento()" ><span class="acordeonArrow"><i class="material-icons">arrow_drop_down</i></span>Periodicidade de Pagamento</h5>
+  <div class="boxNextSubTitle row"></div>
+  <div class="clearfix"></div>
+
+  <div class="s12 periodicidadePagamento">
+    <div class="row">
+      <table class="striped" *ngIf="produtoDetalhe?.periodicidadesPagamento && produtoDetalhe?.periodicidadesPagamento.length > 0">
+        <thead>
+          <tr>
+            <th>Periodicidade de Pagamento</th>
+            <th>Período</th>
+            <th>Quantidade</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let i of produtoDetalhe.periodicidadesPagamento; let aux = index;">
+            <td>{{ i.periodicidade.descricao }}</td>
+            <td>{{ i.periodo.periodicidade.descricao }}</td>
+            <td>{{ i.periodo.quantidade }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h5 class="subTitle permissaoVenda" (click)="permissaoVenda()" ><span class="acordeonArrow"><i class="material-icons">arrow_drop_down</i></span>Permissão de Venda</h5>
+  <div class="boxNextSubTitle row"></div>
+  <div class="clearfix"></div>
+
+  <div class="s12 permissaoVenda">
+    <div class="row">
+      <table class="striped" *ngIf="produtoDetalhe?.permissoesVenda && produtoDetalhe?.permissoesVenda.length > 0">
+        <thead>
+          <tr>
+            <th>Parceiro</th>
+            <th>Tipo de Local de Venda</th>
+            <th>Sensibilização</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let i of produtoDetalhe.permissoesVenda">
+            <td>{{ i.parceiro.descricao }}</td>
+            <td>{{ i.tipoLocalVenda.descricao }}</td>
+            <td>{{ i.indicadorSensibilizado.descricao }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h5 class="subTitle cobertura" (click)="cobertura()" ><span class="acordeonArrow"><i class="material-icons">arrow_drop_down</i></span>Coberturas</h5>
+  <div class="boxNextSubTitle row"></div>
+  <div class="clearfix"></div>
+
+  <div *ngIf="coberturasDetalhe.length > 0">
+    <div class="s12 cobertura" *ngFor="let cobertura of coberturasDetalhe">
+      <div class="col s12" *ngFor="let coberturaConfigurada of cobertura.coberturasConfiguradas">
+        <div class="row boxBorder">
+          <div class="viewHeader">
+            <div class="active" for="codigo">
+              <label class="subHeader">Parceiro: <span>{{cobertura.parceiro.descricao}}</span></label>
+              <label class="subHeader">Tipo de Local de Venda: <span>{{cobertura.tipoLocalVenda.descricao}}</span></label>
+              <label class="subHeader">Enquadramento: <span>{{cobertura.enquadramento.descricao}}</span></label>
+              <label class="subHeader">Cobertura: <span>{{coberturaConfigurada.cobertura.descricao}}</span></label>
+            </div>
+          </div>
+
+          <h5 class="subTitle">Detalhe da Cobertura</h5>
+
+          <div class="boxNextSubTitle row"></div>
+          <div class="clearfix"></div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Cobertura</label>
+            <span class="spanResult">{{coberturaConfigurada.cobertura.descricao}}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Tipo Cobertura</label>
+            <span class="spanResult">{{coberturaConfigurada.tipoCobertura.descricao}}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Forma de Contratação</label>
+            <span class="spanResult">{{coberturaConfigurada.formaContratacao.descricao}}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Prêmio</label>
+            <span class="spanResult">{{utilService.formatarValorRealVisao( coberturaConfigurada.premio )}}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Tábua</label>
+            <span class="spanResult">{{coberturaConfigurada.tabua?.nome}}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Grupo SUSEP</label>
+            <span class="spanResult">{{coberturaConfigurada.grupoSusep.descricao}}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Ramo SUSEP</label>
+            <span class="spanResult">{{coberturaConfigurada.ramoSusep.descricao}}</span>
+          </div>
+
+          <div class="input-field col s4" *ngIf="coberturaConfigurada.ramoSusep.ramoCaixaSeguros">
+            <label class="active" for="codigo">Ramo Caixa Seguros</label>
+            <span class="spanResult">{{coberturaConfigurada.ramoSusep.ramoCaixaSeguros}}</span>
+          </div>
+
+          <div class="input-field col s4" *ngIf="coberturaConfigurada.numeroProcessoSusep">
+            <label class="active" for="codigo">Número Processo SUSEP</label>
+            <span class="spanResult">{{coberturaConfigurada.numeroProcessoSusep}}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Código PLN</label>
+            <span class="spanResult">{{coberturaConfigurada.codigoPlnSusep}}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Remissão de Parcela</label>
+            <span class="spanResult">{{coberturaConfigurada.indicadorRemissaoParcela.descricao}}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Moeda de Cobertura</label>
+            <span class="spanResult">{{coberturaConfigurada.moedaCobertura.nomeMoeda}}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Possui Carência?</label>
+            <span class="spanResult">{{coberturaConfigurada.indicadorPossuiCarencia.descricao}}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Idade Máxima para Contratação</label>
+            <span class="spanResult">{{coberturaConfigurada.indicadorIdadeMaximaContratacao.descricao}}</span>
+          </div>
+
+          <h5 class="subTitle capitalSegurado">Capital Segurado</h5>
+          <div class="boxNextSubTitle row"></div>
+          <div class="clearfix"></div>
+
+          <div class="capitalSegurado">
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Utiliza Alguma Cobertura como Referência</label>
+            <span class="spanResult">{{coberturaConfigurada.capitalSegurado.coberturaReferencia ? coberturaConfigurada.capitalSegurado.coberturaReferencia.descricao : 'Não'}}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Mínimo / Máximo</label>
+            <span class="spanResult">{{coberturaConfigurada.capitalSegurado.percentualMinimo ? utilService.formatarPercentualVisao( coberturaConfigurada.capitalSegurado.percentualMinimo ) : utilService.formatarValorRealVisao( coberturaConfigurada.capitalSegurado.valorMinimo )}} / {{ coberturaConfigurada.capitalSegurado.percentualMaximo ? utilService.formatarPercentualVisao( coberturaConfigurada.capitalSegurado.percentualMaximo ) : utilService.formatarValorRealVisao( coberturaConfigurada.capitalSegurado.valorMaximo )}}</span>
+          </div>
+
+          <h5 class="subTitle">Sinistro</h5>
+          <div class="boxNextSubTitle row"></div>
+          <div class="clearfix"></div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">O Sinistro Cancela o Seguro?</label>
+            <span class="spanResult">{{coberturaConfigurada.sinistro.indicadorSinistroCancelaSeguro.descricao}}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Pode Indenizar mais de uma vez?</label>
+            <span class="spanResult">{{coberturaConfigurada.sinistro.indicadorIndenizacaoMaisDeUmaVez.descricao}}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Reintegração Automática</label>
+            <span class="spanResult">{{coberturaConfigurada.sinistro.indicadorReintegracaoAutomatica.descricao}}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Existe Idade Máxima para cobertura?</label>
+            <span class="spanResult">{{coberturaConfigurada.sinistro.indicadorIdadeMaximaIndenizacao.descricao}}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Possui Franquia?</label>
+            <span class="spanResult">{{coberturaConfigurada.sinistro.indicadorPossuiFranquia.descricao}}</span>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <h5 class="subTitle assistenciaServicos" (click)="assistenciaServicos()" ><span class="acordeonArrow"><i class="material-icons">arrow_drop_down</i></span>Assistência e Serviços</h5>
+  <div class="boxNextSubTitle row"></div>
+  <div class="clearfix"></div>
+
+  <div class="assistenciaServicos" *ngIf="assistenciasDetalhe && assistenciasDetalhe.length > 0">
+    <div class="s12" *ngFor="let assistenciaPorParceiroLocalVenda of assistenciasDetalhe">
+      <div class="s12" *ngFor="let assistencia of assistenciaPorParceiroLocalVenda">
+        <div class="row boxBorder">
+            <div class="viewHeader">
+              <div class="active" for="codigo">
+                  <label class="subHeader">Parceiro: <span>{{assistencia.parceiro.descricao}}</span></label>
+                  <label class="subHeader">Tipo de Local de Venda: <span>{{assistencia.tipoLocalVenda.descricao}}</span></label>
+              </div>
+            </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <label class="active" for="codigo">{{assistencia.assistencia.nome}}</label>
+            </div>
+          </div>
+
+          <div class="input-field col s3">
+            <label class="active" for="codigo">Cobertura</label>
+            <span class="spanResult">{{assistencia.empresa.nome}}</span>
+          </div>
+
+          <div class="input-field col s3">
+            <label class="active" for="codigo">Contrato</label>
+            <span class="spanResult">{{assistencia.numeroContrato}}</span>
+          </div>
+
+          <div class="input-field col s3">
+            <label class="active" for="codigo">Valor</label>
+            <span class="spanResult">{{utilService.formatarValorRealVisao( assistencia.valor )}}</span>
+          </div>
+
+          <div class="input-field col s3">
+            <label class="active" for="codigo">Forma de Contratação</label>
+            <span class="spanResult">{{assistencia.formaContratacao.descricao}}</span>
+          </div>
+
+          <div class="input-field col s12">
+            <label class="active" for="codigo">Observações</label>
+            <span class="spanResult">{{assistencia.observacoes}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <h5 class="subTitle acoplados" (click)="acoplados()" ><span class="acordeonArrow"><i class="material-icons">arrow_drop_down</i></span>Acoplados</h5>
+  <div class="boxNextSubTitle row"></div>
+  <div class="clearfix"></div>
+
+  <div class="acoplados" *ngIf="acopladosDetalhe && acopladosDetalhe.length > 0">
+    <div class="s12" *ngFor="let acoplado of acopladosDetalhe">
+        <div class="viewHeader pRelative">
+              <label class="subHeader">Parceiro: <span>{{acoplado[0].parceiro.descricao}}</span></label>
+              <label class="subHeader">Tipo de Local de Venda: <span>{{acoplado[0].tipoLocalVenda.descricao}}</span></label>
+          </div>
+      <div class="s12" *ngFor="let itemAdicionado of acoplado">
+        <div class="row boxBorder">
+          <div class="row itemAdd">
+            <div class="viewSubTitle">
+              <label class="subHeader">Item Adicionado</label>
+            </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Cobertura</label>
+            <span class="spanResult">{{utilService.formatarSimNaoVisao( itemAdicionado.indManterNumSorte ) }}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Código Plano CAP</label>
+            <span class="spanResult">{{ itemAdicionado.produtoCap.codigo }}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Qte. de Sorteio</label>
+            <span class="spanResult">{{ itemAdicionado.produtoCap.qtdSorteio }}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Periodicidade de Sorteio</label>
+            <span class="spanResult">{{ itemAdicionado.produtoCap.periodicidadeSorteio }}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Quantidade de Títulos</label>
+            <span class="spanResult">{{ itemAdicionado.qtdTituloCap }}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Valor Unitário por Título</label>
+            <span class="spanResult">{{ utilService.formatarValorRealVisao( itemAdicionado.vlrTituloCap ) }}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Valor do Sorteio</label>
+            <span class="spanResult">{{ utilService.formatarValorRealVisao( itemAdicionado.valorSorteio ) }}</span>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s12">
+              <label class="active" for="codigo">Especifidade</label>
+            </div>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Por Periodicidade de Pagamento</label>
+            <span class="spanResult">{{ itemAdicionado.periodicidade.descricao === '' ? 'Não' : 'Sim (' + itemAdicionado.periodicidade.descricao + ')' }}</span>
+          </div>
+
+        </div>
+          <!-- here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h5 class="subTitle comissao" (click)="comissao()" ><span class="acordeonArrow"><i class="material-icons">arrow_drop_down</i></span>Comissão</h5>
+  <div class="boxNextSubTitle row"></div>
+  <div class="clearfix"></div>
+
+  <div class="boxBorder" *ngIf="comissaoDetalhe && comissaoDetalhe.length > 0">
+    <div class="s12 comissao" *ngFor="let comissao of comissaoDetalhe">
+      <div>
+        <div class="viewHeader">
+          <label class="subHeader">Parceiro:<span> {{comissao.parceiro.descricao}} </span></label>
+          <label class="subHeader">Tipo de Local de Venda: <span>{{comissao.tipoLocalVenda.descricao}}</span></label>
+        </div>
+        <div class="row" style="border: 1px solid #ccc;">
+          <div class="viewHeader">
+            <label class="subHeader" >Corretor</label>
+          </div>
+          <div class="col s12" *ngFor="let corretor of comissao.corretores">
+            <div class="viewHeader mTop10 mBottom10">
+              <label class="subHeader">{{ corretor.corretor.codigo + ' - ' + corretor.corretor.nome }}</label>
+            </div>
+            <div class="clearfix"></div>
+            <div class="input-field col s4">
+              <label class="active" for="codigo">Parâmetro Comissão</label>
+              <span class="spanResult">{{ corretor.parametro.descricao }}</span>
+            </div>
+
+            <div class="input-field col s4">
+              <label class="active" for="codigo">Forma de Pagamento</label>
+              <span class="spanResult">{{ corretor.formaPagamento.codigo === 'I' ? corretor.formaPagamento.descricao + ' para ' + corretor.formaPagamento.corretorIndireto.codigo + ' - ' + corretor.formaPagamento.corretorIndireto.nome : corretor.formaPagamento.descricao }}</span>
+            </div>
+
+            <div class="input-field col s4">
+              <label class="active" for="codigo">Comissão Fixo</label>
+              <span class="spanResult">{{ utilService.formatarPercentualVisao( corretor.criterio.percentualFixo ) }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="border: 1px solid #ccc;">
+          <div class="viewHeader">
+            <label class="subHeader">Balcão</label>
+          </div>
+          <div class="col s12" *ngFor="let balcao of comissao.balcoes">
+            <div class="viewHeader mTop10 mBottom10">
+              <label class="subHeader">{{ balcao.parceiro.codigo + ' - ' + balcao.parceiro.descricao }}</label>
+            </div>
+            <div class="clearfix"></div>
+            <div class="input-field col s4">
+              <label class="active" for="codigo">Parâmetro Comissão</label>
+              <span class="spanResult">{{ balcao.parametro.descricao }}</span>
+            </div>
+
+            <div class="input-field col s4">
+              <label class="active" for="codigo">Periodicidade de Pagamento</label>
+              <div class="col s12" *ngFor="let periodicidade of balcao.parametro.periodicidades">
+                <span class="spanResult">{{ periodicidade.descricao }}</span>
+              </div>
+            </div>
+
+            <div class="input-field col s4">
+              <label class="active" for="codigo">Forma de Pagamento</label>
+              <span class="spanResult">{{ balcao.formaPagamento.codigo === 'I' ? balcao.formaPagamento.descricao + ' para ' + balcao.formaPagamento.corretorIndireto.codigo + ' - ' + balcao.formaPagamento.corretorIndireto.nome : balcao.formaPagamento.descricao }}</span>
+            </div>
+
+            <div class="input-field col s4">
+              <label class="active" for="codigo">Comissão Fixo</label>
+              <span class="spanResult">{{ utilService.formatarPercentualVisao( balcao.criterio.percentualFixo ) }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="border: 1px solid #ccc;">
+          <div class="viewHeader mBottom10">
+            <label class="subHeader">Indicador</label>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Parâmetro Comissão</label>
+            <span class="spanResult">{{ comissao.indicador.parametro.descricao }}</span>
+          </div>
+
+          <div class="input-field col s4" *ngIf="comissao.indicador.parametro">
+            <label class="active" for="codigo">Periodicidade de Pagamento</label>
+            <div class="col s12" *ngFor="let periodicidade of comissao.indicador.parametro.periodicidades">
+              <span class="spanResult">{{ periodicidade.descricao }}</span>
+            </div>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Forma de Pagamento</label>
+            <span class="spanResult">{{ comissao.indicador.formaPagamento.codigo === 'I' ? comissao.indicador.formaPagamento.descricao + ' para ' + comissao.indicador.formaPagamento.corretorIndireto.codigo + ' - ' + comissao.indicador.formaPagamento.corretorIndireto.nome : comissao.indicador.formaPagamento.descricao }}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Comissão Fixo</label>
+            <span class="spanResult">{{ utilService.formatarPercentualVisao( comissao.indicador.criterio.percentualFixo ) }}</span>
+          </div>
+        </div>
+
+        <div class="row" style="border: 1px solid #ccc;" *ngIf="comissao.gerente">
+          <div class="viewHeader mBottom10">
+            <label class="subHeader" for="codigo">Gerente</label>
+          </div>
+
+          <div class="input-field col s4" *ngIf="comissao.gerente && comissao.gerente.parametro">
+            <label class="active" for="codigo">Parâmetro Comissão</label>
+            <span class="spanResult">{{ comissao.gerente.parametro.descricao }}</span>
+          </div>
+
+          <div class="input-field col s4" *ngIf="comissao.gerente && comissao.gerente.parametro">
+            <label class="active" for="codigo">Periodicidade de Pagamento</label>
+            <div class="col s12" *ngFor="let periodicidade of comissao.gerente.parametro.periodicidades">
+              <span class="spanResult">{{ periodicidade.descricao }}</span>
+            </div>
+          </div>
+
+          <div class="input-field col s4" *ngIf="comissao.gerente && comissao.gerente.formaPagamento">
+            <label class="active" for="codigo">Forma de Pagamento</label>
+            <span class="spanResult">{{ comissao.gerente.formaPagamento.codigo === 'I' ? comissao.gerente.formaPagamento.descricao + ' para ' + comissao.gerente.formaPagamento.corretorIndireto.codigo + ' - ' + comissao.gerente.formaPagamento.corretorIndireto.nome : comissao.gerente.formaPagamento.descricao }}</span>
+          </div>
+
+          <div class="input-field col s4" *ngIf="comissao.gerente && comissao.gerente.criterio">
+            <label class="active" for="codigo">Comissão Fixo</label>
+            <span class="spanResult">{{ utilService.formatarPercentualVisao( comissao.gerente.criterio.percentualFixo ) }}</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <h5 class="subTitle cobranca mTop3" (click)="cobranca()" ><span class="acordeonArrow"><i class="material-icons">arrow_drop_down</i></span>Cobrança</h5>
+  <div class="boxNextSubTitle row"></div>
+  <div class="clearfix"></div>
+
+  <div class="boxBorder" *ngIf="cobrancasDetalhe && cobrancasDetalhe.length > 0">
+    <div class="s12 cobranca" *ngFor="let cobranca of cobrancasDetalhe">
+        <div class="viewHeader">
+          <label class="subHeader" for="codigo">Parceiro: <span>{{cobranca.parceiro?.descricao}}</span></label>
+          <label class="subHeader" for="codigo">Tipo de Local de Venda: <span>{{cobranca.tipoLocalVenda?.descricao}}</span></label>
+        </div>
+        <div class="clearfix"></div>
+      <div class="row" *ngIf="cobranca.parcelasAdesao && cobranca.parcelasAdesao.length > 0">
+
+        <div class="viewHeader">
+          <label class="subHeader">Parcela de Adesão</label>
+        </div>
+        <div class="divider10"></div>
+        <div class="subHeader pd10 mTop10 mBottom10" *ngFor="let parcelaAdesao of cobranca.parcelasAdesao">
+          <div class="viewHeader">
+            <label class="subHeader">{{ parcelaAdesao.convenioCobranca.descricao + ' - ' + parcelaAdesao.formaCobranca.descricao }}</label>
+          </div>
+          <div class="divider10"></div>
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Periodicidade de Pagamento</label>
+            <span class="spanResult">{{ parcelaAdesao.periodicidadePagamento.descricao }}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Forma de Pagamento</label>
+            <span class="spanResult">{{ parcelaAdesao.formaCobranca.descricao }}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Convênio Cobrança</label>
+            <span class="spanResult">{{ parcelaAdesao.convenioCobranca.descricao }}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Origem Cobrança</label>
+            <span class="spanResult">{{ parcelaAdesao.responsavelCobranca.descricao }}</span>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="row" *ngIf="cobranca.parcelasAdesao && cobranca.parcelasAdesao.length > 0">
+        <div class="input-field col s12">
+          <label class="active" for="codigo">Demais Parcelas</label>
+        </div>
+
+        <div class="row" *ngFor="let demaisParcelas of cobranca.demaisParcelas">
+          <div class="input-field col s12">
+            <label class="active" for="codigo">{{ demaisParcelas.convenioCobranca.descricao + ' - ' + demaisParcelas.formaCobranca.descricao }}</label>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Periodicidade de Pagamento</label>
+            <span class="spanResult">{{ demaisParcelas.periodicidadePagamento.descricao }}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Forma de Pagamento</label>
+            <span class="spanResult">{{ demaisParcelas.formaCobranca.descricao }}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Convênio Cobrança</label>
+            <span class="spanResult">{{ demaisParcelas.convenioCobranca.descricao }}</span>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="codigo">Dias de Vencimentos</label>
+            <span class="spanResult">{{ demaisParcelas.diasVencimento }}</span>
+          </div>
+        </div>
+        <div class="fullDivider">
+
+        </div>
+      </div>
+
+      <div class="box-buttons" *ngIf="produtoDetalhe.descricaoSituacaoConfiguracao != 'PENDENTE'">
+        <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="criarEvento()">Criar Evento</button>          
+       </div>
+
+    </div>
+</div>
+

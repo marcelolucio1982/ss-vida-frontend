@@ -1,0 +1,117 @@
+<!-- Tela de Pesquisar Fornecedores  -->
+<div class="mainContent">
+  <h5>Pesquisar Fornecedores</h5>
+  <div class="boxNext">
+      <a class="waves-effect waves-light btn nextButton btnNext" (click)="cadastrarAssistencia()"><i class="material-icons left">send</i>Cadastrar</a>
+  </div>
+
+  <div class="clearfix"></div>
+  <div class="col s12">
+  <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()" >
+    <div class="row">
+      <div class="input-field col s4">
+          <select name="selectedOption" materialize="material_select">
+            <option value="" disabled selected></option>
+            <option>teste</option>
+            <option>teste</option>
+            <option>teste</option>
+            <option>teste</option>
+          </select>
+          <label>Código</label>
+      </div>
+  
+      <div class="input-field col s4">
+        <label class="active" for="codigo">Nome do fornecedor</label>
+        <input id="codigo" type="text">
+      </div>
+  
+      <div class="input-field col s4">
+        <select name="selectedOption" materialize="material_select">
+          <option value="" disabled selected></option>
+          <option>teste</option>
+          <option>teste</option>
+          <option>teste</option>
+          <option>teste</option>
+        </select>
+        <label>Razão social</label>
+      </div>
+  
+      <div class="box-buttons">
+          <button  class="waves-effect waves-light btn btnPrimary">Pesquisar</button>          
+      </div>
+      <div class="grid-divider"></div>
+      <div class="row">
+        <table class="striped">
+          <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Razão</th>
+                <th>CNPJ</th>
+                <th>Contato Caixa</th>
+                <th>Contato fornecedor</th>
+                <th>Data de início de Vigência</th>
+                <th>Data fim de Vigência</th>
+                <th>Situação</th>
+                <th>Ação</th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr>
+              <td>003</td>
+              <td>AL5T</td>
+              <td>Lorem ipsulum</td>
+              <td>lorem</td>
+              <td>lorem</td>
+              <td>lorem</td>
+              <td>25/10/2099</td>
+              <td>25/10/2099</td>
+              <td>Vigente</td>
+              <td>
+                <a href="#!" class="edit"><i class="material-icons actionButtons">edit</i></a>
+                <a href="#!" class="delete"><i class="material-icons actionButtons">delete_forever</i></a>
+              </td>
+            </tr>
+            
+            <tr>
+              <td>003</td>
+              <td>AL5T</td>
+              <td>Lorem ipsulum</td>
+              <td>lorem</td>
+              <td>lorem</td>
+              <td>lorem</td>
+              <td>25/10/2099</td>
+              <td>25/10/2099</td>
+              <td>Pendente</td>
+              <td>
+                <a href="#!" class="view"><i class="material-icons actionButtons">search</i></a>
+                <a href="#!" class="terminate"><i class="material-icons actionButtons">close</i></a>
+              </td>
+            </tr>
+
+            <tr>
+              <td>003</td>
+              <td>AL5T</td>
+              <td>Lorem ipsulum</td>
+              <td>lorem</td>
+              <td>lorem</td>
+              <td>lorem</td>
+              <td>25/10/2099</td>
+              <td>25/10/2099</td>
+              <td>Encerrado</td>
+              <td>
+                <a href="#!" class="view"><i class="material-icons actionButtons">search</i></a>
+                <a href="#!" class="terminate"><i class="material-icons actionButtons">close</i></a>
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </form>
+   </div>
+</div>
+<!-- ############# FIM DA TELA DE PESQUISAR FORNECEDORES ################ -->

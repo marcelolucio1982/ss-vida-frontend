@@ -1,0 +1,202 @@
+<div class="mainContent">
+  <!-- ######################## PESQUISAR PROPOSTA #######################  -->
+
+  <h5>Pesquisar Proposta</h5>
+  <div class="boxNext row"></div>
+
+  <div class="clearfix"></div>
+
+  <div class="col s12">
+    <form class="form-horizontal" [formGroup]="formulario">
+      <div class="row">
+
+        <div class="input-field col s4">
+          <label class="active" for="tipoDeProposta">Tipo de Proposta <span class="asterisco">*</span></label>
+          <select class="noUppercase" formControlName="tipoDeProposta" name="tipoDeProposta"
+            materialize="material_select">
+            <option [ngValue]="null">Selecione uma opção</option>
+            <option value="1">Proposta</option>
+            <option value="2">Proposta em Crítica</option>
+          </select>
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'tipoDeProposta', formulario )" msgErro="Campo de seleção obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4" *ngIf="formulario.get( 'tipoDeProposta' ).value == '1'">
+          <label class="active" for="tipoPesquisaProposta">Pesquisar por <span class="asterisco">*</span></label>
+          <select class="noUppercase" formControlName="tipoPesquisaProposta" name="tipoPesquisaProposta"
+            materialize="material_select">
+            <option [ngValue]="null">Selecione uma opção</option>
+            <option value="1">CPF</option>
+            <option value="2">Nome</option>
+            <option value="4">Proposta</option>
+            <option value="7">Situação da Proposta</option>
+            <option value="6">Data</option>
+          </select>
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'tipoPesquisaProposta', formulario )" msgErro="Campo de seleção obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4" *ngIf="formulario.get( 'tipoDeProposta' ).value == '2'">
+          <label class="active" for="tipoPesquisaProposta">Pesquisar por <span class="asterisco">*</span></label>
+          <select class="noUppercase" formControlName="tipoPesquisaProposta" name="tipoPesquisaProposta"
+            materialize="material_select">
+            <option [ngValue]="null">Selecione uma opção</option>
+            <option value="8">Produto</option>
+            <option value="9">Data da Proposta</option>
+          </select>
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'tipoPesquisaProposta', formulario )" msgErro="Campo de seleção obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div formGroupName="cpfGroup" *ngIf="formulario.value[ 'tipoPesquisaProposta' ] === '1'">
+          <div class="input-field col s4">
+            <label class="active" for="numCpf">CPF <span class="asterisco">*</span></label>
+            <input id="numCpf" formControlName="numCpf" name="numCpf" type="text">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'numCpf', formulario.get( 'cpfGroup' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+        </div>
+
+        <div formGroupName="nomeGroup" *ngIf="formulario.value[ 'tipoPesquisaProposta' ] === '2'">
+          <div class="input-field col s4">
+            <label class="active" for="nome">Nome <span class="asterisco">*</span></label>
+            <input id="nome" formControlName="nome" name="nome" type="text">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'nome', formulario.get( 'nomeGroup' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+        </div>
+
+        <div formGroupName="propostaGroup" *ngIf="formulario.value[ 'tipoPesquisaProposta' ] === '4'">
+          <div class="input-field col s4">
+            <label class="active" for="proposta">Proposta <span class="asterisco">*</span></label>
+            <input id="proposta" formControlName="proposta" name="proposta" type="text">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'proposta', formulario.get( 'propostaGroup' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+        </div>
+
+        <div formGroupName="situacaoPropostaGroup" *ngIf="formulario.value[ 'tipoPesquisaProposta' ] === '7'">
+          <div class="input-field col s4">
+            <label class="active" for="situacaoProposta">Situação <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="situacaoProposta" name="situacaoProposta"
+              materialize="material_select" [materializeSelectOptions]="situacaoPropostaList">
+              <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+              <option *ngFor='let e of situacaoPropostaList' [ngValue]="e">{{ e.descricao }}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'situacaoProposta', formulario.get( 'situacaoPropostaGroup' ) )" msgErro="Campo de seleção obrigatório."></app-campos-control-erro>
+          </div>
+        </div>
+
+        <div formGroupName="produtoGroup" *ngIf="formulario.value[ 'tipoPesquisaProposta' ] === '8'">
+          <div class="input-field col s4">
+            <label class="active" for="produto">Código do Produto <span class="asterisco">*</span></label>
+            <input formControlName="produto" name="produto" type="text">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'produto', formulario.get( 'produtoGroup' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div formGroupName="dataGroup" *ngIf="formulario.value[ 'tipoPesquisaProposta' ] === '6' || formulario.value[ 'tipoPesquisaProposta' ] === '7' || formulario.value[ 'tipoPesquisaProposta' ] === '8' || formulario.value[ 'tipoPesquisaProposta' ] === '9'">
+          <div class="input-field col s4">
+            <label class="active" for="periodoInicial">Período Inicial <span class="asterisco">*</span></label>
+            <input class="datepicker" id="periodoInicial" formControlName="periodoInicial" name="periodoInicial" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'periodoInicial', formulario.get( 'dataGroup' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="periodoFinal">Período Final <span class="asterisco">*</span></label>
+            <input class="datepicker" id="periodoFinal" formControlName="periodoFinal" name="periodoFinal" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'periodoFinal', formulario.get( 'dataGroup' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="box-buttons">
+          <button type="submit" class="buttonResultado waves-effect waves-light btn btnPrimary" (click)="pesquisar( true )"><i class="material-icons left">search</i> Pesquisar</button>
+        </div>
+
+        <div class="grid-divider"></div>
+
+        <div class="row" *ngIf="formulario.get( 'tipoDeProposta' ).value === '1'">
+          <table class="striped" *ngIf="retorno && retorno.length > 0">
+            <thead>
+              <tr>
+                <th>CPF</th>
+                <th>Nome</th>
+                <th>Produto</th>
+                <th>Apólice</th>
+                <th>Proposta</th>
+                <th>Situação</th>
+                <th>Início de Vigência</th>
+                <th>Fim de Vigência</th>
+                <th>Prêmio</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let i of retorno; let aux = index;">
+                <td>{{ i.pessoa.cpfCnpj }}</td>
+                <td>{{ i.pessoa.nome }}</td>
+                <td>{{ i.produto.descricao }}</td>
+                <td>{{ i.numeroApolice }}</td>
+                <td>{{ i.numeroPropostaExterna }}</td>
+                <td>{{ i.situacaoProposta.descricao }}</td>
+                <td>{{ i.dataInicioVigencia | date:constantesService.getFormatoDataP() }}</td>
+                <td>{{ i.dataFimVigencia | date:constantesService.getFormatoDataP() }}</td>
+                <td>{{ utilService.formatarValorRealVisao(  i.valorPremioAdesao ) }}</td>
+                <td>
+                  <a materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10"
+                     (click)="visualizar( i )">
+                    <i class="material-icons actionButtons">search</i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="row" *ngIf="formulario.get( 'tipoDeProposta' ).value === '2'">
+          <table class="striped" *ngIf="retorno && retorno.length > 0">
+            <thead>
+              <tr>
+                <th>Proposta</th>
+                <th>Produto</th>
+                <th>Data de Venda</th>
+                <th>Data do Pagamento</th>
+                <th>CPF / CNPJ</th>
+                <th>Situação</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let i of retorno; let aux = index;">
+                <td>{{ i.numeroPropostaExterna }}</td>
+                <td>{{ i.produto.descricao }}</td>
+                <td>{{ i.dataCadastro | date:constantesService.getFormatoDataP() }}</td>
+                <td>{{ i.dataPagamento | date:constantesService.getFormatoDataP() }}</td>
+                <td>{{ i.pessoa.cpfCnpj }}</td>
+                <td>{{ i.situacaoProposta.descricao }}</td>
+                <td>
+                  <a materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10"
+                     (click)="visualizar( i )">
+                    <i class="material-icons actionButtons">search</i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="row">
+          <app-pagination
+          (goPage)="goToPage($event)"
+          (goNext)="onNext()"
+          (goPrev)="onPrev()"
+          [pagesToShow]="5"
+          [page]="page"
+          [perPage]="limit"
+          [count]="total"></app-pagination>
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <!-- ######################## FIM DE PESQUISAR PROPOSTA #######################  -->
+</div>

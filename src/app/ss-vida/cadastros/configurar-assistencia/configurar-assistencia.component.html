@@ -1,0 +1,344 @@
+<div class="mainContent">
+   <!-- ######################## CONFIGURAR ASSISTÊNCIA #######################  -->
+
+   <h5>Informações do Produto</h5>
+   <div class="boxNext row"></div>
+
+   <div class="clearfix"></div>
+   <div class="col s12">
+       <form class="form-horizontal" [formGroup]="formulario">
+           <div class="row">
+
+               <div class="input-field col s4">
+                   <label class="active" for="codigoConfigAssistencia">Código</label>
+                   <input class="viewList" disabled="disabled" id="codigoConfigAssistencia" formControlName="codigoConfigAssistencia" name="codigoConfigAssistencia" type="text"
+                       value="XXXX">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="nomeConfigAssistencias">Nome</label>
+                   <input class="viewList" disabled="disabled" id="nomeConfigAssistencias" formControlName="nomeConfigAssistencias" name="nomeConfigAssistencias" type="text" value="FARMA FÁCIL MICROSEGURO ">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="processoSusepConfigAssistencias">Processo SUSEP</label>
+                   <input class="viewList" disabled="disabled" id="processoSusepConfigAssistencias" formControlName="processoSusepConfigAssistencias" name="processoSusepConfigAssistencias"
+                       type="text" value="XXXX">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="versaoConfigAssistencias">Versão</label>
+                   <input class="viewList" disabled="disabled" id="versaoConfigAssistencias" formControlName="versaoConfigAssistencias" name="versaoConfigAssistencias" type="text"
+                       value="2">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="situacaoConfigAssistencias">Situação</label>
+                   <input class="viewList" disabled="disabled" id="situacaoConfigAssistencias" formControlName="situacaoConfigAssistencias" name="situacaoConfigAssistencias" type="text"
+                       value="Pendente">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="inicioComercializacaoConfigAssistencias">Início da comercialização</label>
+                   <input class="viewList" disabled="disabled" id="inicioComercializacaoConfigAssistencias" formControlName="inicioComercializacaoConfigAssistencias" name="inicioComercializacaoConfigAssistencias"
+                       type="text">
+               </div>
+
+
+               <div class="input-field col s4">
+                   <label class="active" for="parceiroConfigAssistencias">Parceiro</label>
+                   <select id="parceiroConfigAssistencias" class="noUppercase" formControlName="parceiroConfigAssistencias" name="parceiroConfigAssistencias"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="tipoLocalVendaConfigAssistencias">Tipo de local de venda</label>
+                   <select id="tipoLocalVendaConfigAssistencias" class="noUppercase" formControlName="tipoLocalVendaConfigAssistencias" name="tipoLocalVendaConfigAssistencias"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="nomeImpressaoConfigAssistencias">Nome de impressão</label>
+                   <select id="nomeImpressaoConfigAssistencias" class="noUppercase" formControlName="nomeImpressaoConfigAssistencias" name="nomeImpressaoConfigAssistencias"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="assistenciaServicoConfigAssistencias">Assistência e serviço</label>
+                   <input id="assistenciaServicoConfigAssistencias" disabled="disabled" formControlName="assistenciaServicoConfigAssistencias"
+                       name="assistenciaServicoConfigAssistencias" type="text">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="valorConfigAssistencias">Valor</label>
+                   <input id="valorConfigAssistencias" formControlName="valorConfigAssistencias" name="valorConfigAssistencias" type="text">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="empresaAssistenciaConfigAssistencias">Empresa de assistência</label>
+                   <select id="empresaAssistenciaConfigAssistencias" class="noUppercase" formControlName="empresaAssistenciaConfigAssistencias"
+                       name="empresaAssistenciaConfigAssistencias" materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="contratoConfigAssistencias">Contrato</label>
+                   <input id="contratoConfigAssistencias" formControlName="contratoConfigAssistencias" name="contratoConfigAssistencias" type="text">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="formaContratacaoConfigAssistencias">Forma de contratação</label>
+                   <input id="formaContratacaoConfigAssistencias" formControlName="formaContratacaoConfigAssistencias" name="formaContratacaoConfigAssistencias"
+                       type="text">
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="formaContratacaoConfigAssistenciasSelect">Forma de contratação</label>
+                   <select id="formaContratacaoConfigAssistenciasSelect" class="noUppercase" formControlName="formaContratacaoConfigAssistenciasSelect"
+                       name="formaContratacaoConfigAssistenciasSelect" materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="pacoteConfigAssistencias">Pacote</label>
+                   <select id="pacoteConfigAssistencias" class="noUppercase" formControlName="pacoteConfigAssistencias" name="pacoteConfigAssistencias"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="acionamentoConfigAssistencias">Acionamento da Assistência</label>
+                   <select id="acionamentoConfigAssistencias" class="noUppercase" formControlName="acionamentoConfigAssistencias" name="acionamentoConfigAssistencias"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="eventoConfigAssistencias">Evento</label>
+                   <select id="eventoConfigAssistencias" class="noUppercase" formControlName="eventoConfigAssistencias" name="eventoConfigAssistencias"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="beneficiarioConfigAssistencias">Beneficiário da Assistência</label>
+                   <select id="beneficiarioConfigAssistencias" class="noUppercase" formControlName="beneficiarioConfigAssistencias" name="beneficiarioConfigAssistencias"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="col s4">
+                   <label class="active blackFont">Área geográfica da Assistência</label>
+                   <p class="boxRadio">
+                       <span>
+                           <input class="with-gap"  name="brasilConfigAssistencias" type="radio" />
+                           <label for="percentual">Brasil</label>
+                           <input class="with-gap"  name="mundoConfigAssistencias" type="radio" />
+                           <label for="valorRs">Mundo</label>
+                       </span>
+                   </p>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="maximoAcionamentoConfigAssistencias">Possui máximo de acionamento</label>
+                   <select id="maximoAcionamentoConfigAssistencias" class="noUppercase" formControlName="maximoAcionamentoConfigAssistencias"
+                       name="maximoAcionamentoConfigAssistencias" materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="quantidadeAcionamentoConfigAssistencias">Quantidade de acionamento</label>
+                   <input id="quantidadeAcionamentoConfigAssistencias" formControlName="quantidadeAcionamentoConfigAssistencias" name="quantidadeAcionamentoConfigAssistencias"
+                       type="text">
+               </div>
+
+               <div class="input-field col s12">
+                   <textarea id="observacoesConfigAssistencias" class="materialize-textarea" materialize="characterCounter"></textarea>
+                   <label for="observacoesConfigAssistencias">Observações</label>
+               </div>
+
+               <h5 class="subTitle">Especificidade</h5>
+               <div class="boxNextSubTitle row"></div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="periodicidadePagamentoConfigAssistencias">Por periodicidade de pagamento</label>
+                   <select id="periodicidadePagamentoConfigAssistencias" class="noUppercase" formControlName="periodicidadePagamentoConfigAssistencias"
+                       name="periodicidadePagamentoConfigAssistencias" materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="col s4">
+                   <label class="active blackFont">Opções</label>
+                   <p class="boxRadio">
+                       <span>
+                           <input class="with-gap"  name="antecipadoConfigAssistencias" type="radio" />
+                           <label for="percentual">Antecipado</label>
+                           <input class="with-gap"  name="mensalConfigAssistencias" type="radio" />
+                           <label for="valorRs">Mensal</label>
+                           <input class="with-gap"  name="pagamentoUnicoConfigAssistencias" type="radio"
+                           />
+                           <label for="valorRs">Pagamento único</label>
+                       </span>
+                   </p>
+               </div>
+
+               <div class="input-field col s4">
+                   <label class="active" for="porProfissaoConfigAssistencias">Por profissão</label>
+                   <select id="porProfissaoConfigAssistencias" class="noUppercase" formControlName="porProfissaoConfigAssistencias" name="porProfissaoConfigAssistencias"
+                       materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="clearfix"></div>
+               <h5 class="subTitle">Profissões</h5>
+               <div class="boxNextSubTitle row"></div>
+               <div class="clearfix"></div>
+
+               <div class="input-field col s5">
+                   <label class="active" for="profissoesLeftConfigAssistencias"></label>
+                   <select id="profissoesLeftConfigAssistencias" class="noUppercase multipleSelect" formControlName="profissoesLeftConfigAssistencias"
+                       name="profissoesLeftConfigAssistencias" multiple materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                       <option>lorem ipsulum</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="input-field col s2 textCenter controlsDouble">
+                   <a href="">
+                       <i class="material-icons dp48">navigate_next</i>
+                   </a>
+                   <br />
+                   <a href="">
+                       <i class="material-icons dp48">navigate_before</i>
+                   </a>
+                   <br />
+                   <br />
+                   <a href="">
+                       <i class="material-icons dp48">navigate_next</i>
+                       <i class="material-icons dp48 double">navigate_next</i>
+                   </a>
+                   <br />
+                   <a href="">
+                       <i class="material-icons dp48">navigate_before</i>
+                       <i class="material-icons dp48 double">navigate_before</i>
+                   </a>
+               </div>
+
+
+               <div class="input-field col s5">
+                   <label class="active" for="profissoesRighttConfigAssistencias"></label>
+                   <select id="profissoesRighttConfigAssistencias" class="noUppercase multipleSelect" formControlName="profissoesRighttConfigAssistencias"
+                       name="profissoesRighttConfigAssistencias" materialize="material_select">
+                       <option value="">Selecione uma opção</option>
+                       <option>lorem ipsulum</option>
+                   </select>
+               </div>
+
+               <div class="clearfix"></div>
+
+               <div class="input-field col s4">
+                   <div class="box-buttons-wizard">
+                       <button type="submit" class="waves-effect waves-light btn btnPrimary">
+                           <i class="material-icons left">delete</i> Adicionar</button>
+                   </div>
+               </div>
+
+               <div class="clearfix"></div>
+               <div class="box-buttons">
+                   <button type="submit" class="waves-effect waves-light btn btnPrimary">Salvar</button>
+                   <button type="submit" class="waves-effect waves-light btn btnSecondary">Voltar</button>
+               </div>
+
+
+
+               <h5 class="subTitle">Itens adicionados</h5>
+               <div class="boxNextSubTitle row"></div>
+
+               <div class="grid-divider"></div>
+               <div class="row">
+                   <table class="striped">
+                       <thead>
+                           <tr>
+                               <th>Nome de impressão</th>
+                               <th>Assistência</th>
+                               <th>Empresa</th>
+                               <th>Contrato</th>
+                               <th>Ações</th>
+                           </tr>
+                       </thead>
+
+                       <tbody>
+                           <tr>
+                               <td>003</td>
+                               <td>003</td>
+                               <td>AL5T</td>
+                               <td>Lorem ipsulum</td>
+                               <td>
+                                   <a href="#!" class="delete">
+                                       <i class="material-icons actionButtons">delete_forever</i>
+                                   </a>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td>003</td>
+                               <td>003</td>
+                               <td>AL5T</td>
+                               <td>Lorem ipsulum</td>
+                               <td>
+                                   <a href="#!" class="delete">
+                                       <i class="material-icons actionButtons">delete_forever</i>
+                                   </a>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td>003</td>
+                               <td>003</td>
+                               <td>AL5T</td>
+                               <td>Lorem ipsulum</td>
+                               <td>
+                                   <a href="#!" class="delete">
+                                       <i class="material-icons actionButtons">delete_forever</i>
+                                   </a>
+                               </td>
+                           </tr>
+
+                       </tbody>
+                   </table>
+               </div>
+           </div>
+       </form>
+
+   </div>
+
+   <!-- ######################## FIM DE CONFIGURAR ASSISTÊNCIAS #######################  -->
+
+</div>

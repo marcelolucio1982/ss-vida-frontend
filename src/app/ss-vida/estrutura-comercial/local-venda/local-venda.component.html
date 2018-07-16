@@ -1,0 +1,127 @@
+<div class="mainContent">
+  <!-- ######################## LOCAL DE VENDA #######################  -->
+
+  <h5>Pesquisar Local de Venda</h5>
+  <div class="boxNext">
+    <a class="waves-effect waves-light btn nextButton btnNext"  (click)="novo()"><i class="material-icons left">send</i>Cadastrar</a>
+  </div>
+
+  <div class="clearfix"></div>
+  <div class="col s12">
+    <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="pesquisar()">
+      <div class="row">
+
+        <div class="input-field col s6">
+          <label class="active" for="opcoesLocalVenda">Opções <span class="asterisco">*</span></label>
+          <select id="opcoesLocalVenda" class="noUppercase" formControlName="opcoesLocalVenda" name="opcoesLocalVenda" materialize="material_select">
+            <option value="">Selecione uma opção</option>
+            <option value="1">Código Externo</option>
+            <option value="2">Razão Social / Nome do Local de venda</option>
+          </select>
+        </div>
+
+        <div class="input-field col s6" *ngIf="formulario.value.opcoesLocalVenda == 1">
+          <label class="active" for="codigoExterno">Código Externo</label>
+          <input id="codigoExterno" formControlName="codigoExterno" name="codigoExterno" type="text">
+        </div>
+
+        <div class="input-field col s6" *ngIf="formulario.value.opcoesLocalVenda == 2">
+          <label class="active" for="razaoSocial">Razão Social / Nome do Local de Venda</label>
+          <input id="razaoSocial" formControlName="razaoSocial" name="razaoSocial" type="text">
+        </div>
+
+        <div class="input-field col s4" *ngIf="formulario.value.opcoesLocalVenda == 2">
+          <label class="active" for="parceiroLocalVenda">Parceiro</label>
+          <select id="parceiroLocalVenda" class="noUppercase" formControlName="parceiroLocalVenda" name="parceiroLocalVenda"
+              materialize="material_select">
+              <option value="">Selecione uma opção</option>
+              <option *ngFor='let e of parceiroList;' [ngValue]="e.codigo">{{e.descricao}}</option>
+          </select>
+        </div>
+
+        <div class="input-field col s4" *ngIf="formulario.value.opcoesLocalVenda == 2">
+          <label class="active" for="tipoLocalVenda">Tipo de Local de Venda</label>
+          <select id="tipoLocalVenda" class="noUppercase" formControlName="tipoLocalVenda" name="tipoLocalVenda"
+              materialize="material_select">
+              <option value="">Selecione uma opção</option>
+              <option *ngFor='let e of tipoLocalVendaList;' [ngValue]="e.codigo">{{e.descricao}}</option>
+          </select>
+        </div>
+
+        <div class="input-field col s4" *ngIf="formulario.value.opcoesLocalVenda == 2">
+          <label class="active" for="situacaoLocalVenda">Situação</label>
+          <select id="situacaoLocalVenda" class="noUppercase" formControlName="situacaoLocalVenda" name="situacaoLocalVenda"
+              materialize="material_select">
+              <option value="">Selecione uma opção</option>
+              <option *ngFor='let e of constantesService.getSituacoes();' [ngValue]="e.codigo">{{ e.descricao }}</option>
+          </select>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="box-buttons" *ngIf="formulario.value.opcoesLocalVenda > 0">
+          <button type="submit" class="waves-effect waves-light btn btnPrimary">
+            <i class="material-icons left">search</i> Pesquisar
+          </button>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="grid-divider"></div>
+        <div class="row">
+          <table class="striped" *ngIf="retorno || retorno.length == 0">
+            <thead>
+              <tr>
+                <th>Parceiro</th>
+                <th>Tipo de Local de Venda</th>
+                <th>Código externo</th>
+                <th>Razão Social / Nome Local de Venda</th>
+                <th>Unidade Responsável</th>
+                <th>Início de Vigência</th>
+                <th>Fim de Vigência</th>
+                <th>Situação</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr *ngFor="let i of retorno; let aux = index;">
+                <td>{{ i.parceiro.descricao }}</td>
+                <td>{{ i.tipoLocalVenda.descricao }}</td>
+                <td>{{ i.codigoExterno }}</td>
+                <td>{{ i.descricao }}</td>
+                <td>{{ i.unidadeNegocio.sigla }}</td>
+                <td>{{ i.dataInicioVigencia | date:constantesService.getFormatoDataP() }}</td>
+                <td>{{ i.dataFimVigencia | date:constantesService.getFormatoDataP() }}</td>
+                <td>{{ i.situacao.descricao }}</td>
+                <td class="tdCenter">
+
+                  <a [routerLink]="" materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10"
+                    (click)="visualizar(i)"> <i class="material-icons actionButtons">search</i>
+                  </a>
+
+                  <a [routerLink]="" materialize="tooltip" data-tooltip="Editar" class="view tooltipped edit" data-position="left" data-delay="10"
+                    (click)="editar(i)" *ngIf="( i.situacao.codigo == 0 || i.situacao.codigo == 1 )"><i class="material-icons actionButtons">edit</i>
+                  </a>
+
+                  <a [routerLink]="" materialize="tooltip" data-tooltip="Excluir" class="view tooltipped delete" data-position="left" data-delay="10"
+                    (click)="excluir(i)" *ngIf="( i.situacao.codigo == 0 || i.situacao.codigo == 1 )"><i class="material-icons actionButtons">delete_forever</i>
+                  </a>
+
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+
+  <!-- ######################## FIM DE LOCAL DE VENDA #######################  -->
+</div>
+

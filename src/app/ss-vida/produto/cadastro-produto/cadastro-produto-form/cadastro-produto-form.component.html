@@ -1,0 +1,126 @@
+<!-- Tela de Cadastrar Produtos  -->
+<div class="mainContent">
+  <h5 class="mainTitle">{{getEhVisualizacao() ? 'Visualizar Produto' : 'Cadastro de Produto'}}</h5>
+
+  <div class="clearfix"></div>
+  <div class="col s12">
+    <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="salvar()" >
+      <div class="row">
+        <div class="input-field col s3">
+          <label class="active" for="unidadeNegocio">BU <span class="asterisco" *ngIf="!getEhVisualizacao()">*</span></label>
+          <span class="spanResult" *ngIf="getEhVisualizacao()">{{formulario.value.unidadeNegocio ? formulario.value.unidadeNegocio.nome : ''}}</span>
+          <select *ngIf="!getEhVisualizacao()" formControlName="unidadeNegocio" materialize="material_select">
+            <option value="" selected disabled>Selecione uma opção</option>
+            <option *ngFor='let e of constantesService.getUnidadesNegocio();' [ngValue]="e">{{e.nome}}</option>
+          </select>
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('unidadeNegocio', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s3" [ngClass]="utilService.aplicaCssErro('dataInicioVigencia', formulario)">
+          <label class="active" for="dataInicioVigencia">Início de vigência <span class="asterisco" *ngIf="!getEhVisualizacao()">*</span></label>
+          <span class="spanResult" *ngIf="getEhVisualizacao()">{{formulario.value.dataInicioVigencia | date:constantesService.getFormatoDataP()}}</span>
+          <input *ngIf="!getEhVisualizacao()" formControlName="dataInicioVigencia" class="datepicker" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('dataInicioVigencia', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+    
+        <div class="input-field col s3">
+          <label class="active" for="codigo">Código <span class="asterisco" *ngIf="!getEhVisualizacao()">*</span></label>
+          <span class="spanResult" *ngIf="getEhVisualizacao()">{{formulario.value.codigo}}</span>
+          <input *ngIf="!getEhVisualizacao()" type="text" formControlName="codigo" [textMask]="constantesService.getMaskDef().numerico(4)">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('codigo', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+    
+        <div class="input-field col s3">
+          <label class="active" for="descricao">Nome <span class="asterisco" *ngIf="!getEhVisualizacao()">*</span></label>
+          <span class="spanResult" *ngIf="getEhVisualizacao()">{{formulario.value.descricao}}</span>
+          <input *ngIf="!getEhVisualizacao()" formControlName="descricao" type="text" [textMask]="constantesService.getMaskDef().alfaNumerico(200)">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('descricao', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s12">
+          <label class="active" for="observacoes">Observações</label>
+          <span class="spanResult" *ngIf="getEhVisualizacao()">{{formulario.value.descricao}}</span>
+          <textarea *ngIf="!getEhVisualizacao()" class="materialize-textarea" formControlName="observacoes" maxlength="500">{{formulario.value.observacoes}}</textarea>
+        </div>
+
+        <div class="input-field col s3">
+          <label class="active" for="codigoProcessoSusep">Processo SUSEP <span class="asterisco" *ngIf="!getEhVisualizacao()">*</span></label>
+          <span class="spanResult" *ngIf="getEhVisualizacao()">{{formulario.value.codigoProcessoSusep}}</span>
+          <input *ngIf="!getEhVisualizacao()" formControlName="codigoProcessoSusep" type="text" [textMask]="constantesService.getMaskDef().alfaNumerico(10)">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('codigoProcessoSusep', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s3">
+          <label class="active" for="grupoSusep">Grupo SUSEP <span class="asterisco" *ngIf="!getEhVisualizacao()">*</span></label>
+          <span class="spanResult" *ngIf="getEhVisualizacao()">{{formulario.value.grupoSusep ? formulario.value.grupoSusep.descricao : ''}}</span>
+          <select *ngIf="!getEhVisualizacao()" formControlName="grupoSusep" materialize="material_select" [materializeSelectOptions]="constantesService.getGruposSusep()">
+            <option value="" selected disabled>Selecione uma opção</option>
+            <option *ngFor='let e of constantesService.getGruposSusep();' [ngValue]="e">{{e.descricao}}</option>
+          </select>
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('grupoSusep', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s3">
+          <label class="active" for="ramoSusep">Ramo SUSEP <span class="asterisco" *ngIf="!getEhVisualizacao()">*</span></label>
+          <span class="spanResult" *ngIf="getEhVisualizacao()">{{formulario.value.ramoSusep ? formulario.value.ramoSusep.descricao : ''}}</span>
+          <select *ngIf="!getEhVisualizacao()" formControlName="ramoSusep" materialize="material_select" [materializeSelectOptions]="constantesService.getRamosSusep(formulario.value.grupoSusep ? formulario.value.grupoSusep.codigo : 0)">
+            <option value="" selected disabled>Selecione uma opção</option>
+            <option *ngFor='let e of constantesService.getRamosSusep(formulario.value.grupoSusep ? formulario.value.grupoSusep.codigo : 0);' [ngValue]="e">{{e.descricao}}</option>
+          </select>
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('ramoSusep', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s3">
+          <label class="active" for="ramoCaixaSeguradora">Ramo Caixa Seguradora</label>
+          <span class="spanResult">{{formulario.value.ramoSusep ? formulario.value.ramoSusep.ramoCaixaSeguros : ''}}</span>
+        </div>
+
+        <div class="row" *ngIf="retorno && retorno.length > 0">
+          <div class="grid-divider"></div>
+          <h5 class="mainTitle">Histórico do produto</h5>
+          <table class="striped">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>BU</th>
+                <th>Início de vigência</th>
+                <th>Processo SUSEP</th>
+                <th>Situação</th>
+                <th>Data situação</th>
+                <th>Úsuário</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+    
+            <tbody>
+              <tr *ngFor='let i of retorno;'>
+                <td>{{i.produto.descricao}}</td>
+                <td>{{i.produto.unidadeNegocio.nome || i.produto.unidadeNegocio.sigla}}</td>
+                <td>{{i.produto.dataInicioVigencia | date:constantesService.getFormatoDataP()}}</td>
+                <td>{{i.produto.codigoProcessoSusep}}</td>
+                <td>{{i.produto.statusDescricao}}</td>
+                <td>{{i.dataHoraAtualizacao | date:constantesService.getFormatoDataP()}}</td>
+                <td>{{i.codigoUsuario}}</td>
+                <td>
+                  <a (click)="visualizar(i)" class="view" materialize="tooltip" data-position="top" data-delay="10" data-tooltip="Visualizar"><i class="material-icons actionButtons">remove_red_eye</i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="box-buttons">
+          <button *ngIf="!getEhVisualizacao()" type="submit" class="waves-effect waves-light btn btnPrimary">Salvar</button>
+          <button *ngIf="!getEhVisualizacao()" type="button" (click)="salvar(true)" class="waves-effect waves-light btn btnPrimary">Aprovar</button>
+          <!--<button *ngIf="getEhVisualizacao() && podeEditar()" (click)="editar()" type="button" class="waves-effect waves-light btn btnPrimary">ALTERAR</button>
+          <button *ngIf="getEhVisualizacao() && podeExcluir()" (click)="excluir()" type="button" class="waves-effect waves-light btn btnPrimary">EXCLUIR</button>-->
+          <button type="button" (click)="pesquisar()" class="waves-effect waves-light btn btnSecondary" (click)="pesquisar()">Fechar</button>          
+        </div>
+        <div class="grid-divider"></div>
+      </div>
+    </form>
+  </div>
+
+  <!-- <h4>Debug</h4><pre>{{formulario.value | json}}</pre> -->
+</div>
+<!-- ############# FIM DA TELA DE CADASTRAR FORNECEDORES ################ -->

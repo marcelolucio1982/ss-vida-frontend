@@ -1,109 +1,51 @@
-# Angular Example with Deployment to Openshift
+# SsVidaApp
 
-This project takes the output of ng create angular-example and adds the necessary software artifacts that enable a production grade deployment to Openshift. The container image deployed to Openshift is the output of the ng build command copied into a base Nginx image.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.8.
 
-The build process is defined via a Jenkins pipeline definition. This pipeline definition has separate stages for checkout, test, lint, build and the final image build. All of these stages apart from the final image build stage are executed within the slave image (described later).
+node -version v8.5.0
 
-NOTE - an alternative source to image based approach is also available (see README-s2i.md). The following files are ONLY used with the source to image approach:
+npm -version 5.3.0
 
-* .s2i/bin/assemble
-* openshift/chained-s2i.yml
+## Development server
 
-NOTE - there is a RHEL based jenkins pipeline branch, the output of the `ng build --prod --build-optimizer` within the pipeline  (or rather the `./dist` folder) is passed as the context to a s2i image build which uses the `registry.access.redhat.com/rhscl/nginx-112-rhel7` builder image. The branch is called 'rhel'.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Prerequisites
+## Code scaffolding
 
-### Access to an Openshift 3.7 environment
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-Locally this is easiest to achieve using Minishift
+## Build
 
-https://access.redhat.com/documentation/en-us/red_hat_container_development_kit/3.2/html/getting_started_guide/
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-IMPORTANT - the minishift instance must be started using version 3.7 (the default is 3.6) of the Openshift Container Platform i.e. the commands that I used were
+Criado módulo externo para build do front em pacote war e deploy de repositório utilizando maven(pré-requisito).
+Para execução do módulo de build, a partir da raiz do projeto executar o comando `node mvn-package.js` que possui como parâmetros:
 
-     minishift setup-cdk
-     curl -O https://mirror.openshift.com/pub/openshift-v3/clients/3.7.9/linux/oc.tar.gz
-     tar -zxvf oc.tar.gz
-     cp oc ~/.minishift/cache/oc/v3.6.173.0.21
-     minishift start --ocp-tag v3.7.9
-     oc login -u system:admin
-     oc tag --source=docker openshift3/jenkins-2-rhel7:v3.7 openshift/jenkins:2
-     oc login -u developer -p developer
-     
-The tag command ensures that the 3.7 version of the Openshift Jenkins image is used rather than one tagged latest (which can be a v3.6 image if a bug has been fixed in the 3.6 image for instance). The v3.7 version of the Jenkins image has a version of the pipeline plugin which supports the declarative syntax, v3.6 does not .
-     
-### Angular CLI (only if further development of the application will occur)
+*  `install`: Executa o `mvn install` e realiza instalação no m2 local
+* `deploy`:Executa o `mvn deploy` e realiza instalação no repositório remoto do Nexus
+* Sem passagem de parâmetros realiza apenas o empacotamento do war
 
-The majority of the code here is the output of 
+As configurações do Build se encontram no arquivo `build.json` que será sobrescrito pelo jenkins para cada ambiente.
+Neste arquivo existem os parâmetros `backendAddress` e `frontendAddress` que referem ao endereço de backend dos serviços e o de frontend da aplicação, onde deve ser considerado como contextRoot no servidor o atributo `name` do arquivo `package.json`. É necessário configurar a variável de ambiente `BUILD_ENVIRONMENT` de acordo com o ambiente desejado. O jenkins atuará com arquivo `build.json` com as configurações corretas para cada ambiente:
 
-    ng create angular-example
-   
-Normally in development locally you'd use ng serve which is a non-production grade webserver which compiles angular source code on the fly. See
+* `set BUILD_ENVIRONMENT=local` ou `export BUILD_ENVIRONMENT=local`: Configuração de build para servidor local
+* `set BUILD_ENVIRONMENT=desenvolvimento` ou `export BUILD_ENVIRONMENT=desenvolvimento`: Configuração de build para servidor de desenvolvimento
+* `set BUILD_ENVIRONMENT=teste` ou `export BUILD_ENVIRONMENT=teste`: Configuração de build para servidor de teste
+* `set BUILD_ENVIRONMENT=homologacao` ou `export BUILD_ENVIRONMENT=homologacao`: Configuração de build para servidor de homologacao
+* `set BUILD_ENVIRONMENT=producao` ou `export BUILD_ENVIRONMENT=producao`: Configuração de build para servidor de producao
+*
+Além dessas propriedades se encontram as URL's para os repositórios de binário(Nexus)
 
-https://cli.angular.io/
 
-and to understand production deployments see
+## Running unit tests
 
-https://angular.io/guide/deployment
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Deployment
+## Running end-to-end tests
 
-### Create the pipeline (and Jenkins instance)
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Before running the tests make sure you are serving the app via `ng serve`.
 
-Create the Jenkins pipeline definition in Openshift
+## Further help
 
-    oc create -f openshift/pipeline.yml
-    
-This will trigger the deployment of a Jenkins instance, wait until the resulting Jenkins pod is ready. Then access Jenkins via web browser using the URL of the route. The `ng build` command requires nodejs 6.9 or higher, this means that we cannot use the default nodejs Jenkins slave provided with Openshift. Note that a package-lock.json has been committed to the repository this is generated by a ng build (this can be run locally rather than via jenkins) and should make the builds reproducable.
-
-Add the JUnit Plugin to your Jenkins instance via Manage Jenkins -> Manage Plugins
-
-### Add NodeJS 8 Jenkins slave
-
-To address this I have created a separate nodejs 8 based Jenkins slave image project
-
-https://github.com/petenorth/nodejs8-openshift-slave
-
-This slave image also includes Google Chrome which allows the ng test CLI goal (which requires Google Chrome) to be run. The resulting image is available in docker hub (the image is a bit big, feel free to create a custom image leaving out Google Chrome but note that the `ng test` step will need to be removed as well)
-
-https://hub.docker.com/r/petenorth/nodejs8-openshift-slave/
-
-This needs to needs to be setup as a kubernetes pod template. Navigate within Jenkins to '> Home > Manage Jenkins > Configure System' . Then right at the bottom there should be a button 'Add a new cloud', when pressed one of the options should be 'Kubernetes Pod Template'. Fill in the resulting fields in the same way as the existing maven and nodejs kubernetes pod templates apart from 
-
-* 'name' should be nodejs8
-* 'label' should be nodejs8
-
-You then need to add the container definition (click on the 'Add Container')
-
-* 'Docker Image' should be docker.io/petenorth/nodejs8-openshift-slave
-* fill in everything else identically to the maven and nodejs container fields.
-
-Finally click on 'Advanced ...' button of the Kubernetes Pod Template (not the container advanced options) and **make sure the Service Account is set to jenkins** .
-
-OPTIONAL - You can speed up the `npm install -d` step by creating a persistent volume claim in Openshift and then adding it as a volume to the pod template in the Jenkins config, the volume should be mounted at `/home/jenkins/.npm` .
-
-### Create binary build configuration 
-
-We now need a binary build configuration to build the Nginx based image container that will serve the angular application
-
-    oc new-build .
-    
-NOTE the first build will fail because it is a binary build and binary input hasn't been provided.
-
-### Start the pipeline
-
-Now we are ready for our first build of the pipeline
-
-    oc start-build angular-example-pipeline
-    
-### Create application
-
-The pipeline as it stand only builds an image, it does not deploy etc. We create the application via a resource definition
-
-  oc create -f openshift/application.yml
-
-Then access the application via the resulting route. It should display a welcome page with the Angular logo.
-
-## TODO
-
-See project issues.
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

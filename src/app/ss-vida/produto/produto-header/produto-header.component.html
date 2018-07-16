@@ -1,0 +1,33 @@
+<div class="input-field col s12" [formGroup]="produtoHeaderForm">
+  
+  <div class="input-field col s2" *ngIf="produtoHeaderForm.controls.descricao.value" >
+      <label class="active" for="codigo">Código</label>
+      <span class="spanResult">{{produtoHeaderForm.controls.codigo.value}}</span>
+  </div>
+
+  <div class="input-field col s10" *ngIf="produtoHeaderForm.controls.descricao.value"  >
+      <label class="active" for="nome">Nome</label>
+      <span class="spanResult">{{produtoHeaderForm.controls.descricao.value}}</span>
+  </div>
+
+  <div class="input-field col s3" *ngIf="produtoHeaderForm.controls.codigoProcessoSusep.value" >
+      <label class="active" for="processoSusep">Processo SUSEP</label>
+      <span class="spanResult">{{produtoHeaderForm.controls.codigoProcessoSusep.value}}</span>
+  </div>
+
+  <div class="input-field col s3" *ngIf="produtoHeaderForm.controls.versaoProduto.value" >
+      <label class="active" for="versao">Versão</label>
+      <span class="spanResult">{{produtoHeaderForm.controls.versaoProduto.value}}</span>
+  </div>
+
+  <div class="input-field col s3" *ngIf="produtoHeaderForm.controls.statusDescricao.value" >
+      <label class="active" for="situacao">Situação</label>
+      <span class="spanResult">{{produtoHeaderForm.controls.statusDescricao.value}}</span>
+  </div>
+
+  <div class="input-field col s3" *ngIf="produtoHeaderForm.controls.dataInicioVigencia.value" >
+      <label class="active" for="inicioComercializacao">Início da comercialização</label>
+      <span class="spanResult">{{produtoHeaderForm.controls.dataInicioVigencia.value}}</span>
+  </div>
+
+</div>

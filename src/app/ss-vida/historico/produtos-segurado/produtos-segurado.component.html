@@ -1,0 +1,56 @@
+<div class="mainContent">
+
+  <app-historico-header></app-historico-header>
+
+  <div class="boxNivel2 boxAlpha">
+    <h5>Produtos</h5>
+    <div class="row secondTable">
+      <table class="striped tableCenter">
+        <thead>
+          <tr>
+            <th>CPF</th>
+            <th>Nome</th>
+            <th>Produto</th>
+            <th>Apólice</th>
+            <th>Subgrupo</th>
+            <th>Proposta</th>
+            <th>Certificado</th>
+            <th>Bilhete</th>
+            <th>Situação</th>
+            <th>Endosso</th>
+            <th>Sinistro</th>
+            <th>Início de Vigência</th>
+            <th>Fim de Vigência</th>
+            <th>Prêmio (R$)</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngIf="produtosList.length === 0">
+            <td colspan="9">Nenhum Registro Encontrado</td>
+          </tr>
+          <tr *ngFor="let produto of produtosList">
+            <td>{{ produto.pessoa.cpfCnpj | cpfMask }}</td>
+            <td>{{ produto.pessoa.nome }}</td>
+            <td>{{ produto.produto.descricao }}</td>
+            <td>{{ produto.numeroApolice }}</td>
+            <td>{{ produto.subgrupo }}</td>
+            <td>{{ produto.numeroPropostaExterna }}</td>
+            <td>{{ produto.numeroCertificado }}</td>
+            <td>{{ produto.numeroBilhete }}</td>
+            <td>{{ produto.situacaoProposta.descricao }}</td>
+            <td>{{ produto.indicadorEndosso }}</td>
+            <td>{{ produto.indicadorSinistro }}</td>
+            <td>{{ produto.dataInicioVigencia | date:constantesService.getFormatoDataP() }}</td>
+            <td>{{ produto.dataFimVigencia | date:constantesService.getFormatoDataP() }}</td>
+            <td>{{ produto.valorPremioAdesao | valorRealMask }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="box-buttons">
+    <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="voltar()">Voltar</button>
+  </div>
+</div>

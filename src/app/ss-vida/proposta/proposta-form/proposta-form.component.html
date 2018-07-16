@@ -1,0 +1,219 @@
+
+
+        <!-- ######################## CADASTRAR VENDEDOR #######################  -->
+  
+         <div class="mainContent">
+          
+            <h5>Cadastrar Vendedor</h5>
+            <div class="boxNext row"></div>
+          
+            <div class="clearfix"></div>
+            <div class="col s12">
+                <form class="form-horizontal" [formGroup]="formulario">
+                    <div class="row">
+
+                        <div class="input-field col s4">
+                            <label class="active" for="cadCodigoExternoVendedor">Código Externo <span class="asterisco">*</span></label>
+                            <input id="cadCodigoExternoVendedor" formControlName="cadCodigoExternoVendedor" name="cadCodigoExternoVendedor" type="text">
+                        </div>
+
+                        <div class="input-field col s4">
+                            <label class="active" for="cadCpfVendedor">CPF <span class="asterisco">*</span></label>
+                            <input id="cadCpfVendedor" formControlName="cadCpfVendedor" name="cadCpfVendedor" type="text">
+                        </div>
+
+                        <div class="input-field col s4">
+                            <label class="active" for="cadNomeVendedor">Nome <span class="asterisco">*</span></label>
+                            <input id="cadNomeVendedor" formControlName="cadNomeVendedor" name="cadNomeVendedor" type="text">
+                        </div>
+
+                        <div class="input-field col s4">
+                            <label class="active" for="cadParceiroVendedor">Parceiro <span class="asterisco">*</span></label>
+                            <select id="cadParceiroVendedor" class="noUppercase" formControlName="cadParceiroVendedor" name="cadParceiroVendedor" materialize="material_select">
+                                <option value="">Selecione uma opção</option>
+                                <option>lorem ipsulum</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field col s4">
+                            <label class="active" for="cadTipoVendedor">Tipo de Vendedor <span class="asterisco">*</span></label>
+                            <select id="cadTipoVendedor" class="noUppercase" formControlName="cadTipoVendedor" name="cadTipoVendedor" materialize="material_select">
+                            <option value="">Selecione uma opção</option>
+                                <option>lorem ipsulum</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field col s4">
+                            <label class="active" for="cadDataInicioVigenciaVendedor">Data Início de Vigência <span class="asterisco">*</span></label>
+                            <input class="datepicker" id="cadDataInicioVigenciaVendedor" formControlName="cadDataInicioVigenciaVendedor" name="cadDataInicioVigenciaVendedor" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <h5 class="subTitle">Restrição de Local de Venda</h5>
+                        <div class="boxNextSubTitle row"></div>
+
+                        <div class="box-buttons">
+                                <button type="submit" class="waves-effect waves-light btn btnPrimary">Incluir</button>
+                        </div>
+
+                        <div class="grid-divider"></div>
+                        <div class="row">
+                            <table class="striped">
+                                <thead>
+                                    <tr>
+                                        <th>Parceiro</th>
+                                        <th>Tipo de Local de Venda</th>
+                                        <th>Código Externo</th>
+                                        <th>Razão Social / Nome do Local de Venda</th>
+                                        <th>Ação</th>
+                                    </tr>
+                                </thead>
+          
+                                <tbody>
+                                    
+                                    <tr>
+                                        <td>xxx</td>
+                                        <td>xxx</td>
+                                        <td>xxx</td>
+                                        <td>xxx</td>
+                                        <td>
+                                            <a materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10"> <i class="material-icons actionButtons">search</i>
+                                          </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>xxx</td>
+                                        <td>xxx</td>
+                                        <td>xxx</td>
+                                        <td>xxx</td>
+                                        <td>
+                                            <a materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10"> <i class="material-icons actionButtons">search</i>
+                                          </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>xxx</td>
+                                        <td>xxx</td>
+                                        <td>xxx</td>
+                                        <td>xxx</td>
+                                        <td>
+                                            <a materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10"> <i class="material-icons actionButtons">search</i>
+                                          </a>
+                                        </td>
+                                    </tr>
+          
+                                </tbody>
+                            </table>
+                        </div>
+          
+                        <div class="clearfix"></div>
+                        <div class="box-buttons">
+                            <button type="submit" class="waves-effect waves-light btn btnPrimary">Salvar</button>
+                            <button type="submit" class="waves-effect waves-light btn btnPrimary">Aprovar</button>
+                            <button type="submit" class="waves-effect waves-light btn btnSecondary">Fechar</button>
+                        </div>
+          
+                    </div>
+                </form>
+
+                <!-- Deslizar o campo de pesquisar para inserir -->
+                <h5 class="subTitle">Restrição de Local de Venda</h5>
+                <div class="boxNextSubTitle row"></div>
+                <div class="col s12">
+                        <form class="form-horizontal" [formGroup]="formulario">
+                            <div class="row">
+        
+                                <div class="input-field col s4">
+                                    <label class="active" for="parceiroLocalVenda">Parceiro <span class="asterisco">*</span></label>
+                                    <select id="parceiroLocalVenda" class="noUppercase" formControlName="parceiroLocalVenda" name="parceiroLocalVenda" materialize="material_select">
+                                        <option value="">Selecione uma opção</option>
+                                        <option>lorem ipsulum</option>
+                                    </select>
+                                </div>
+
+                                <div class="input-field col s4">
+                                    <label class="active" for="opcaoLocalVenda">Opção <span class="asterisco">*</span></label>
+                                    <select id="opcaoLocalVenda" class="noUppercase" formControlName="opcaoLocalVenda" name="opcaoLocalVenda" materialize="material_select">
+                                        <option value="">Selecione uma opção</option>
+                                        <option>lorem ipsulum</option>
+                                    </select>
+                                </div>
+        
+                                <div class="input-field col s4">
+                                    <label class="active" for="codigoExternoNomeLocalVenda">Código Externo / Nome<span class="asterisco">*</span></label>
+                                    <input id="codigoExternoNomeLocalVenda" formControlName="codigoExternoNomeLocalVenda" name="codigoExternoNomeLocalVenda" type="text">
+                                </div>
+                  
+                                <div class="clearfix"></div>
+                  
+                                    <div class="box-buttons">
+                                        <button type="submit" class="waves-effect waves-light btn btnPrimary">
+                                        <i class="material-icons left">search</i> Pesquisar</button>
+                                    </div>
+                  
+                                <div class="grid-divider"></div>
+                                <div class="row">
+                                    <table class="striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Parceiro</th>
+                                                <th>Tipo de Local de Venda</th>
+                                                <th>Código Externo</th>
+                                                <th>Razão Social / Nome do Local de Venda</th>
+                                                <th>Ação</th>
+                                            </tr>
+                                        </thead>
+                  
+                                        <tbody>
+                                            
+                                            <tr>
+                                                <td>xxx</td>
+                                                <td>xxx</td>
+                                                <td>xxx</td>
+                                                <td>xxx</td>
+                                                <td>
+                                                    <a materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10"> <i class="material-icons actionButtons">search</i>
+                                                  </a>
+                                                </td>
+                                            </tr>
+        
+                                            <tr>
+                                                <td>xxx</td>
+                                                <td>xxx</td>
+                                                <td>xxx</td>
+                                                <td>xxx</td>
+                                                <td>
+                                                    <a materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10"> <i class="material-icons actionButtons">search</i>
+                                                  </a>
+                                                </td>
+                                            </tr>
+        
+                                            <tr>
+                                                <td>xxx</td>
+                                                <td>xxx</td>
+                                                <td>xxx</td>
+                                                <td>xxx</td>
+                                                <td>
+                                                    <a materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10"> <i class="material-icons actionButtons">search</i>
+                                                  </a>
+                                                </td>
+                                            </tr>
+                  
+                                        </tbody>
+                                    </table>
+                                </div>
+                  
+                            </div>
+                        </form>
+                  
+                    </div>
+                <!--/ fim da janela que desliza -->
+            </div>
+        
+          
+          </div>
+          <!-- ######################## FIM DE CADASTRAR PARCEIRO #######################  -->
+          
+  

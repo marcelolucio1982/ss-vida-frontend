@@ -1,0 +1,19 @@
+ <!-- ###########a################### Content ################################### -->
+ <div class="content bottom-sheet">
+  <div [hidden]="!mensagens || mensagens.length == 0" id="ssv-mensagens" class="ssv-mensagens bgFull">
+    <p *ngFor='let msg of mensagens' class="ssv-{{msg.tipo}}">
+      <i class="material-icons">messager</i>
+      <span class="bodyMsg" style="width: 90%;
+      padding: 20px;
+      float: left;
+      margin-left: -60px;
+      position: absolute;">{{msg.texto}}</span>
+      <a href="javascript:void(0);" (click)="fecharMensagem(msg)">X</a>
+      <span style="float: left; margin-bottom: 1px; width: 100%; border-top: 2px solid #ccc; background-color: #ccc; text-align: right;">
+          <button class="waves-effect waves-light btnSecondary btn-flat btnSmall" (click)="fecharMensagem(msg)">Cancela</button>
+          <button class="waves-effect waves-light btnPrimary btn-flat btnSmall" (click)="aceitarMensagem(msg)" >Aceita</button>
+        </span>
+    </p>
+  </div>
+</div>
+<!--/ ###########################  End Content ################################ -->

@@ -1,0 +1,35 @@
+<!-- Tela de detalhes de Fornecedores  -->
+<div class="mainContent">
+  <h5>Versões da Cobertura</h5>
+  <div class="boxNext row"></div>
+  
+  <div class="row">
+    <table class="striped" *ngIf="retorno || retorno.length == 0">
+      <thead>
+        <tr>
+          <th>Data início da vigência</th>
+          <th>Data fim da vigência</th>
+          <th>Situação</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <tr *ngFor="let i of retorno; let aux = index;">
+          <td>{{i.dataInicioVigencia | date:constantesService.getFormatoDataP()}}</td>
+          <td>{{i.dataFimVigencia | date:constantesService.getFormatoDataP()}}</td>
+          <td>{{i.status.descricao}}</td>
+          <td>
+            <a [routerLink]="" materialize="tooltip" data-tooltip="Editar" class="view tooltipped edit" data-position="left" data-delay="10" (click)="editar(i)" *ngIf="i.status.codigo < 2"><i class="material-icons actionButtons">edit</i></a>
+            <a [routerLink]="" materialize="tooltip" data-tooltip="Excluir" class="view tooltipped delete" data-position="left" data-delay="10" (click)="deletar(i)" *ngIf="i.status.codigo < 2"><i class="material-icons actionButtons">delete_forever</i></a>
+            <a [routerLink]="" materialize="tooltip" data-tooltip="Nova versão" class="view tooltipped view" data-position="left" data-delay="10" (click)="gerarVersao(i)" *ngIf="aux === 0 || i.status.codigo > 1"><i class="material-icons actionButtons">add_circle_outline</i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="box-buttons">
+    <button  class="waves-effect waves-light btn btnSecondary" (click)="pesquisar()">Voltar</button>
+  </div>
+</div>
+<!-- ############# FIM DA TELA DE DETALHE DE COBERTURA ################ -->

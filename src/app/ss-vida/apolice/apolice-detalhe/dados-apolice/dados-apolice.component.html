@@ -1,0 +1,339 @@
+<div class="row">
+  <h5 class="subTitle titleNivel1">Cliente</h5>
+  <div class="generalBox">
+    <div class="boxNivel2">
+      <h5>Informações</h5>
+      <div class="input-field col s3">
+        <label class="active">Nome</label>
+        <span class="spanResult">{{apolice?.pessoa.nome}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">CPF</label>
+        <span class="spanResult">{{apolice?.pessoa.cpfAsString}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Sexo</label>
+        <span class="spanResult">{{apolice?.pessoa.sexo.descricao}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Estado Civil</label>
+        <span class="spanResult">{{apolice?.pessoa.estadoCivil.descricao}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Data de Nascimento</label>
+        <span class="spanResult">{{this.utilService.formatarDataVisao( apolice?.pessoa.dataNascimento )}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Número do RG</label>
+        <span class="spanResult">{{apolice?.pessoa.documentoIdentidade.numero}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Data de Expedição</label>
+        <span class="spanResult">{{this.utilService.formatarDataVisao( apolice?.pessoa.documentoIdentidade.dataExpedicao )}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Orgão Emissor</label>
+        <span class="spanResult">{{apolice?.pessoa.documentoIdentidade.orgaoExpedidor}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">UF</label>
+        <span class="spanResult">{{apolice?.pessoa.documentoIdentidade.uf.sigla}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Nacionalidade</label>
+        <span class="spanResult">{{apolice?.pessoa.nacionalidade.descricao}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Profissão</label>
+        <span class="spanResult">{{apolice?.pessoa.profissao.descricao}}</span>
+      </div>
+    </div>
+    <div class="boxNivel2">
+      <h5>Faixa de Renda</h5>
+      <div class="input-field col s3">
+        <label class="active">Individual</label>
+        <span class="spanResult">{{apolice?.faixaRendaIndividual.descricao}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Família</label>
+        <span class="spanResult">{{apolice?.faixaRendaFamiliar.descricao}}</span>
+      </div>
+    </div>
+    <div class="boxNivel2">
+      <h5>Contato</h5>
+      <div class="input-field col s3">
+        <label class="active">Endereço</label>
+        <span class="spanResult">{{apolice?.pessoa.enderecos[0].logradouro}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Complemento</label>
+        <span class="spanResult">{{apolice?.pessoa.enderecos[0].complemento}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Bairro</label>
+        <span class="spanResult">{{apolice?.pessoa.enderecos[0].bairro}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Cidade</label>
+        <span class="spanResult">{{apolice?.pessoa.enderecos[0].cidade}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">UF</label>
+        <span class="spanResult">{{apolice?.pessoa.enderecos[0].uf.descricao}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Cep</label>
+        <span class="spanResult">{{apolice?.pessoa.enderecos[0].cep}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Celular</label>
+        <span class="spanResult">{{proposta?.pessoa.telefoneCelular.numero != 0 ? proposta?.pessoa.telefoneCelular.numero : ''}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Residencial</label>
+        <span class="spanResult">{{proposta?.pessoa.telefoneResidencial.numero != 0 ? proposta?.pessoa.telefoneResidencial.numero : ''}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Comercial</label>
+        <span class="spanResult">{{proposta?.pessoa.telefoneComercial.numero != 0 ? proposta?.pessoa.telefoneComercial.numero : ''}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">E-Mail Principal</label>
+        <span class="spanResult">{{proposta?.pessoa.emailPrincipal.email}}</span>
+      </div>
+    </div>
+  </div>
+  <h5 class="subTitle titleNivel1">Produto</h5>
+  <div class="generalBox">
+    <div class="boxNivel2">
+      <h5>Informações</h5>
+      <div class="input-field col s3">
+        <label class="active">Número de Ordem da Proposta</label>
+        <span class="spanResult">{{apolice?.endosso.proposta.numeroPropostaExterna}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Data da Venda</label>
+        <span class="spanResult">{{this.utilService.formatarDataVisao( apolice?.endosso.proposta.dataProposta )}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Vigência</label>
+        <span class="spanResult">{{apolice?.endosso.mesesVigencia}} Meses</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Razão Social</label>
+        <span class="spanResult">{{apolice?.congenere.nome}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Código do Produto</label>
+        <span class="spanResult">{{apolice?.endosso.produto.codigo}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">CNPJ da Seguradora</label>
+        <span class="spanResult">{{apolice?.congenere.cnpj | cnpjMask}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Código da Seguradora</label>
+        <span class="spanResult">{{apolice?.congenere.codigo}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Apólice</label>
+        <span class="spanResult">{{apolice?.codigo}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Grupo / Ramo de Seguro</label>
+        <span class="spanResult">{{apolice?.endosso.produto.codigoGrupoRamoSusep}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Número do Processo SUSEP</label>
+        <span class="spanResult">{{apolice?.endosso.produto.codigoProcessoSusep}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Valor Prêmio Total</label>
+        <span class="spanResult">{{utilService.formatarValorRealVisao(apolice?.coberturaApolice.valorPremio)}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Valor Prêmio Bruto</label>
+        <span class="spanResult">{{utilService.formatarValorRealVisao(apolice?.coberturaApolice.valorPremioLiquido)}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Capital Segurado</label>
+        <span class="spanResult">{{utilService.formatarValorRealVisao(apolice?.coberturaApolice.capitalAssegurado)}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Valor IOF</label>
+        <span class="spanResult">{{utilService.formatarValorRealVisao(apolice?.coberturaApolice.valorIOF)}}</span>
+      </div>
+    </div>
+    <div class="boxNivel2" *ngIf="apolice?.acoplados != null && apolice?.acoplados.length > 0">
+      <h5>Dados Acoplado</h5>
+      <div class="input-field col s3">
+        <label class="active">Número da Sorte</label>
+        <span class="spanResult">{{apolice?.acoplados[0].sorteio}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Valor do Sorteio</label>
+        <span class="spanResult">{{utilService.formatarValorRealVisao( apolice?.acoplados[0].valorSorteio )}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Periodicidade</label>
+        <span class="spanResult">{{apolice?.acoplados[0].descricaoPeriodicidade}}</span>
+      </div>
+    </div>
+    <div class="boxNivel2">
+      <h5>Dados da Venda</h5>
+      <div class="input-field col s3">
+        <label class="active">Nome do Corretor</label>
+        <span class="spanResult">{{apolice?.endosso.corretor.nomeCorretor}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Código da Corretora na SUSEP</label>
+        <span class="spanResult">{{apolice?.endosso.codigoCorretora}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Código da Seguradora na SUSEP</label>
+        <span class="spanResult">{{apolice?.endosso.congenere.codigo}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Matrícula do Vendedor</label>
+        <span class="spanResult">{{apolice?.endosso.vendedor.codigoExterno}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Número da Agência de Venda</label>
+        <span class="spanResult">{{apolice?.endosso.tipoLocalVenda.codigo}}</span>
+      </div>
+    </div>
+    <div class="boxNivel2">
+      <h5>Beneficiários</h5>
+      <div class="row secondTable">
+        <table class="striped tableCenter">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>CPF</th>
+              <th>Grau de Parentesco</th>
+              <th>Porcentagem</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let beneficiario of proposta?.beneficiarios">
+              <td>{{beneficiario.pessoa.nome}}</td>
+              <td>{{beneficiario.pessoa.cpfCnpj}}</td>
+              <td>{{beneficiario.parentesco.descricao}}</td>
+              <td>{{this.utilService.formatarPercentualVisao( beneficiario.percentualParticipacao )}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="boxNivel2 boxAlpha">
+    <h5>Coberturas</h5>
+    <div class="row secondTable">
+      <table class="striped tableCenter">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Prêmio</th>
+            <th>Capital Segurado</th>
+            <th>Carência</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let cobertura of proposta?.coberturas">
+            <td>{{cobertura.descricao}}</td>
+            <td>{{this.utilService.formatarValorRealVisao( cobertura.valorPremio )}}</td>
+            <td>{{this.utilService.formatarValorRealVisao( cobertura.valorCapitalSegurado )}}</td>
+            <td>{{cobertura.quantidadeTempoCarencia === 0 ? '' : cobertura.quantidadeTempoCarencia }} - {{cobertura.descricaoPeriodicidade}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="boxNivel2 boxAlpha" *ngIf="apolice?.assistencias != null && apolice?.assistencias.length > 0">
+    <h5>Assistências</h5>
+    <div class="input-field col s8">
+      <label class="active">Nome da Assistência</label>
+      <div *ngFor="let assistencia of apolice?.assistencias">
+        <span class="spanResult">{{assistencia.descricao}}</span>
+      </div>
+    </div>
+  </div>
+
+  <h5 class="subTitle titleNivel1">Pagamento</h5>
+  <div class="generalBox">
+    <div class="boxNivel2">
+      <h5>Parcela de Adesão</h5>
+      <div class="input-field col s3">
+        <label class="active">Tipo de Pagamento</label>
+        <span class="spanResult">{{apolice?.parcelaAdesao.apolicePagamentoCobranca.formaCobranca.descricao}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Periodicidade de Pagamento</label>
+        <span class="spanResult">{{apolice?.parcelaAdesao.periodicidadePagamento}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Dia Cobrança Parcela de Contratação</label>
+        <span class="spanResult">{{this.utilService.formatarDataVisao( apolice?.parcelaAdesao.dataVencimento )}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Cod. Banco</label>
+        <span class="spanResult">{{apolice?.parcelaAdesao.apolicePagamentoCobranca.contaDebito.codigoBanco}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Agência</label>
+        <span class="spanResult">{{apolice?.parcelaAdesao.apolicePagamentoCobranca.contaDebito.codigoAgencia}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Número da Conta</label>
+        <span class="spanResult">{{apolice?.parcelaAdesao.apolicePagamentoCobranca.contaDebito.numeroConta}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Operação</label>
+        <span class="spanResult">{{apolice?.parcelaAdesao.apolicePagamentoCobranca.contaDebito.codigoOperacaoCEF.descricao}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Valor</label>
+        <span class="spanResult">{{this.utilService.formatarValorRealVisao( apolice?.parcelaAdesao.valorPremioTotal )}}</span>
+      </div>
+    </div>
+    <div class="boxNivel2">
+      <h5>Demais Parcelas</h5>
+      <div class="input-field col s3">
+        <label class="active">Tipo de Pagamento</label>
+        <span class="spanResult">{{apolice?.demaisParcelas.apolicePagamentoCobranca.formaCobranca.descricao}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Periodicidade de Pagamento</label>
+        <span class="spanResult">{{apolice?.demaisParcelas.periodicidadePagamento}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Dia Venciamentos das Parcelas</label>
+        <span class="spanResult">{{apolice?.demaisParcelas.apolicePagamentoCobranca.numeroDiaDebito}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Cód. Banco</label>
+        <span class="spanResult">{{apolice?.demaisParcelas.apolicePagamentoCobranca.contaDebito.codigoBanco}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Agência</label>
+        <span class="spanResult">{{apolice?.demaisParcelas.apolicePagamentoCobranca.contaDebito.codigoAgencia}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Número da Conta</label>
+        <span class="spanResult">{{apolice?.demaisParcelas.apolicePagamentoCobranca.contaDebito.numeroConta}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Operação</label>
+        <span class="spanResult">{{apolice?.demaisParcelas.apolicePagamentoCobranca.contaDebito.codigoOperacaoCEF.descricao}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Valor Premio Total</label>
+        <span class="spanResult">{{this.utilService.formatarValorRealVisao( apolice?.demaisParcelas.valorPremioTotal )}}</span>
+      </div>
+    </div>
+  </div>
+</div>

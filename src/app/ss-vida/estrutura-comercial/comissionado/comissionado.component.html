@@ -1,0 +1,99 @@
+<div class="mainContent">
+  <!-- ######################## COMISSIONADO #######################  -->
+  <h5>Pesquisar Comissionado</h5>
+  <div class="boxNext">
+    <a class="waves-effect waves-light btn nextButton btnNext" routerLink="/comissionado/novo"><i class="material-icons left">send</i>Cadastrar</a>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div class="col s12">
+    <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="input-field col s4">
+          <label class="active" for="opcoesComissionado">Opções <span class="asterisco">*</span></label>
+          <select id="opcoesComissionado" class="noUppercase" formControlName="opcoesComissionado" name="opcoesLocalVenda" materialize="material_select">
+            <option [ngValue]="null" readonly>Selecione uma opção</option>
+            <option [ngValue]="{ codigo: 1, descricao: 'CNPJ' }">CNPJ </option>
+            <option [ngValue]="{ codigo: 2, descricao: 'Razão Social' }">Razão Social</option>
+          </select>
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'opcoesComissionado', formulario )" msgErro="Campo de seleção obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4" *ngIf="formulario.get( 'opcoesComissionado' ).value != null">
+          <label class="active" for="cnpjRazaoSocial">{{ formulario.get( 'opcoesComissionado' ).value?.descricao }}<span class="asterisco">*</span></label>
+          <input id="cnpjRazaoSocial" [ngModel]="formulario.get( 'cnpjRazaoSocial' ).value | cnpjMask" (ngModelChange)="formulario.get( 'cnpjRazaoSocial' ).value = $event" formControlName="cnpjRazaoSocial" name="cnpjRazaoSocial" type="text" maxlength="18">
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="box-buttons">
+          <button type="submit" class="waves-effect waves-light btn btnPrimary">
+            <i class="material-icons left">search</i> Pesquisar
+          </button>
+        </div>
+
+        <div class="grid-divider"></div>
+
+        <div class="row">
+          <table class="striped" *ngIf="retorno || retorno.length == 0">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Tipo de Comissionamento</th>
+                <th>CNPJ</th>
+                <th>Razão Social</th>
+                <th>Código SUSEP</th>
+                <th>Unidade Responsável</th>
+                <th>Início de Vigência</th>
+                <th>Fim de Vigência</th>
+                <th>Situação</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let i of retorno; let aux = index;">
+                <td>{{ i.codigo }}</td>
+                <td>{{ i.tipoComissionado.descricao }}</td>
+                <td>{{ i.papeisNegocio[0].pessoa.cpfCnpj }}</td>
+                <td>{{ i.papeisNegocio[0].pessoa.nomeRazaoSocial }}</td>
+                <td>{{ i.registroSusep }}</td>
+                <td>{{ i.unidadeNegocio.sigla }}</td>
+                <td>{{ i.dataInicioVigencia | date:constantesService.getFormatoDataP() }}</td>
+                <td>{{ i.dataFimVigencia | date:constantesService.getFormatoDataP() }}</td>
+                <td>{{ i.situacaoComissionado.descricao }}</td>
+                <td>
+                  <a materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10"
+                    (click)="visualisar(i)">
+                    <i class="material-icons actionButtons">search</i>
+                  </a>
+                  <a materialize="tooltip" data-tooltip="Nova versão" class="view tooltipped edit" data-position="left" data-delay="10"
+                    (click)="gerarNovaVersao(i)" *ngIf="( i.vigente || i.encerrado )"><i class="material-icons actionButtons">add_circle_outline</i>
+                  </a>
+                  <a materialize="tooltip" data-tooltip="Editar" class="view tooltipped edit" data-position="left" data-delay="10"
+                    (click)="editar(i)" *ngIf="( i.pendente || i.aprovado )"><i class="material-icons actionButtons">edit</i>
+                  </a>
+                  <a materialize="tooltip" data-tooltip="Encerrar" class="view tooltipped delete" data-position="left" data-delay="10"
+                    (click)="encerrar(i)" *ngIf="i.vigente"><i class="material-icons actionButtons">remove_red_eye</i>
+                  </a>
+                  <a materialize="tooltip" data-tooltip="Excluir" class="view tooltipped delete" data-position="left" data-delay="10"
+                    (click)="excluir(i)" *ngIf="( i.pendente || i.aprovado )"><i class="material-icons actionButtons">delete_forever</i>
+                  </a>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+
+  <!-- ######################## FIM DE COMISSIONADO #######################  -->
+</div>
+
+
+

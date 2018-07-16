@@ -1,0 +1,75 @@
+<!-- ######################## CADASTRAR PARCEIRO #######################  -->
+<div class="mainContent">
+
+    <h5>Cadastrar Parceiro</h5>
+    <div class="boxNext row"></div>
+    
+    <div class="clearfix"></div>
+    <div class="col s12">
+    <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="salvarParceiro()">
+        <div class="row">
+    
+            <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('cpfCnpj', formulario)">
+                <label class="active" for="cpfCnpj">CNPJ <span class="asterisco">*</span></label>
+                <input id="cpfCnpj" formControlName="cpfCnpj" name="cpfCnpj" type="text" [textMask]="constantesService.getMaskDef().numerico(14)" [readonly]="isVisualizacao() || isEncerramento()">
+                <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('cpfCnpj', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+    
+            <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('nomeRazaoSocial', formulario)">
+                <label class="active" for="nomeRazaoSocial">Razão Social <span class="asterisco">*</span></label>
+                <input id="nomeRazaoSocial" formControlName="nomeRazaoSocial" name="nomeRazaoSocial" type="text" [textMask]="constantesService.getMaskDef().alfaNumerico(100)" [readonly]="isVisualizacao() || isEncerramento()">
+                <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('nomeRazaoSocial', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+    
+           <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('agrupador', formulario)">
+                <label class="active" for="agrupador">Agrupador <span class="asterisco">*</span></label>
+                <select class="noUppercase" formControlName="agrupador" name="agrupador" materialize="material_select" [materializeSelectOptions]="this.agrupadoresParceiro" >
+                    <option value="" disabled selected>Selecione uma opção</option>
+                    <option *ngFor='let e of this.agrupadoresParceiro;' [ngValue]="e">{{e.descricao}}</option>
+                </select>
+                <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('agrupador', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+     
+            <div class="clearfix"></div>
+            
+            <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('dataInicioVigencia', formulario)">
+                <label class="active" for="dataInicioVigencia">Início de Vigência <span class="asterisco">*</span></label>
+                <input id="dataInicioVigencia" formControlName="dataInicioVigencia" name="dataInicioVigencia" class="datepicker {{bloquearEdicaoDataInicio() ? 'pickadate-readonly' : ''}}" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+                <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('dataInicioVigencia', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>          
+            </div>
+                    
+            <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('dataFimVigencia', formulario)" *ngIf="( isEncerramento() || isSituacaoEncerrado() )">
+                <label class="active" for="dataFimVigencia">Fim de Vigência <span class="asterisco">*</span></label>
+                <input id="dataFimVigencia" formControlName="dataFimVigencia" name="dataFimVigencia" class="datepicker {{bloquearEdicaoDataFim() ? 'pickadate-readonly' : ''}}" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+                <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('dataFimVigencia', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+    
+            <div class="box-buttons" *ngIf="isVisualizacao()">
+            <!-- Exibe apenas quando a tela eh configurada para exibicao -->
+                <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="editarParceiro( getParceiro() )" *ngIf="isSituacaoEditavel()">Editar</button>
+                <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="pesquisarParceiro()">Fechar</button>
+            </div>
+    
+            <div class="box-buttons" *ngIf="( isCadastro() || isEdicao() )">
+            <!-- Exibe apenas quando a tela eh configurada para cadastro (Novo), Edicao -->
+                <button type="submit" class="waves-effect waves-light btn btnPrimary">Salvar</button>
+                <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="salvarParceiro(true)">Aprovar</button>
+                <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="pesquisarParceiro()">Cancelar</button>          
+            </div>
+    
+            <div class="box-buttons" *ngIf="isEncerramento()">
+            <!-- Exibe apenas quando a tela eh configurada para encerramento -->
+                <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="salvarParceiro()">Encerrar</button>
+                <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="pesquisarParceiro()">Fechar</button>
+            </div>
+    
+            <div class="grid-divider"></div>
+        </div>
+    </form>
+    
+    </div>
+    
+    </div>
+    <!-- ######################## FIM DE CADASTRAR PARCEIRO #######################  -->
+    
+    

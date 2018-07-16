@@ -1,0 +1,79 @@
+<h5 class="subTitle titleNivel1">Cobranças</h5>
+<div class="row generalBox">
+  <div class="row" *ngIf="cobrancas && cobrancas.length > 0">
+    <table class="striped tableCenter">
+      <thead>
+        <tr>
+          <th>Parcela do Seguro</th>
+          <th>Nº Endosso</th>
+          <th>Dt. Vencimento</th>
+          <th>Forma de Pagamento</th>
+          <th>Situação Parcela</th>
+          <th>Situação Cobrança</th>
+          <th>Dt. Pagamento</th>
+          <th>Valor Parcela</th>
+          <th>Valor Pago</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of cobrancas; let aux = index;">
+          <td>{{ i.codigo }}</td>
+          <td>{{ i.numeroEndosso }}</td>
+          <td>{{ i.dataVencimento | date:constantesService.getFormatoDataP() }}</td>
+          <td>{{ i.formaCobranca.descricao }}</td>
+          <td>{{ i.situacaoParcela.descricao }}</td>
+          <td>{{ i.situacaoCobranca.descricao }}</td>
+          <td>{{ i.dataPagamento | date:constantesService.getFormatoDataP() }}</td>
+          <td>{{ utilService.formatarValorRealVisao( i.valorParcela ) }}</td>
+          <td>{{ utilService.formatarValorRealVisao( i.valorParcela ) }}</td>
+          <td>
+            <a materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10"
+               [routerLink]="['./', i.numeroEndosso, 'parcelas', i.numeroParcela, 'cobranca']">
+              <i class="material-icons actionButtons">search</i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+<h5 class="subTitle titleNivel1">Devoluções</h5>
+<div class="row generalBox">
+  <div class="row" *ngIf="devolucoes && devolucoes.length > 0">
+    <table class="striped tableCenter">
+      <thead>
+        <tr>
+          <th>Parcela do Seguro</th>
+          <th>Nº Endosso</th>
+          <th>Dt. Vencimento</th>
+          <th>Forma de Pagamento</th>
+          <th>Situação Parcela</th>
+          <th>Situação Cobrança</th>
+          <th>Dt. Pagamento</th>
+          <th>Valor Parcela</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of devolucoes; let aux = index;">
+          <td>{{ i.codigo }}</td>
+          <td>{{ i.numeroEndosso }}</td>
+          <td>{{ i.dataVencimento | date:constantesService.getFormatoDataP() }}</td>
+          <td>{{ i.formaPagamento.descricao }}</td>
+          <td>{{ i.situacaoParcela.descricao }}</td>
+          <td>{{ i.estadoCobrancaParcela.descricao }}</td>
+          <td>{{ i.dataQuitacao | date:constantesService.getFormatoDataP() }}</td>
+          <td>{{ utilService.formatarValorRealVisao( i.valorParcela ) }}</td>
+          <td>
+            <a materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10"
+              [routerLink]="['./', i.numeroEndosso, 'parcelas', i.numeroParcela, 'devolucao']">
+              <i class="material-icons actionButtons">search</i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>

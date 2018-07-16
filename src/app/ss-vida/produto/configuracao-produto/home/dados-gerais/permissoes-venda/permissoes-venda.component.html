@@ -1,0 +1,37 @@
+<div class="input-field col s12" [formGroup]="permissoesVendaForm">
+
+  <div class="input-field col s5">
+      <label class="active" for="parceiro">Parceiro <span class="asterisco">*</span></label>
+      <select class="noUppercase" formControlName="parceiro" name="parceiro"
+          (change)="selectTiposLocalVenda($event.target.value)" materialize="material_select" [materializeSelectOptions]="parceiroList">
+          <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+          <option *ngFor='let e of parceiroList;' [ngValue]="e">{{e.descricao}}</option>
+      </select>                    
+      <small [hidden]="permissoesVendaForm.controls.parceiro.valid" class="text-danger">
+          Parceiro é obrigatório
+      </small>      
+  </div>
+
+  <div class="input-field col s4">
+      <label class="active" for="tipoLocalVenda">Tipo de local de venda <span class="asterisco">*</span></label>
+      <select class="noUppercase" formControlName="tipoLocalVenda" name="tipoLocalVenda" materialize="material_select" [materializeSelectOptions] = "tipoLocalVendaList">
+          <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+          <option *ngFor='let e of tipoLocalVendaList;' [ngValue]="e">{{e.descricao}}</option>
+      </select>                    
+      <small [hidden]="permissoesVendaForm.controls.tipoLocalVenda.valid" class="text-danger">
+          Tipo de local de venda é obrigatório
+      </small>
+  </div>
+
+  <div class="input-field col s3">
+      <label class="active" for="indicadorSensibilizado">Sensibilização? <span class="asterisco">*</span></label>
+      <select class="noUppercase" formControlName="indicadorSensibilizado" name="indicadorSensibilizado" materialize="material_select" [materializeSelectOptions]="constantesService.getValoresSimNao()">
+          <option value="" disabled selected>Selecione uma opção</option>
+          <option *ngFor='let e of constantesService.getValoresSimNao();' [ngValue]="e">{{e.descricao}}</option>
+      </select>
+      <small [hidden]="permissoesVendaForm.controls.indicadorSensibilizado.valid" class="text-danger">
+          Sensibilização é obrigatória
+      </small>
+  </div>
+
+</div>

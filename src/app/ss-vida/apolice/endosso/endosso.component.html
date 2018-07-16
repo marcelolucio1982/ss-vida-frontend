@@ -1,0 +1,41 @@
+<h5 class="subTitle titleNivel1">Endosso</h5>
+<div class="generalBox">
+  <table class="striped tableCenter" *ngIf="endossosList && endossosList.length > 0">
+    <thead>
+      <tr>
+        <th>Número do Endosso</th>
+        <th>Origem</th>
+        <th>Motivo Endosso</th>
+        <th>Situação</th>
+        <th>Início Vigência</th>
+        <th>Fim Vigência</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let endosso of endossosList; let aux = index;">
+        <td>-</td>
+        <td>-</td>
+        <td>{{ endosso.tiposEndosso[0].descricao }}</td>
+        <td>{{ endosso.situacao.descricao }}</td>
+        <td>{{ endosso.inicioVigencia | date:constantesService.getFormatoDataP() }}</td>
+        <td>{{ endosso.fimVigencia | date:constantesService.getFormatoDataP() }}</td>
+        <td>
+          <a *ngIf="endosso.situacao.descricao === 'PENDENTE'" materialize="tooltip" data-tooltip="Editar" class="view tooltipped edit" data-position="left" data-delay="10"
+          [routerLink]="['./editar']"><i class="material-icons actionButtons">edit</i>
+          </a>
+          <a *ngIf="endosso.situacao.descricao === 'PENDENTE'" materialize="tooltip" data-tooltip="Excluir" class="view tooltipped delete" data-position="left" data-delay="10"
+          (click)="removerEndosso()"><i class="material-icons actionButtons">delete_forever</i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="endossosList?.length === 0">
+    Nenhum registro encontrado
+  </div>
+  <div class="box-buttons" *ngIf="!endossoPendente">
+    <button type="button" class="waves-effect waves-light btn btnPrimary" [routerLink]="['./cadastrar']">Cadastrar</button>
+  </div>
+</div>

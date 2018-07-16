@@ -1,0 +1,56 @@
+<div class="mainContent">
+
+  <!-- ######################## INICIO DETALHAMENTO #######################  -->
+  <h5>Visualização de Configuração do Produto</h5>
+  <div class="boxNext row"></div>
+  <div class="clearfix"></div>
+
+  <h5 class="subTitle titleNivel1">Informações do Produto</h5>
+
+  <div class="col s12 generalBox">
+    <div class="row">
+
+      <div class="input-field col s2" *ngIf="produtoDetalhe?.produto?.codigo">
+          <label class="active" for="codigo">Código</label>
+          <span class="spanResult">{{ produtoDetalhe?.produto?.codigo }}</span>
+      </div>
+
+      <div class="input-field col s6" *ngIf="produtoDetalhe?.produto?.descricao">
+          <label class="active" for="codigo">Nome</label>
+          <span class="spanResult">{{ produtoDetalhe?.produto?.descricao }}</span>
+      </div>
+
+      <div class="input-field col s4" *ngIf="produtoDetalhe?.produto?.codigoProcessoSusep" >
+          <label class="active" for="processoSusep">Processo SUSEP</label>
+          <span class="spanResult">{{ produtoDetalhe?.produto?.codigoProcessoSusep }}</span>
+      </div>
+
+      <div class="input-field col s2" *ngIf="produtoDetalhe?.versao" >
+          <label class="active" for="versao">Versão</label>
+          <span class="spanResult">{{ produtoDetalhe?.versao }}</span>
+      </div>
+
+      <div class="input-field col s3" *ngIf="produtoDetalhe?.descricaoSituacaoConfiguracao" >
+          <label class="active" for="situacao">Situação</label>
+          <span class="spanResult">{{ produtoDetalhe?.descricaoSituacaoConfiguracao }}</span>
+      </div>
+
+      <div class="input-field col s3" *ngIf="produtoDetalhe?.dataInicioVigencia" >
+          <label class="active" for="inicioComercializacao">Início da comercialização</label>
+          <span class="spanResult">{{ utilService.formatarDataVisao( produtoDetalhe.dataInicioVigencia ) }}</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!--Secondary Menu -->
+  <div class="secondMenu">
+    <button class="waves-effect waves-light btn" [routerLink]="['./dashboard']"><i class="material-icons left">dashboard</i> Dashboard</button>
+    <button class="waves-effect waves-light btn" [routerLink]="['./visualizar']"><i class="material-icons left">remove_red_eye</i>Visualizar</button>
+  </div>
+  <!--/ Fim Secondary Menu -->
+
+</div>
+<div class="row">
+    <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,200 @@
+<div class="mainContent">
+
+  <!-- ######################## CADASTRO LOCAL DE VENDA #######################  -->
+
+  <h5>Cadastrar Local de Venda</h5>
+  <div class="boxNext row"></div>
+
+  <div class="clearfix"></div>
+
+  <div class="col s12">
+    <form class="form-horizontal" [formGroup]="formulario">
+      <div class="row">
+
+        <div class="input-field col s4">
+          <label class="active" for="parceiro">Parceiro <span class="asterisco">*</span></label>
+          <select id="parceiro" class="noUppercase" formControlName="parceiro" name="parceiro" materialize="material_select" [materializeSelectOptions]="parceiroList">
+            <option value="">Selecione uma opção</option>
+            <option *ngFor='let e of parceiroList;' [ngValue]="e">{{e.descricao}}</option>
+          </select>
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'parceiro', formulario )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="tipoLocalVenda">Tipo de Local de Venda <span class="asterisco">*</span></label>
+          <select id="tipoLocalVenda" class="noUppercase" formControlName="tipoLocalVenda" name="tipoLocalVenda"
+            materialize="material_select" [materializeSelectOptions]="tipoLocalVendaList">
+            <option value="">Selecione uma opção</option>
+            <option *ngFor='let e of tipoLocalVendaList;' [ngValue]="e">{{e.descricao}}</option>
+          </select>
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'tipoLocalVenda', formulario )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="tipoRede">Tipo de Rede</label>
+          <select id="tipoRede" class="noUppercase" formControlName="tipoRede" name="tipoRede"
+            materialize="material_select" [materializeSelectOptions]="tipoRedeList">
+            <option value="">Selecione uma opção</option>
+            <option *ngFor='let e of tipoRedeList;' [ngValue]="e">{{e.descricao}}</option>
+          </select>
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'tipoRede', formulario )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="codigoExterno">Código Externo <span class="asterisco">*</span></label>
+          <input id="codigoExterno" formControlName="codigoExterno" name="codigoExterno" type="text">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'codigoExterno', formulario )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div formGroupName="pessoaPapelNegocio">
+          <div formGroupName="pessoa">
+
+            <div class="input-field col s4">
+              <label class="active" for="cpfCnpj">CNPJ</label>
+              <input id="cpfCnpj" formControlName="cpfCnpj" name="cpfCnpj" type="text">
+            </div>
+
+            <div class="input-field col s4">
+              <label class="active" for="nomeRazaoSocial">Razão Social /Nome do Local de Venda <span class="asterisco">*</span></label>
+              <input id="nomeRazaoSocial" formControlName="nomeRazaoSocial" name="nomeRazaoSocial" type="text">
+              <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'nomeRazaoSocial', formulario.get( 'pessoaPapelNegocio' ).get( 'pessoa' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="agrupador">Agrupador</label>
+          <select id="agrupador" class="noUppercase" formControlName="agrupador" name="agrupador"
+            materialize="material_select" [materializeSelectOptions]="agrupadorList">
+            <option value="">Selecione uma opção</option>
+            <option *ngFor='let e of agrupadorList;' [ngValue]="e">{{e.descricao}}</option>
+          </select>
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="permissaoVenda">Permissão de Venda <span class="asterisco">*</span></label>
+          <select id="permissaoVenda" class="noUppercase" formControlName="permissaoVenda" name="permissaoVenda"
+            materialize="material_select" [materializeSelectOptions]="constantesService.getValoresSimNao()">
+            <option value="">Selecione uma opção</option>
+            <option *ngFor='let e of constantesService.getValoresSimNao();' [ngValue]="e">{{e.descricao}}</option>
+          </select>
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'permissaoVenda', formulario )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="dataInicioVigencia">Início de vigência <span class="asterisco">*</span></label>
+          <input class="datepicker" id="dataInicioVigencia" formControlName="dataInicioVigencia" name="dataInicioVigencia" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'dataInicioVigencia', formulario )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <h5 class="subTitle">Relacionamentos</h5>
+        <div class="boxNextSubTitle row"></div>
+
+        <div formGroupName="relacionamentoGroup">
+
+          <div class="input-field col s3">
+            <label class="active" for="codigoExterno">Código externo <span class="asterisco">*</span></label>
+            <input id="codigoExterno" formControlName="codigoExterno" name="codigoExterno" type="text">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'codigoExterno', formulario.get( 'relacionamentoGroup' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+
+          <div class="input-field col s1">
+            <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="pesquisarRelacionamento()" [disabled]="verificaDataInicioVigencia()">
+              <i class="material-icons actionButtons">search</i>
+            </button>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="parceiro">Parceiros <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="parceiro" name="parceiro"
+              materialize="material_select" [materializeSelectOptions]="parceiroRelacionamentoList">
+              <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+              <option *ngFor='let e of parceiroRelacionamentoList' [ngValue]="e">{{ e.descricao }}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'parceiro', formulario.get( 'relacionamentoGroup' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="tipoLocalVenda">Tipo de Local de Venda <span class="asterisco">*</span></label>
+            <select id="tipoLocalVenda" class="noUppercase" formControlName="tipoLocalVenda" name="tipoLocalVenda"
+              materialize="material_select" [materializeSelectOptions]="tipoLocalVendaRelacionamentoList">
+              <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+              <option *ngFor='let e of tipoLocalVendaRelacionamentoList;' [ngValue]="e">{{ e?.descricao }}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'tipoLocalVenda', formulario.get( 'relacionamentoGroup' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+
+          <div class="input-field col s6">
+            <label class="active" for="nomeRazaoSocial">Razão Social / Nome do Local de Venda</label>
+            <input id="nomeRazaoSocial" formControlName="nomeRazaoSocial" name="nomeRazaoSocial" type="text">
+          </div>
+
+          <div class="input-field col s6">
+            <label class="active" for="tipoRelacionamento">Tipo de Relacionamento <span class="asterisco">*</span></label>
+            <select id="tipoRelacionamento" class="noUppercase" formControlName="tipoRelacionamento" name="tipoRelacionamento"
+              materialize="material_select" [materializeSelectOptions]="tipoRelacionamentoList">
+              <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+              <option *ngFor='let e of tipoRelacionamentoList;' [ngValue]="e">{{e.descricao}}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'tipoRelacionamento', formulario.get( 'relacionamentoGroup' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+
+          <div class="input-field col s12">
+            <div class="box-buttons-wizard">
+              <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="addRelacionamento()" *ngIf="this.formulario.get( 'relacionamentoGroup' ).valid">
+                <i class="material-icons left">add</i> Adicionar
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="grid-divider"></div>
+
+        <div class="row">
+          <table class="striped" *ngIf="formulario.get( 'relacionamentos' ).value.length > 0">
+            <thead>
+                <tr>
+                  <th>Tipo de Relacionamento</th>
+                  <th>Parceiro</th>
+                  <th>Tipo de Local de Venda</th>
+                  <th>Código Externo</th>
+                  <th>Razão Social / Nome do Local de Venda</th>
+                  <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let i of formulario.get( 'relacionamentos' ).value; let aux = index;">
+                <td>{{ i.tipoRelacionamento.descricao }}</td>
+                <td>{{ i.localVenda.parceiro.descricao }}</td>
+                <td>{{ i.localVenda.tipoLocalVenda.descricao }}</td>
+                <td>{{ i.localVenda.codigoExterno }}</td>
+                <td>{{ i.localVenda.pessoaPapelNegocio?.pessoa?.nomeRazaoSocial }} {{ i.localVenda.descricao }}</td>
+                <td>
+                  <a [routerLink]="" materialize="tooltip" data-tooltip="Excluir" class="view tooltipped delete" data-position="left" data-delay="10"
+                    (click)="removerRelacionamento( i )"><i class="material-icons actionButtons">delete_forever</i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="box-buttons">
+          <button type="submit" class="waves-effect waves-light btn btnPrimary" (click)="salvar( false )">Salvar</button>
+          <button type="submit" class="waves-effect waves-light btn btnPrimary" (click)="salvar( true )">Aprovar</button>
+          <button type="submit" class="waves-effect waves-light btn btnSecondary" (click)="fechar()">Fechar</button>
+        </div>
+
+      </div>
+
+    </form>
+  </div>
+  <!-- ######################## FIM DE CADASTRO LOCAL DE VENDA #######################  -->
+</div>

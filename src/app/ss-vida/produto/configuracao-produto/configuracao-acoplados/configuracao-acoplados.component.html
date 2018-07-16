@@ -1,0 +1,245 @@
+<div class="mainContent">
+    <!-- ######################## CONFIGURAR ACOPLADO #######################  -->
+  
+    <h5>Informações do Produto</h5>
+    <div class="boxNext row"></div>
+  
+    <div class="clearfix"></div>
+    <div class="col s12">
+        <form class="form-horizontal" [formGroup]="formulario">
+            <div class="row">
+  
+                <div class="input-field col s4">
+                    <label class="active" for="codigoAcoplado">Código</label>
+                    <input id="codigoAcoplado" formControlName="codigoAcoplado" name="codigoAcoplado" type="text" value="XXXX">
+                </div>
+  
+                <div class="input-field col s4">
+                    <label class="active" for="nomeAcomplado">Nome</label>
+                    <input id="nomeAcomplado" formControlName="nomeAcomplado" name="nomeAcomplado" type="text" value="FARMA FÁCIL MICROSEGURO ">
+                </div>
+  
+                <div class="input-field col s4">
+                    <label class="active" for="processoSusepAcoplado">Processo SUSEP</label>
+                    <input id="processoSusepAcoplado" formControlName="processoSusepAcoplado" name="processoSusepAcoplado" type="text" value="XXXX">
+                </div>
+  
+                <div class="input-field col s4">
+                    <label class="active" for="versaoAcoplado">Versão</label>
+                    <input id="versaoAcoplado" formControlName="versaoAcoplado" name="versaoAcoplado" type="text" value="2">
+                </div>
+  
+                <div class="input-field col s4">
+                    <label class="active" for="situacaoAcoplado">Situação</label>
+                    <input id="situacaoAcoplado" formControlName="situacaoAcoplado" name="situacaoAcoplado" type="text" value="Pendente">
+                </div>
+  
+                <div class="input-field col s4">
+                    <label class="active" for="inicioComercializacaoAcoplado">Início da comercialização</label>
+                    <input id="inicioComercializacaoAcoplado" formControlName="inicioComercializacaoAcoplado" name="inicioComercializacaoAcoplado"
+                        type="text">
+                </div>
+  
+  
+                <div class="input-field col s4">
+                    <label class="active" for="parceiroAcoplado">Parceiro</label>
+                    <select id="parceiroAcoplado" class="noUppercase" formControlName="parceiroAcoplado" name="parceiroAcoplado" materialize="material_select">
+                        <option value="">Selecione uma opção</option>
+                        <option>lorem ipsulum</option>
+                    </select>
+                </div>
+  
+                <div class="input-field col s4">
+                    <label class="active" for="tipoLocalVendaAcoplado">Tipo de local de venda</label>
+                    <select id="tipoLocalVendaAcoplado" class="noUppercase" formControlName="tipoLocalVendaAcoplado" name="tipoLocalVendaAcoplado"
+                        materialize="material_select">
+                        <option value="">Selecione uma opção</option>
+                        <option>lorem ipsulum</option>
+                    </select>
+                </div>
+  
+                <div class="input-field col s4">
+                    <label class="active" for="manterNumeroSorteAcoplado">Manter número de sorte na renovação?</label>
+                    <select id="manterNumeroSorteAcoplado" class="noUppercase" formControlName="manterNumeroSorteAcoplado" name="manterNumeroSorteAcoplado"
+                        materialize="material_select">
+                        <option value="">Selecione uma opção</option>
+                        <option>lorem ipsulum</option>
+                    </select>
+                </div>
+  
+                <div class="input-field col s4">
+                    <label class="active" for="codigoPlanoCapAcoplado">Código plano CAP</label>
+                    <select id="codigoPlanoCapAcoplado" class="noUppercase" formControlName="codigoPlanoCapAcoplado" name="codigoPlanoCapAcoplado"
+                        materialize="material_select">
+                        <option value="">Selecione uma opção</option>
+                        <option>lorem ipsulum</option>
+                    </select>
+                </div>
+  
+                <div class="input-field col s4">
+                    <label class="active" for="codigoAcopladoSelect">Código Acoplado</label>
+                    <select id="codigoAcopladoSelect" class="noUppercase" formControlName="codigoAcopladoSelect" name="codigoAcopladoSelect"
+                        materialize="material_select">
+                        <option value="">Selecione uma opção</option>
+                        <option>lorem ipsulum</option>
+                    </select>
+                </div>
+  
+                <div class="input-field col s4">
+                    <label class="active" for="nomeCodigoAcomplado">Nome</label>
+                    <select id="nomeCodigoAcomplado" class="noUppercase" formControlName="nomeCodigoAcomplado" name="nomeCodigoAcomplado" materialize="material_select">
+                        <option value="">Selecione uma opção</option>
+                        <option>lorem ipsulum</option>
+                    </select>
+                </div>
+  
+                <div class="input-field col s4">
+                    <label class="active" for="tamanhoSerieAcoplado">Tamanho da série</label>
+                    <input id="tamanhoSerieAcoplado" disabled="disabled" formControlName="tamanhoSerieAcoplado" name="tamanhoSerieAcoplado" type="text">
+                </div>
+  
+                <div class="input-field col s4">
+                    <label class="active" for="periodicidadeSorteioAcomplado">Periodicidade do sorteio</label>
+                    <select id="periodicidadeSorteioAcomplado" disabled="disabled" class="noUppercase" formControlName="periodicidadeSorteioAcomplado"
+                        name="periodicidadeSorteioAcomplado" materialize="material_select">
+                        <option value="">Selecione uma opção</option>
+                        <option>lorem ipsulum</option>
+                    </select>
+                </div>
+  
+                <div class="input-field col s4">
+                    <label class="active" for="qutSorteioAcoplado">Qte. de sorteio</label>
+                    <select id="qutSorteioAcoplado" disabled="disabled" class="noUppercase" formControlName="qutSorteioAcoplado" name="qutSorteioAcoplado"
+                        materialize="material_select">
+                        <option value="">Selecione uma opção</option>
+                        <option>lorem ipsulum</option>
+                    </select>
+                </div>
+  
+                <div class="input-field col s4">
+                    <label class="active" for="quantidadeTitulosAcoplado">Quantidade de títulos</label>
+                    <select id="quantidadeTitulosAcoplado" disabled="disabled" class="noUppercase" formControlName="quantidadeTitulosAcoplado"
+                        name="quantidadeTitulosAcoplado" materialize="material_select">
+                        <option value="">Selecione uma opção</option>
+                        <option>lorem ipsulum</option>
+                    </select>
+                </div>
+  
+                <div class="input-field col s4">
+                    <label class="active" for="valorSorteioAcoplado">Valor do sorteio</label>
+                    <select id="valorSorteioAcoplado" disabled="disabled" class="noUppercase" formControlName="valorSorteioAcoplado" name="valorSorteioAcoplado"
+                        materialize="material_select">
+                        <option value="">Selecione uma opção</option>
+                        <option>lorem ipsulum</option>
+                    </select>
+                </div>
+  
+                <div class="input-field col s4">
+                    <label class="active" for="valorUnitarioTituloAcoplado">Valor unitário por título</label>
+                    <input id="valorUnitarioTituloAcoplado" disabled="disabled" formControlName="valorUnitarioTituloAcoplado" name="valorUnitarioTituloAcoplado"
+                        type="text">
+                </div>
+  
+  
+                <div class="clearfix"></div>
+  
+                <div class="input-field col s4">
+                    <div class="box-buttons-wizard">
+                        <button type="submit" class="waves-effect waves-light btn btnPrimary">
+                            <i class="material-icons left">delete</i> Adicionar</button>
+                    </div>
+                </div>
+  
+                <div class="grid-divider"></div>
+                <div class="row">
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th>&nbsp;</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+  
+                        <tbody>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+  
+                        </tbody>
+                    </table>
+                </div>
+  
+                <div class="clearfix"></div>
+                <div class="box-buttons">
+                    <button type="submit" class="waves-effect waves-light btn btnPrimary">Salvar</button>
+                    <button type="submit" class="waves-effect waves-light btn btnSecondary">Voltar</button>
+                </div>
+  
+  
+                <h5 class="subTitle">Especificidade</h5>
+                <div class="boxNextSubTitle row"></div>
+  
+                <div class="input-field col s4">
+                    <label class="active" for="periodicidadePagamentoAcoplado">Por periodicidade de pagamento</label>
+                    <select id="periodicidadePagamentoAcoplado" class="noUppercase" formControlName="periodicidadePagamentoAcoplado" name="periodicidadePagamentoAcoplado"
+                        materialize="material_select">
+                        <option value="">Selecione uma opção</option>
+                        <option>lorem ipsulum</option>
+                    </select>
+                </div>
+  
+                <div class="col s4">
+                    <label class="active blackFont">Periodicidade de pagamento</label>
+                    <p class="boxRadio">
+                        <span>
+                            <input class="with-gap"  name="mensalAcoplado" type="radio" />
+                            <label for="mensal">Mensal</label>
+                            <input class="with-gap"  name="anualAcoplado" type="radio" />
+                            <label for="anual">Anual</label>
+                            <input class="with-gap"  name="puAcoplado" type="radio" />
+                            <label for="pu">PU</label>
+                        </span>
+                    </p>
+                </div>
+  
+                <div class="input-field col s4">
+                    <label class="active" for="porCapitalAcoplado">Por Capital</label>
+                    <select id="porCapitalAcoplado  " class="noUppercase" formControlName="porCapitalAcoplado" name="porCapitalAcoplado" materialize="material_select">
+                        <option value="">Selecione uma opção</option>
+                        <option>lorem ipsulum</option>
+                    </select>
+                </div>
+  
+                <div class="input-field col s4">
+                    <label class="active" for="capitalInicialAcoplado">Capital inicial</label>
+                    <input id="capitalInicialAcoplado" disabled="disabled" formControlName="capitalInicialAcoplado" name="capitalInicialAcoplado"
+                        type="text">
+                </div>
+  
+                <div class="input-field col s4">
+                    <label class="active" for="capitalFinalAcoplado">Capital final</label>
+                    <input id="capitalFinalAcoplado" disabled="disabled" formControlName="capitalFinalAcoplado" name="capitalFinalAcoplado" type="text">
+                </div>
+            </div>
+        </form>
+  
+    </div>
+  
+    <!-- ######################## FIM DE CONFIGURAR ACOPLADOS #######################  -->
+  
+  
+  </div>
+  

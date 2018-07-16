@@ -1,0 +1,187 @@
+div.ssv-mensagens {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 8888;
+  margin: 0;
+  float: left;
+  color: #fff;
+  -webkit-transition: width 2s, height 2s, -webkit-transform 2s;
+  transition: width 2s, height 2s, transform 2s;
+}
+
+
+div.ssv-mensagens p {
+  margin-top: 1px;
+  bottom: 0;
+}
+
+div.ssv-mensagens p i {
+  font-size: 295%;
+  opacity:0.50;
+  -moz-opacity: 0.50;
+  filter: alpha(opacity=50);
+  padding: 10px;
+}
+
+p.ssv-confirm {
+  background-color: #f9f9f9;
+  width: 350px;
+  height: 100px;
+  top: 30% !important;
+  bottom: 50%;
+  margin-left:-175px; /* Metade do valor da Largura */
+  margin-top:-50px; /* Metade da valor da Altura */
+  color: #000;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 0 auto;
+  box-shadow: 2px 3px 24px #888888;
+}
+
+.btnSmall {
+  padding: 0 1rem !important;
+  margin-bottom: 2px !important;
+  color: #fff;
+  height: 28px !important;
+  line-height: 28px !important;
+  margin-right: 1px;
+}
+
+.bgFull {
+  width: 100%;
+  height: 100%;
+  float: left;
+  position: relative;
+  background-color: rgba(10,23,55,0.5);
+}
+
+p.ssv-confirm .bodyMsg {
+  width: 300px !important;
+}
+
+p.ssv-sucesso {
+  background: #4CAF50;
+}
+
+p.ssv-sucesso button {
+  display: none;
+}
+
+p.ssv-alerta button {
+  display: none;
+}
+
+p.ssv-alerta {
+  background: #ff9800;
+}
+
+p.ssv-erro {
+  background: #f44336;
+}
+
+p.ssv-erro button {
+  display: none;
+}
+
+div.ssv-mensagens p a {
+  float: right;
+  color: #fff;
+  padding: 0px 10px;
+  margin-top: 4px;
+  margin-right: -3px;
+}
+
+.ssv-sucesso {
+  position: relative;
+  -webkit-animation-name: sucesso; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+  animation-name: sucesso;
+  animation-duration: 1s;
+}
+
+.ssv-confirm {
+  position: relative;
+  -webkit-animation-name: confirmacao; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+  animation-name: confirmacao;
+  animation-duration: 1s;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes confirmacao {
+  0%   {bottom:-100px;}
+  100% {bottom:0px;}
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes sucesso {
+  0%   {bottom:-100px;}
+  100% {bottom:0px;}
+}
+
+/* Standard syntax */
+@keyframes sucesso {
+  0%   {bottom:-100px;}
+  100% {bottom:0px;}
+}
+
+.ssv-alerta {
+  position: relative;
+  -webkit-animation-name: alerta; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+  animation-name: sucesso;
+  animation-duration: 1s;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes alerta {
+  0%   {bottom:-100px;}
+  100% {bottom:0px;}
+}
+
+/* Standard syntax */
+@keyframes alerta {
+  0%   {bottom:-100px;}
+  100% {bottom:0px;}
+}
+
+.ssv-erro {
+  position: relative;
+  -webkit-animation-name: erro; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+  animation-name: sucesso;
+  animation-duration: 1s;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes erro {
+  0%   {bottom:-100px;}
+  100% {bottom:0px;}
+}
+
+/* Standard syntax */
+@keyframes erro {
+  0%   {bottom:-100px;}
+  100% {bottom:0px;}
+}
+
+/* Efeito fechar */
+.sucesso a:active{
+  -webkit-animation-name: sucessoa; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+  animation-name: sucessoa;
+  animation-duration: 1s;
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes sucessoa {
+  0%   {bottom:0px;}
+  100% {bottom:-100px;}
+}
+
+/* Standard syntax */
+@keyframes sucessoa {
+  0%   {bottom:0px;}
+  100% {bottom:-100px;}
+}

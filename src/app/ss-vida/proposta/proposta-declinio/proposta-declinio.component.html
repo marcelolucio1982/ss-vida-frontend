@@ -1,0 +1,94 @@
+<div class="mainContent">
+  
+    <h5>Declinar Proposta</h5>
+    <div class="boxNext row"></div>
+  
+    <div class="clearfix"></div>
+    <div class="col s12">
+      <form class="form-horizontal" [formGroup]="formulario">
+        <div class="row">
+
+          <app-proposta-header [propostaHeaderForm]="formulario"></app-proposta-header>
+
+          <h5 class="subTitle">Informações do Declínio</h5>
+          <div class="boxNextSubTitle row"></div>
+
+          <div class="clearfix"></div>
+
+          <div class="input-field col s4">
+            <label class="active" for="motivoDeclinio">Motivo de Declínio <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="motivoDeclinio" name="motivoDeclinio" materialize="material_select" [materializeSelectOptions]="constantesService.getMotivosDeclinioProposta()">
+              <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+              <option *ngFor='let e of constantesService.getMotivosDeclinioProposta();' [ngValue]="e">{{e.descricao}}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('motivoDeclinio', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+          
+          <div class="input-field col s4">
+            <label class="active" for="descricaoDeclinio">Descrição de Declínio</label>
+            <span class="spanResult" name="descricaoDeclinio">{{formulario.value.motivoDeclinio ? formulario.value.motivoDeclinio.descricaoComplementar : ''}}</span>
+          </div>
+          
+          <div class="input-field col s4">
+            <label class="active" for="formaDevolucao">Forma de Devolução <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="formaDevolucao" name="formaDevolucao"
+              (change)="onChangeFormaDevolucao($event)" materialize="material_select" [materializeSelectOptions]="constantesService.getFormasDevolucaoProposta()">
+              <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+              <option *ngFor='let e of constantesService.getFormasDevolucaoProposta();' [ngValue]="e">{{e.descricao}}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('formaDevolucao', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+
+          <div *ngIf="exibeDadosBancarios" >
+            <h5 class="subTitle">Dados Bancários para Devolução</h5>
+            <div class="boxNextSubTitle row"></div>
+            <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="novaConta()">Novo</button>
+            
+            <div class="clearfix"></div>
+            
+            <div class="row">
+                <table class="striped tableCenter">
+                  <thead>
+                    <tr *ngIf="contasDevolucao.length > 0" >
+                      <th>Selecione</th>
+                      <th>Banco</th>
+                      <th>Agência</th>
+                      <th>Número da Conta</th>
+                      <th>Operação</th>
+                      <th>Última movimentação</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let conta of contasDevolucao; let idx = index">
+                      <td class="hkRadio">
+                        <input class="with-gap" name="contaDevolucao" type="radio" id="conta_{{conta.seqConta}}" [value]="conta"
+                          (change)="onChangeContaDevolucao(conta)" />
+                      </td>
+                      <td>{{conta.codigoBanco}} - {{conta.nomeBanco}}</td>
+                      <td>{{conta.codigoAgencia}}</td>
+                      <td>{{conta.numeroConta}} - {{conta.dvConta}}</td>
+                      <td>{{conta.codigoOperacaoCEF ? conta.codigoOperacaoCEF.codigo : '' }}</td>
+                      <td>{{conta.statusConta}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+          </div>
+
+          <div class="novaConta" *ngIf="exibeFormNovaConta">
+            <h5 class="subTitle">Nova Conta</h5>
+            <a type="button" class="waves-effect waves-light btn btnSecondary btnFechar" (click)="closeNovaConta()"><i class="material-icons left">close</i></a>
+            <div class="boxNextSubTitle row" *ngIf="exibeFormNovaConta"></div>
+              <app-nova-conta [contasDevolucao]="contasDevolucao" [novaContaForm]="formulario" *ngIf="exibeFormNovaConta" ></app-nova-conta>
+          </div>
+          <div class="clearfix"></div>
+
+          <div class="box-buttons">
+            <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="voltar()">Fechar</button>
+            <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="salvar()">Salvar</button>
+          </div>
+          
+        </div>
+      </form>
+    </div>
+</div>

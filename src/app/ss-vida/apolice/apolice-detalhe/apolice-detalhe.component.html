@@ -1,0 +1,68 @@
+<div class="mainContent">
+
+    <h5>Visualizar Apólice</h5>
+    <div class="boxNext">
+      <button type="button" class="waves-effect waves-light btn largeIcon" (click)="historicoSeguro()"><i class="material-icons">schedule</i></button><!-- Histórico do Seguro -->
+      <button type="button" class="waves-effect waves-light btn largeIcon" (click)="historicoSegurado()"><i class="material-icons">timelapse</i></button><!-- Histórico do Segurado -->
+      <button type="button" class="waves-effect waves-light btn largeIcon" (click)="produtosSegurado()"><i class="material-icons">business_center</i></button><!-- Produtos do Segurado -->
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="col s12">
+        <!-- ######## BLOCO DE APOLICE -->
+        <div class="row">
+
+          <!-- Header -->
+          <div class="boxInfoClientes">
+            <div class="input-field col s5">
+              <label class="active">Nome</label>
+              <span class="spanResult">{{apolice?.pessoa.nome}}</span>
+            </div>
+            <div class="input-field col s2">
+              <label class="active">CPF</label>
+              <span class="spanResult">{{apolice?.pessoa.cpfAsString | cpfMask}}</span>
+            </div>
+            <div class="input-field col s5">
+              <label class="active">Produto</label>
+              <span class="spanResult">{{apolice?.endosso.produto.codigo}} - {{apolice?.endosso.produto.descricao}}</span>
+            </div>
+            <div class="input-field col s3">
+              <label class="active">Apólice</label>
+              <span class="spanResult">{{apolice?.codigo}}</span>
+            </div>
+            <div class="input-field col s2">
+              <label class="active">Data de Emissão</label>
+              <span class="spanResult">{{this.utilService.formatarDataVisao( apolice?.endosso.dataEmissao )}}</span>
+            </div>
+            <div class="input-field col s2">
+              <label class="active">Proposta</label>
+              <span class="spanResult">{{apolice?.endosso.proposta.numeroPropostaExterna}}</span>
+            </div>
+            <div class="input-field col s2">
+              <label class="active">Situação</label>
+              <span class="spanResult">{{apolice?.endosso.situacao.descricao}}</span>
+            </div>
+          </div>
+
+          <!--Secondary Menu -->
+          <div class="secondMenu">
+            <button class="waves-effect waves-light btn" [routerLink]="['./dados-apolice']">Apólice</button>
+            <button class="waves-effect waves-light btn" [routerLink]="['./cobranca-devolucao']">Cobrança e Devolução</button>
+            <button class="waves-effect waves-light btn" [routerLink]="['./comunicacao-venda-posvenda']">Comunicação Venda / Pós</button>
+            <button class="waves-effect waves-light btn" [routerLink]="['./endosso']">Endosso</button>
+            <button class="waves-effect waves-light btn" [routerLink]="['./comissao']">Comissão</button>
+          </div>
+          <!--/ Fim Secondary Menu -->
+
+          <router-outlet></router-outlet>
+          <div class="clearfix"></div>
+
+          <div class="box-buttons">
+            <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="voltar()">Fechar</button>
+          </div>
+        <!--/ ########## Fim do Bloco de Apólice #########-->
+        </div>
+
+    </div>
+
+  </div>

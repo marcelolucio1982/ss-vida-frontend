@@ -1,0 +1,66 @@
+  <h5 class="subTitle titleNivel1">Cobrança</h5>
+  <div class="generalBox">
+    <div class="input-field col s3">
+      <label class="active">Parcela do Seguro</label>
+      <span class="spanResult">{{ dadosParcelaCobranca.seqEndossoCobranca }}</span>
+    </div>
+    <div class="input-field col s3">
+      <label class="active">Número do Endosso</label>
+      <span class="spanResult">{{ dadosParcelaCobranca.codigo }}</span>
+    </div>
+    <div class="input-field col s3">
+      <label class="active">Data Início Vigência</label>
+      <span class="spanResult">{{ dadosParcelaCobranca.inicioVigencia | date:constantesService.getFormatoDataP() }}</span>
+    </div>
+    <div class="input-field col s3">
+      <label class="active">Data Fim Vigência</label>
+      <span class="spanResult">{{ dadosParcelaCobranca.fimVigencia | date:constantesService.getFormatoDataP() }}</span>
+    </div>
+    <h5 class="subTitle titleNivel1">Detalhamento da Cobrança</h5>
+    <div class="">
+        <div class="row" *ngIf="detalhamentosCobranca && detalhamentosCobranca.length > 0">
+        <table class="striped tableCenter">
+          <thead>
+            <tr>
+              <th>Data da Operação</th>
+              <th>Descrição do Movimento</th>
+              <th>Data de Vencimento</th>
+              <th>Forma de Pagamento</th>
+              <th>Cartão</th>
+              <th>Banco</th>
+              <th>Agência</th>
+              <th>Conta</th>
+              <th>DV da Conta</th>
+              <th>Operação</th>
+              <th>Nosso número</th>
+              <th>IDLG</th>
+              <th>Valor da Cobrança</th>
+              <th>Mensagem de Retorno</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let i of detalhamentosCobranca; let aux = index;">
+              <td>{{ i.dataMovimento | date:constantesService.getFormatoDataP() }}</td>
+              <td>{{ i.descricaoMovimento }}</td>
+              <td>{{ i.dataVencimento | date:constantesService.getFormatoDataP() }}</td>
+              <td>{{ i.formaCobranca.descricao }}</td>
+              <td></td>
+              <td>{{ i.conta.codigoBanco }}</td>
+              <td>{{ i.conta.codigoAgencia }}</td>
+              <td>{{ i.conta.numeroConta }}</td>
+              <td>{{ i.conta.dvConta }}</td>
+              <td>{{ i.conta.codigoOperacaoCEF.codigo }}</td>
+              <td>{{ i.numeroTituloCobranca }}</td>
+              <td>{{ i.idlg }}</td>
+              <td>{{ utilService.formatarValorRealVisao( i.valorParcela ) }}</td>
+              <td>{{ i.descricaoRetornoSAP }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="box-buttons">
+      <button type="submit" class="buttonResultado waves-effect waves-light btn btnPrimary"
+        [routerLink]="['./../../../../../cobranca-devolucao']"><i class="material-icons left">arrow_back</i> Voltar</button>
+    </div>
+  </div>

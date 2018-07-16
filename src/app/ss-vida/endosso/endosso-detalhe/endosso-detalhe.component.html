@@ -1,0 +1,427 @@
+<div class="mainContent">
+
+  <h5>Visualizar Proposta</h5>
+  <div class="boxNext">
+    <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="historico(formulario.value)">Histórico do Seguro</button>
+  </div>
+
+  <div class="clearfix"></div>
+  <div class="col s12">
+    <form class="form-horizontal" [formGroup]="formulario">
+      <div class="row">
+
+        <app-proposta-header [propostaHeaderForm]="formulario"></app-proposta-header>
+
+        <h5 class="subTitle">Cliente</h5>
+        <div class="boxNextSubTitle row"></div>
+
+        <div class="input-field col s4">
+          <label class="active" for="clienteNome">Nome</label>
+          <input class="viewList" formControlName="clienteNome" name="clienteNome" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="clienteCpf">CPF</label>
+          <input class="viewList" formControlName="clienteCpf" name="clienteCpf" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="clienteSexo">Sexo</label>
+          <input class="viewList" formControlName="clienteSexo" name="clienteSexo" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="clienteEstadoCivil">Estado Civil</label>
+          <input class="viewList" formControlName="clienteEstadoCivil" name="clienteEstadoCivil" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="clienteDataNascimento">Data de Nascimento</label>
+          <input class="viewList" formControlName="clienteDataNascimento" name="clienteDataNascimento" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="clienteNumeroRg">Número do RG</label>
+          <input class="viewList" formControlName="clienteNumeroRg" name="clienteNumeroRg" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="clienteDataExpedicao">Data de Expedicao</label>
+          <input class="viewList" formControlName="clienteDataExpedicao" name="clienteDataExpedicao" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="clienteOrgaoEmissor">Orgão Emissor</label>
+          <input class="viewList" formControlName="clienteOrgaoEmissor" name="clienteOrgaoEmissor" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="clienteUfIdentidade">UF</label>
+          <input class="viewList" formControlName="clienteUfIdentidade" name="clienteUfIdentidade" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="clienteNacionalidade">Nacionalidade (País)</label>
+          <input class="viewList" formControlName="clienteNacionalidade" name="clienteNacionalidade" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="clienteResideBrasil">Reside no Brasil?</label>
+          <input class="viewList" formControlName="clienteResideBrasil" name="clienteResideBrasil" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="clienteProfissao">Profissão</label>
+          <input class="viewList" formControlName="clienteProfissao" name="clienteProfissao" type="text">
+        </div>
+
+        <h5 class="subTitle">Faixa de Renda</h5>
+        <div class="boxNextSubTitle row"></div>
+
+        <div class="input-field col s4">
+          <label class="active" for="faixaDeRendaIndividual">Individual</label>
+          <input class="viewList" formControlName="faixaDeRendaIndividual" name="faixaDeRendaIndividual" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="faixaDeRendaFamiliar">Familiar</label>
+          <input class="viewList" formControlName="faixaDeRendaFamiliar" name="faixaDeRendaFamiliar" type="text">
+        </div>
+
+        <h5 class="subTitle">Contato</h5>
+        <div class="boxNextSubTitle row"></div>
+
+        <div class="input-field col s4">
+          <label class="active" for="contatoEndereco">Endereço</label>
+          <input class="viewList"  formControlName="contatoEndereco" name="contatoEndereco" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="contatoComplemento">Complemento</label>
+          <input class="viewList" formControlName="contatoComplemento" name="contatoComplemento" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="contatoBairro">Bairro</label>
+          <input class="viewList" formControlName="contatoBairro" name="contatoBairro" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="contatoCep">CEP</label>
+          <input class="viewList" formControlName="contatoCep" name="contatoCep" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="contatoCidade">Cidade</label>
+          <input class="viewList" formControlName="contatoCidade" name="contatoCidade" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="contatoCelular">Celular</label>
+          <input class="viewList" formControlName="contatoCelular" name="contatoCelular" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="contatoResidencial">Residencial</label>
+          <input class="viewList" formControlName="contatoResidencial" name="contatoResidencial" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="contatoComercial">Comercial</label>
+          <input class="viewList" formControlName="contatoComercial" name="contatoComercial" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="contatoEmailPrincipal">E-Mail Principal</label>
+          <input class="viewList" formControlName="contatoEmailPrincipal" name="contatoEmailPrincipal" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="contatoAutorizoComunicacaoPor">Autorizo comunicação por:</label>
+          <input class="viewList" formControlName="contatoAutorizoComunicacaoPor" name="contatoAutorizoComunicacaoPor" type="text">
+        </div>
+
+        <div class="clearfix"></div>
+
+        <h5>Produto</h5>
+        <div class="boxNext row"></div>
+
+        <div class="input-field col s4">
+          <label class="active" for="produtoDataProposta">Data da Proposta:</label>
+          <input class="viewList" formControlName="produtoDataProposta" name="produtoDataProposta" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="produtoDataCadastro">Data do Cadastro:</label>
+          <input class="viewList" formControlName="produtoDataCadastro" name="produtoDataCadastro" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="produtoDataPagamento">Data do Pagamento:</label>
+          <input class="viewList" formControlName="produtoDataPagamento" name="produtoDataPagamento" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="produtoProximaRenovacao">Próxima Renovação:</label>
+          <input class="viewList" formControlName="produtoProximaRenovacao" name="produtoProximaRenovacao" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="produto">Produto:</label>
+          <input class="viewList" formControlName="produto" name="produto" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="produtoApolice">Apólice:</label>
+          <input class="viewList" formControlName="produtoApolice" name="produtoApolice" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="produtoProposta">Proposta:</label>
+          <input class="viewList" formControlName="produtoProposta" name="produtoProposta" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="produtoSituacao">Situação:</label>
+          <input class="viewList" formControlName="produtoSituacao" name="produtoSituacao" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="produtoPeriodoVigencia">Período de Vigência:</label>
+          <input class="viewList" formControlName="produtoPeriodoVigencia" name="produtoPeriodoVigencia" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="produtoVigencia">Vigência:</label>
+          <input class="viewList" formControlName="produtoVigencia" name="produtoVigencia" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="produtoTipoSeguro">Tipo de Seguro:</label>
+          <input class="viewList" formControlName="produtoTipoSeguro" name="produtoTipoSeguro" type="text">
+        </div>
+
+        <h5 class="subTitle">Dados da Venda</h5>
+        <div class="boxNextSubTitle row"></div>
+
+        <div class="input-field col s4">
+          <label class="active" for="dadosVendaParceiro">Parceiro:</label>
+          <input class="viewList" formControlName="dadosVendaParceiro" name="dadosVendaParceiro" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="dadosVendaTipoLocalVenda">Tipo de Local de Venda:</label>
+          <input class="viewList" formControlName="dadosVendaTipoLocalVenda" name="dadosVendaTipoLocalVenda" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="dadosVendaLocalVenda">Local de Venda:</label>
+          <input class="viewList" formControlName="dadosVendaLocalVenda" name="dadosVendaLocalVenda" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="dadosVendaFilial">Filial:</label>
+          <input class="viewList" formControlName="dadosVendaFilial" name="dadosVendaFilial" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="dadosIndicador">Indicador:</label>
+          <input class="viewList" formControlName="dadosIndicador" name="dadosIndicador" type="text">
+        </div>
+
+        <h5 class="subTitle">Beneficiários</h5>
+        <div class="boxNextSubTitle row"></div>
+
+        <div class="row" *ngIf="beneficiarios.length > 0">
+          <table class="striped">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Grau de Parentesco</th>
+                <th>Percentual</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let beneficiario of beneficiarios">
+                <td align="center">{{ beneficiario.pessoa.nome }}</td>
+                <td>{{ beneficiario.pessoa.cpfCnpj }}</td>
+                <td>{{ beneficiario.parentesco.descricao }}</td>
+                <td>{{ utilService.formatarPercentualVisao( beneficiario.percentualParticipacao ) }}</td>
+              </tr>
+            </tbody>
+
+          </table>
+
+        </div>
+
+        <div class="clearfix"></div>
+        <h5 class="subTitle">Coberturas</h5>
+        <div class="boxNextSubTitle row"></div>
+
+        <div class="row" *ngIf="coberturas.length > 0">
+          <table class="striped">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Prêmio</th>
+                <th>Capital Segurado</th>
+                <th>Carência</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let cobertura of coberturas">
+                <td align="center">{{ cobertura.descricao }}</td>
+                <td>{{ utilService.formatarValorRealVisao( cobertura.valorPremio ) }}</td>
+                <td>{{ utilService.formatarValorRealVisao( cobertura.valorCapitalSegurado ) }}</td>
+                <td>{{ ( cobertura.indicadorCarencia === 'S' ) ? cobertura.quantidadeTempoCarencia + ' ' + cobertura.descricaoPeriodicidade : 'Não' }}</td>
+              </tr>
+            </tbody>
+
+          </table>
+
+        </div>
+
+        <div class="clearfix"></div>
+        <h5 class="subTitle">Assistências</h5>
+        <div class="boxNextSubTitle row"></div>
+
+        <div class="input-field col s4">
+          <label class="active" >Assistências:</label>
+          <input class="viewList" type="text" *ngFor="let assistencia of assistencias" value="{{ assistencia.descricao }}">
+        </div>
+
+        <div class="clearfix"></div>
+        <h5>Pagamento</h5>
+        <div class="boxNext row"></div>
+
+        <div class="clearfix"></div>
+        <h5 class="subTitle">Parcela de Adesão</h5>
+        <div class="boxNextSubTitle row"></div>
+
+        <div class="input-field col s4">
+          <label class="active" for="parcelaAdesaoTipoPagamento">Tipo de Pagamento:</label>
+          <input class="viewList" formControlName="parcelaAdesaoTipoPagamento" name="parcelaAdesaoTipoPagamento" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="parcelaAdesaoConvenio">Convênio:</label>
+          <input class="viewList" formControlName="parcelaAdesaoConvenio" name="parcelaAdesaoConvenio" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="parcelaAdesaoValor">Valor:</label>
+          <input class="viewList" formControlName="parcelaAdesaoValor" name="parcelaAdesaoValor" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="parcelaAdesaoDataPagamento">Data do Pagamento:</label>
+          <input class="viewList" formControlName="parcelaAdesaoDataPagamento" name="parcelaAdesaoDataPagamento" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="parcelaAdesaoBanco">Cod. Banco:</label>
+          <input class="viewList" formControlName="parcelaAdesaoBanco" name="parcelaAdesaoBanco" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="parcelaAdesaoAgencia">Agência:</label>
+          <input class="viewList" formControlName="parcelaAdesaoAgencia" name="parcelaAdesaoAgencia" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="parcelaAdesaoNumeroConta">Número da Conta:</label>
+          <input class="viewList" formControlName="parcelaAdesaoNumeroConta" name="parcelaAdesaoNumeroConta" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="parcelaAdesaoOperacao">Operação:</label>
+          <input class="viewList" formControlName="parcelaAdesaoOperacao" name="parcelaAdesaoOperacao" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="parcelaAdesaoCartaoCredito">Cartão de Crédito:</label>
+          <input class="viewList" formControlName="parcelaAdesaoCartaoCredito" name="parcelaAdesaoCartaoCredito" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="parcelaAdesaoSituacao">Situação:</label>
+          <input class="viewList" formControlName="parcelaAdesaoSituacao" name="parcelaAdesaoSituacao" type="text">
+        </div>
+
+        <div class="clearfix"></div>
+        <h5 class="subTitle">Demais Parcelas</h5>
+        <div class="boxNextSubTitle row"></div>
+
+        <div class="input-field col s4">
+          <label class="active" for="demaisParcelasTipoPagamento">Tipo de Pagamento:</label>
+          <input class="viewList" formControlName="demaisParcelasTipoPagamento" name="demaisParcelasTipoPagamento" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="demaisParcelasConvenio">Convênio:</label>
+          <input class="viewList" formControlName="demaisParcelasConvenio" name="demaisParcelasConvenio" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="demaisParcelasPeriodicidadePagamento">Periodicidade do Pagamento:</label>
+          <input class="viewList" formControlName="demaisParcelasPeriodicidadePagamento" name="demaisParcelasPeriodicidadePagamento" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="demaisParcelasDiaDebito">Dia de Débito:</label>
+          <input class="viewList" formControlName="demaisParcelasDiaDebito" name="demaisParcelasDiaDebito" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="demaisParcelasCodBanco">Cod. Banco:</label>
+          <input class="viewList" formControlName="demaisParcelasCodBanco" name="inicioComercializacaoCobertura" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="demaisParcelasAgencia">Agência:</label>
+          <input class="viewList" formControlName="demaisParcelasAgencia" name="demaisParcelasAgencia" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="demaisParcelasNumeroConta">Número da Conta:</label>
+          <input class="viewList" formControlName="demaisParcelasNumeroConta" name="demaisParcelasNumeroConta" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="demaisParcelasOperacao">Operação:</label>
+          <input class="viewList" formControlName="demaisParcelasOperacao" name="demaisParcelasOperacao" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="demaisParcelasValor">Valor:</label>
+          <input class="viewList" formControlName="demaisParcelasValor" name="demaisParcelasValor" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="demaisParcelasCartaoCredito">Cartão de Crédito:</label>
+          <input class="viewList" formControlName="demaisParcelasCartaoCredito" name="demaisParcelasCartaoCredito" type="text">
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="box-buttons">
+          <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="voltar()">Fechar</button>
+          <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="declinar(formulario.value)">Declinar</button>
+        </div>
+
+      </div>
+
+    </form>
+
+  </div>
+
+  <!-- ######################## FIM DE COBERTURA #######################  -->
+</div>
+
+
+
+
+

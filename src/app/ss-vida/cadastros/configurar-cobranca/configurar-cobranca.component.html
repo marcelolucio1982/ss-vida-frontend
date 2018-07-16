@@ -1,0 +1,392 @@
+<div class="mainContent">
+    <!-- ######################## CONFIGURAR COBRANÇA #######################  -->
+
+    <h5>Informações do Produto</h5>
+    <div class="boxNext row"></div>
+
+    <div class="clearfix"></div>
+    <div class="col s12">
+        <form class="form-horizontal" [formGroup]="formulario">
+            <div class="row">
+
+                <div class="input-field col s4">
+                    <label class="active" for="codigoCobranca">Código</label>
+                    <input class="viewList" disabled="disabled" id="codigoCobranca" formControlName="codigoCobranca" name="codigoCobranca" type="text" value="XXXX">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="nomeCobranca">Nome</label>
+                    <input class="viewList" disabled="disabled" id="nomeCobranca" formControlName="nomeCobranca" name="nomeCobranca" type="text" value="FARMA FÁCIL MICROSEGURO ">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="processoSusepCobranca">Processo SUSEP</label>
+                    <input class="viewList" disabled="disabled" id="processoSusepCobranca" formControlName="processoSusepCobranca" name="processoSusepCobranca" type="text" value="XXXX">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="versaoCobranca">Versão</label>
+                    <input class="viewList" disabled="disabled" id="versaoCobranca" formControlName="versaoCobranca" name="versaoCobranca" type="text" value="2">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="situacaoCobranca">Situação</label>
+                    <input class="viewList" disabled="disabled" id="situacaoCobranca" formControlName="situacaoCobranca" name="situacaoCobranca" type="text" value="Pendente">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="inicioComercializacaoCobranca">Início da comercialização</label>
+                    <input class="viewList" disabled="disabled" id="inicioComercializacaoCobranca" formControlName="inicioComercializacaoCobranca" name="inicioComercializacaoCobranca"
+                        type="text">
+                </div>
+
+                <div class="clearfix"></div>
+                <h5 class="subTitle">Configuração de cobrança</h5>
+                <div class="boxNextSubTitle row"></div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="parceiroCobranca">Parceiro</label>
+                    <input id="parceiroCobranca" formControlName="parceiroCobranca" name="parceiroCobranca" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="tipoLocalVendaCobranca">Tipo de local de venda</label>
+                    <input id="tipoLocalVendaCobranca" formControlName="tipoLocalVendaCobranca" name="tipoLocalVendaCobranca" type="text">
+                </div>
+
+                <div class="clearfix"></div>
+                <h5 class="subTitle">Parcela de adesão</h5>
+                <div class="boxNextSubTitle row"></div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="periodicidadePagamentoCobranca">Periodicidade de pagamento</label>
+                    <input id="periodicidadePagamentoCobranca" formControlName="periodicidadePagamentoCobranca" name="periodicidadePagamentoCobranca"
+                        type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="parcelaAntecipadaCobranca">Parcela antecipada</label>
+                    <select id="parcelaAntecipadaCobranca" class="noUppercase" formControlName="parcelaAntecipadaCobranca" name="parcelaAntecipadaCobranca"
+                        materialize="material_select">
+                        <option value="">Selecione uma opção</option>
+                        <option>lorem ipsulum</option>
+                    </select>
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="dataVencimentoCobranca">Data de vencimento</label>
+                    <select id="dataVencimentoCobranca" class="noUppercase" formControlName="dataVencimentoCobranca" name="dataVencimentoCobranca"
+                        materialize="material_select">
+                        <option value="">Selecione uma opção</option>
+                        <option>lorem ipsulum</option>
+                    </select>
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="formaPagamentoCobranca">Forma de pagamento</label>
+                    <input id="formaPagamentoCobranca" formControlName="formaPagamentoCobranca" name="formaPagamentoCobranca" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="momentoCobranca">Momento da cobrança</label>
+                    <input id="momentoCobranca" formControlName="momentoCobranca" name="momentoCobranca" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="convenioCobranca">Convênio de cobranças</label>
+                    <input id="convenioCobranca" formControlName="convenioCobranca" name="convenioCobranca" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="origemCobranca">Origem de cobranças</label>
+                    <input id="origemCobranca" formControlName="origemCobranca" name="origemCobranca" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="convenioCobranca">Custeio do seguro</label>
+                    <input id="custeioSeguroCobranca" formControlName="custeioSeguroCobranca" name="custeioSeguroCobranca" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="cedenteCobranca">Cedente</label>
+                    <input id="cedenteCobranca" formControlName="cedenteCobranca" name="cedenteCobranca" type="text">
+                </div>
+
+
+                <div class="clearfix"></div>
+                <div class="box-buttons">
+                    <button type="submit" class="waves-effect waves-light btn btnPrimary">Adicionar</button>
+                </div>
+
+                <div class="grid-divider"></div>
+                <div class="row">
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th>Forma de pagamento</th>
+                                <th>Periodicidade de pagamento</th>
+                                <th>Convênio de cobrança</th>
+                                <th>Origem de cobrança</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>003</td>
+                                <td>003</td>
+                                <td>AL5T</td>
+                                <td>Lorem ipsulum</td>
+                                <td>
+                                    <a href="#!" class="delete">
+                                        <i class="material-icons actionButtons">delete_forever</i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>003</td>
+                                <td>003</td>
+                                <td>AL5T</td>
+                                <td>Lorem ipsulum</td>
+                                <td>
+                                    <a href="#!" class="delete">
+                                        <i class="material-icons actionButtons">delete_forever</i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>003</td>
+                                <td>003</td>
+                                <td>AL5T</td>
+                                <td>Lorem ipsulum</td>
+                                <td>
+                                    <a href="#!" class="delete">
+                                        <i class="material-icons actionButtons">delete_forever</i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="clearfix"></div>
+                <h5 class="subTitle">Demais parcelas</h5>
+                <div class="boxNextSubTitle row"></div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="periodicidadePagamentoDemaisCobranca">Periodicidade de pagamento</label>
+                    <input id="periodicidadePagamentoDemaisCobranca" formControlName="periodicidadePagamentoDemaisCobranca" name="periodicidadePagamentoDemaisCobranca" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="formaPagamentoDemaisCobranca">Forma de pagamento</label>
+                    <input id="formaPagamentoDemaisCobranca" formControlName="formaPagamentoDemaisCobranca" name="formaPagamentoDemaisCobranca" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="convenioCobrancaDemaisCobranca">Convênio de cobranças</label>
+                    <input id="convenioCobrancaDemaisCobranca" formControlName="convenioCobrancaDemaisCobranca" name="convenioCobrancaDemaisCobranca" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="diasVencimentoDemaisCobranca">Dias de vencimento</label>
+                    <input id="diasVencimentoDemaisCobranca" formControlName="diasVencimentoDemaisCobranca" name="diasVencimentoDemaisCobranca" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="cedenteDemaisCobranca">Cedente</label>
+                    <input id="cedenteDemaisCobranca" formControlName="cedenteDemaisCobranca" name="cedenteDemaisCobranca" type="text">
+                </div>
+
+
+                <div class="clearfix"></div>
+                <div class="box-buttons">
+                    <button type="submit" class="waves-effect waves-light btn btnPrimary">Adicionar</button>
+                </div>
+
+                <div class="grid-divider"></div>
+                <div class="row">
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th>Forma de pagamento</th>
+                                <th>Periodicidade de pagamento</th>
+                                <th>Convênio de cobrança</th>
+                                <th>Origem de cobrança</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>003</td>
+                                <td>003</td>
+                                <td>AL5T</td>
+                                <td>Lorem ipsulum</td>
+                                <td>
+                                    <a href="#!" class="delete">
+                                        <i class="material-icons actionButtons">delete_forever</i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>003</td>
+                                <td>003</td>
+                                <td>AL5T</td>
+                                <td>Lorem ipsulum</td>
+                                <td>
+                                    <a href="#!" class="delete">
+                                        <i class="material-icons actionButtons">delete_forever</i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>003</td>
+                                <td>003</td>
+                                <td>AL5T</td>
+                                <td>Lorem ipsulum</td>
+                                <td>
+                                    <a href="#!" class="delete">
+                                        <i class="material-icons actionButtons">delete_forever</i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="clearfix"></div>
+                <h5 class="subTitle">Inadimplências</h5>
+                <div class="boxNextSubTitle row"></div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="periodicidadeInadimplenciaCobranca">Periodicidade de pagamento</label>
+                    <input id="periodicidadeInadimplenciaCobranca" formControlName="periodicidadeInadimplenciaCobranca" name="periodicidadeInadimplenciaCobranca" type="text">
+                </div>
+                
+                <div class="input-field col s4">
+                    <label class="active" for="toleranciaInadimplenciaCobranca">Tolerância de inadimplência</label>
+                    <input id="toleranciaInadimplenciaCobranca" formControlName="toleranciaInadimplenciaCobranca" name="toleranciaInadimplenciaCobranca" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="quantidadeParcelasInadimplenciaCobranca">Quantidade de parcelas</label>
+                    <input id="quantidadeParcelasInadimplenciaCobranca" formControlName="quantidadeParcelasInadimplenciaCobranca" name="quantidadeParcelasInadimplenciaCobranca" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="inadimplenciaParcelaSeguro">Após Prazo de Inadimplência Parcela Seguro</label>
+                    <input id="inadimplenciaParcelaSeguro" formControlName="inadimplenciaParcelaSeguro" name="inadimplenciaParcelaSeguro" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="alteraFormaPagamentoInadimplencia">Altera Forma de Pagamento</label>
+                    <input id="alteraFormaPagamentoInadimplencia" formControlName="alteraFormaPagamentoInadimplencia" name="alteraFormaPagamentoInadimplencia" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="cartaoDebitoInadimplencia">Cartão de Débito</label>
+                    <input id="cartaoDebitoInadimplencia" formControlName="cartaoDebitoInadimplencia" name="cartaoDebitoInadimplencia" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="debitoBoletoInadimplencia">Débito para boleto</label>
+                    <input id="debitoBoletoInadimplencia" formControlName="debitoBoletoInadimplencia" name="debitoBoletoInadimplencia" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="multaInadimplenciaCobranca">Multa</label>
+                    <input id="multaInadimplenciaCobranca" formControlName="multaInadimplenciaCobranca" name="multaInadimplenciaCobranca" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="unidadeReferenciaMultaInadimplencia">Unidade de referência da multa</label>
+                    <input id="unidadeReferenciaMultaInadimplencia" formControlName="unidadeReferenciaMultaInadimplencia" name="unidadeReferenciaMultaInadimplencia" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="valorPercentualInadimplencia">Valor (R$) / Percentual (%)</label>
+                    <input id="valorPercentualInadimplencia" formControlName="valorPercentualInadimplencia" name="valorPercentualInadimplencia" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="jurosInadimplenciaCobranca">Juros</label>
+                    <input id="jurosInadimplenciaCobranca" formControlName="jurosInadimplenciaCobranca" name="jurosInadimplenciaCobranca" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="jurosMesInadimplenciaCobranca">Juros ao mês</label>
+                    <input id="jurosMesInadimplenciaCobranca" formControlName="jurosMesInadimplenciaCobranca" name="jurosMesInadimplenciaCobranca" type="text">
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="tabelaPrazoCurtoInadimplencia">Tabela de prazo curto</label>
+                    <input id="tabelaPrazoCurtoInadimplencia" formControlName="tabelaPrazoCurtoInadimplencia" name="tabelaPrazoCurtoInadimplencia" type="text">
+                </div>
+
+               
+                <div class="clearfix"></div>
+                <div class="box-buttons">
+                    <button type="submit" class="waves-effect waves-light btn btnPrimary">Adicionar</button>
+                </div>
+
+                <div class="grid-divider"></div>
+                <div class="row">
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th>Periodicidade de pagamento</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Lorem ipsulum</td>
+                                <td>
+                                    <a href="#!" class="delete">
+                                        <i class="material-icons actionButtons">delete_forever</i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Lorem ipsulum</td>
+                                <td>
+                                    <a href="#!" class="delete">
+                                        <i class="material-icons actionButtons">delete_forever</i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Lorem ipsulum</td>
+                                <td>
+                                    <a href="#!" class="delete">
+                                        <i class="material-icons actionButtons">delete_forever</i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="box-buttons">
+                    <button type="submit" class="waves-effect waves-light btn btnPrimary">Salvar</button>
+                    <button type="submit" class="waves-effect waves-light btn btnSecondary">Voltar</button>
+                </div>
+
+               
+
+               
+
+            </div>
+        </form>
+
+    </div>
+
+    <!-- ######################## FIM DE CONFIGURAR COBRANÇA #######################  -->
+
+</div>

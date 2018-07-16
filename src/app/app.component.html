@@ -1,9 +1,478 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>AMBIENTE: {{variaveis.ambiente}}</h1>
-  <h2>VERSAO: {{ variaveis.versao }}</h2>
-  <h2>URL BACKEND: {{variaveis.backend}}</h2>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
+<div id="topo"></div>
+
+<!-- Navbar Top -->
+  <div *ngIf="exibirMenu" style="background-color: #ffcc00;">
+    <nav>
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo">
+            <div class="logo logo-responsiva"><a routerLink="/home"><img src="./assets/img/logo-caixa-seguradora.png"></a></div></a>
+          <ul class="right hide-on-med-and-down">
+              <li><a (click)="modalProgramas()" class="option-button" id="janelaSistemas"><i class="material-icons right">view_module</i>Sistemas</a></li>
+              <li><a (click)="logout()"><i class="material-icons right">clear</i>Sair</a></li>
+          </ul>
+        </div>
+        <div id="option-box">
+          
+        </div>
+      </nav>
+      <!-- Top Effect -->
+    <div class="breadcrumb-effect"></div>
+    <div class="responsiveMenu side-hamburguer" style="width: 50px; height: 50px; float: left; margin-top: -53px; margin-left: 360px; margin-right: -10px; z-index: 9999; position: fixed;">
+        <a (click)="menuHamburguer()" class="hamburguer btn-floating"><i class="material-icons left">menu</i></a>
+        <a (click)="OnHamburguer()" class="hamburguer-responsive btn-floating"><i class="material-icons left">menu</i></a>
+    </div>
+    <div class="menuAtivaResponsivo"><a (click)="ativaResponsivo()"><i class="material-icons left">menu</i></a></div>
+    <div class="menuDesativaResponsivo"><a (click)="desativaResponsivo()"><i class="material-icons left">menu</i></a></div>
+    <div style="width: 100%; background-color: #f1f1f1; height: 33px; position: fixed; z-index: 8888;"></div>
+
+    <!-- / End Top Effect -->
+    <!-- End Navbar Top -->
+            <div id="menu"><!-- Init Menu -->
+              <ul id="slide-out" class="side-nav fixed show-on-large-only nav-custom-bg">
+                <li><div class="logo"><a routerLink="/home"><img src="./assets/img/logo-caixa-seguradora.png"></a></div></li>
+
+                <!-- Parametrização -->
+                <li class="no-padding">
+                  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <a class="collapsible-header">Parametrização<i class="material-icons">arrow_drop_down</i></a>
+                      <div class="collapsible-body">
+                        <ul>
+                          <li><a routerLink="/cadastro-produto">Produto</a></li>
+                          <li routerLinkActive="active"><a routerLink="/cobertura">Cobertura</a></li>
+                          <li routerLinkActive="active"><a routerLink="/assistencia">Assistência</a></li>
+                          <li routerLinkActive="active"><a routerLink="/carregamento">Carregamento</a></li>
+                          <li routerLinkActive="active"><a routerLink="/custo">Custo</a></li>
+                          <li routerLinkActive="active"><a routerLink="/empresas-assistencia">Empresas de Assistência</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / End Parametrização -->
+
+                <!-- Estrutura Comercial -->
+                <li class="no-padding">
+                  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <a class="collapsible-header">Estrutura Comercial<i class="material-icons">arrow_drop_down</i></a>
+                      <div class="collapsible-body">
+                        <ul>
+                          <li>
+                              <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                                <li>
+                                    <a class="collapsible-header">Agrupadores<i class="material-icons">arrow_drop_down</i></a>
+                                    <div class="collapsible-body">
+                                      <ul>
+                                          <li><a class="subMenuAl" routerLink="/agrupador-local-venda">Local de Venda</a></li>
+                                          <li><a class="subMenuAl" routerLink="/agrupador-parceiro">Parceiro</a></li>
+                                      </ul>
+                                    </div>
+                                </li>
+                              </ul>
+                          </li>
+                          <li>
+                            <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                              <li>
+                                  <a class="collapsible-header">Tipo<i class="material-icons">arrow_drop_down</i></a>
+                                  <div class="collapsible-body">
+                                    <ul>
+                                        <li><a class="subMenuAl" routerLink="/tipo-local-venda">Tipo de Local de Venda</a></li>
+                                        <li><a class="subMenuAl" routerLink="/tipo-rede">Tipo de Rede</a></li>
+                                        <li><a class="subMenuAl" routerLink="/tipo-vendedor">Tipo de Vendedor</a></li>
+                                        <li><a class="subMenuAl" routerLink="/tipo-relacionamento">Tipo de Relacionamento</a></li>
+                                    </ul>
+                                  </div>
+                              </li>
+                            </ul>
+                        </li>
+                          <li><a routerLink="/local-venda">Local de Venda</a></li>
+                          <li><a routerLink="/comissionado">Comissionado</a></li>
+                          <li><a routerLink="/parceiro">Parceiro</a></li>
+                          <li><a routerLink="/vendedor">Vendedor</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / End Estrutura Comercial -->
+
+                <!-- Proposta -->
+                <li class="no-padding">
+                  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <a class="collapsible-header">Proposta<i class="material-icons">arrow_drop_down</i></a>
+                      <div class="collapsible-body">
+                        <ul>
+                          <li><a routerLink="/proposta">Pesquisa proposta</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / End Proposta -->
+                <!-- Endosso -->
+                <li class="no-padding">
+                  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <a routerLink="/endosso" class="collapsible-header">Endosso<i class="material-icons">arrow_drop_down</i></a>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / End Endosso -->
+
+                <!-- Apólice -->
+                <li class="no-padding">
+                  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <a class="collapsible-header">Apólice<i class="material-icons">arrow_drop_down</i></a>
+                      <div class="collapsible-body">
+                        <ul>
+                          <li><a routerLink="/apolice">Pesquisa apólice</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / End Apólice -->
+
+                <!-- Sinistro -->
+                <li class="no-padding">
+                  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <a class="collapsible-header">Sinistro<i class="material-icons">arrow_drop_down</i></a>
+                      <div class="collapsible-body">
+                        <ul>
+                          <li><a href="#!">Checklist documentado</a></li>
+                          <li><a href="#!">Cobertura e causa</a></li>
+                          <li><a href="#!">Causas</a></li>
+                          <li><a href="#!">Cálculo de indenização</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / End Sinistro -->
+
+                <!-- Sinistro -->
+                <li class="no-padding">
+                  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <a class="collapsible-header">Tributação<i class="material-icons">arrow_drop_down</i></a>
+                      <div class="collapsible-body">
+                        <ul>
+                          <li><a href="#!">Pesquisar tributação</a></li>
+                          <li><a href="#!">Fonte imposto sobre serviço</a></li>
+                          <li><a href="#!">Imposto sobre serviço</a></li>
+                          <li><a href="#!">Imposto sobre serviço especial</a></li>
+                          <li><a href="#!">Relacionar prestador e tipo de serviço</a></li>
+                          <li><a href="#!">Prestador de serviço</a></li>
+                          <li><a href="#!">Prestador de serviço</a></li>
+                          <li><a href="#!">Tipo imposto</a></li>
+                          <li><a href="#!">Referência entre impostos internos e SAP</a></li>
+                          <li><a href="">Tipo imposto padrão</a></li>
+                          <li><a href="#!">Tipo serviço</a></li>
+                          <li><a href="#!">Causas</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / End Sinistro -->
+
+                <!-- Alçada Normativa -->
+                <li class="no-padding">
+                  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <a class="collapsible-header">Alçada normativa<i class="material-icons">arrow_drop_down</i></a>
+                      <div class="collapsible-body">
+                        <ul>
+                          <li><a href="#!">Alçada</a></li>
+                          <li><a href="#!">Substituto</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / End Alçada Normativa -->
+
+                <!-- Alçada Financeiro -->
+                <li class="no-padding">
+                  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <a class="collapsible-header">Financeiro<i class="material-icons">arrow_drop_down</i></a>
+                      <div class="collapsible-body">
+                        <ul>
+                          <li><a href="#!">Follow-up de cobrança</a></li>
+                          <li><a href="#!">Pagamento</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / End Alçada Financeiro -->
+
+                <!-- Estrutura Comercial -->
+                <li class="no-padding">
+                  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <a class="collapsible-header">Financeiro<i class="material-icons">arrow_drop_down</i></a>
+                      <div class="collapsible-body">
+                        <ul>
+                          <li><a href="#!">Follow-up de cobrança</a></li>
+                          <li><a href="#!">Pagamento</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / End Estrutura Comercial -->
+              </ul>
+            </div><!-- End Menu -->
+
+            <!-- ######################### Menu Responsivo ######################## -->
 
 
+            <div id="menuResponsivo"><!-- Init Menu Responsivo -->
+              <ul id="slide-out" class="side-nav fixed show-on-large-only nav-custom-bg">
+                <li><div class="logo"><a routerLink="/home"><img src="./assets/img/logo-caixa-seguradora.png"></a></div></li>
+
+                <!-- Parametrização -->
+                <li class="no-padding">
+                  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <a class="collapsible-header">Parametrização<i class="material-icons">arrow_drop_down</i></a>
+                      <div class="collapsible-body">
+                        <ul>
+                          <li><a routerLink="/cadastro-produto">Produto</a></li>
+                          <li routerLinkActive="active"><a routerLink="/cobertura">Cobertura</a></li>
+                          <li routerLinkActive="active"><a routerLink="/assistencia">Assistência</a></li>
+                          <li routerLinkActive="active"><a routerLink="/carregamento">Carregamento</a></li>
+                          <li routerLinkActive="active"><a routerLink="/custo">Custo</a></li>
+                          <li routerLinkActive="active"><a routerLink="/empresas-assistencia">Empresas de Assistência</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / End Parametrização -->
+
+                <!-- Estrutura Comercial -->
+                <li class="no-padding">
+                  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <a class="collapsible-header">Estrutura Comercial<i class="material-icons">arrow_drop_down</i></a>
+                      <div class="collapsible-body">
+                        <ul>
+                          <li>
+                              <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                                <li>
+                                    <a class="collapsible-header">Agrupadores<i class="material-icons">arrow_drop_down</i></a>
+                                    <div class="collapsible-body">
+                                      <ul>
+                                          <li><a class="subMenuAl" routerLink="/agrupador-local-venda">Local de Venda</a></li>
+                                          <li><a class="subMenuAl" routerLink="/agrupador-parceiro">Parceiro</a></li>
+                                      </ul>
+                                    </div>
+                                </li>
+                              </ul>
+                          </li>
+                          <li>
+                            <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                              <li>
+                                  <a class="collapsible-header">Tipo<i class="material-icons">arrow_drop_down</i></a>
+                                  <div class="collapsible-body">
+                                    <ul>
+                                        <li><a class="subMenuAl" routerLink="/tipo-local-venda">Tipo de Local de Venda</a></li>
+                                        <li><a class="subMenuAl" routerLink="/tipo-rede">Tipo de Rede</a></li>
+                                        <li><a class="subMenuAl" routerLink="/tipo-vendedor">Tipo de Vendedor</a></li>
+                                        <li><a class="subMenuAl" routerLink="/tipo-relacionamento">Tipo de Relacionamento</a></li>
+                                    </ul>
+                                  </div>
+                              </li>
+                            </ul>
+                        </li>
+                          <li><a routerLink="/local-venda">Local de Venda</a></li>
+                          <li><a routerLink="/comissionado">Comissionado</a></li>
+                          <li><a routerLink="/parceiro">Parceiro</a></li>
+                          <li><a routerLink="/vendedor">Vendedor</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / End Estrutura Comercial -->
+
+                <!-- Proposta -->
+                <li class="no-padding">
+                  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <a class="collapsible-header">Proposta<i class="material-icons">arrow_drop_down</i></a>
+                      <div class="collapsible-body">
+                        <ul>
+                          <li><a routerLink="/proposta">Pesquisa proposta</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / End Proposta -->
+                <!-- Endosso -->
+                <li class="no-padding">
+                  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <a routerLink="/endosso" class="collapsible-header">Endosso<i class="material-icons">arrow_drop_down</i></a>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / End Endosso -->
+
+                <!-- Apólice -->
+                <li class="no-padding">
+                  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <a class="collapsible-header">Apólice<i class="material-icons">arrow_drop_down</i></a>
+                      <div class="collapsible-body">
+                        <ul>
+                          <li><a routerLink="/apolice">Pesquisa apólice</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / End Apólice -->
+
+                <!-- Sinistro -->
+                <li class="no-padding">
+                  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <a class="collapsible-header">Sinistro<i class="material-icons">arrow_drop_down</i></a>
+                      <div class="collapsible-body">
+                        <ul>
+                          <li><a href="#!">Checklist documentado</a></li>
+                          <li><a href="#!">Cobertura e causa</a></li>
+                          <li><a href="#!">Causas</a></li>
+                          <li><a href="#!">Cálculo de indenização</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / End Sinistro -->
+
+                <!-- Sinistro -->
+                <li class="no-padding">
+                  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <a class="collapsible-header">Tributação<i class="material-icons">arrow_drop_down</i></a>
+                      <div class="collapsible-body">
+                        <ul>
+                          <li><a href="#!">Pesquisar tributação</a></li>
+                          <li><a href="#!">Fonte imposto sobre serviço</a></li>
+                          <li><a href="#!">Imposto sobre serviço</a></li>
+                          <li><a href="#!">Imposto sobre serviço especial</a></li>
+                          <li><a href="#!">Relacionar prestador e tipo de serviço</a></li>
+                          <li><a href="#!">Prestador de serviço</a></li>
+                          <li><a href="#!">Prestador de serviço</a></li>
+                          <li><a href="#!">Tipo imposto</a></li>
+                          <li><a href="#!">Referência entre impostos internos e SAP</a></li>
+                          <li><a href="">Tipo imposto padrão</a></li>
+                          <li><a href="#!">Tipo serviço</a></li>
+                          <li><a href="#!">Causas</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / End Sinistro -->
+
+                <!-- Alçada Normativa -->
+                <li class="no-padding">
+                  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <a class="collapsible-header">Alçada normativa<i class="material-icons">arrow_drop_down</i></a>
+                      <div class="collapsible-body">
+                        <ul>
+                          <li><a href="#!">Alçada</a></li>
+                          <li><a href="#!">Substituto</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / End Alçada Normativa -->
+
+                <!-- Alçada Financeiro -->
+                <li class="no-padding">
+                  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <a class="collapsible-header">Financeiro<i class="material-icons">arrow_drop_down</i></a>
+                      <div class="collapsible-body">
+                        <ul>
+                          <li><a href="#!">Follow-up de cobrança</a></li>
+                          <li><a href="#!">Pagamento</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / End Alçada Financeiro -->
+
+                <!-- Estrutura Comercial -->
+                <li class="no-padding">
+                  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <a class="collapsible-header">Financeiro<i class="material-icons">arrow_drop_down</i></a>
+                      <div class="collapsible-body">
+                        <ul>
+                          <li><a href="#!">Follow-up de cobrança</a></li>
+                          <li><a href="#!">Pagamento</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / End Estrutura Comercial -->
+              </ul>
+            </div><!-- End Menu -->
+
+
+            <!-- ###################### End Menu Responsivo ####################### -->
+
+
+            <div class="option-box">
+                <div class="option-content">
+                  <div class="option-arrow"></div>
+                    <div class="user-actions"><span><i class="glyphicon glyphicon-pushpin"></i><strong>Data:</strong> {{today | date:'dd-MM-yyyy'}} </span></div>
+                    <div class="user-actions"><span><i class="glyphicon glyphicon-pushpin"></i> <strong>Lotação:</strong> DISIO/DEGIN </span></div>
+                    <div class="user-actions"><span><i class="glyphicon glyphicon-time"></i> <strong>Ultimo acesso:</strong> 10/09/2017 10:51:14</span></div>
+                    <div class="user-actions"><span><i class="glyphicon glyphicon-blackboard"></i> <strong>Versão do Front End:</strong> {{version}}</span></div>
+                    <div class="user-actions"><span><i class="glyphicon glyphicon-blackboard"></i> <strong>Versão do Back End:</strong> {{value}}</span></div>
+                    <div class="box-other-systems">
+                      <div class="colButtons">
+                      <div class="colButton4">
+                        <a (click)="rest()" class="btn-floating btn-large waves-effect waves-light btnModalSistemas"><i class="material-icons">attach_money</i></a>
+                        <label>Motor</label>
+                      </div>
+                      <div class="colButton4">
+                        <a class="btn-floating btn-large waves-effect waves-light btnModalSistemas"><i class="material-icons">do_not_disturb_alt</i></a>
+                        <label>lorem</label>
+                      </div>
+                      <div class="colButton4">
+                        <a class="btn-floating btn-large waves-effect waves-light btnModalSistemas"><i class="material-icons">do_not_disturb_alt</i></a>
+                        <label>Lorem</label>
+                      </div>
+                      <div class="colButton4">
+                        <a class="btn-floating btn-large waves-effect waves-light btnModalSistemas"><i class="material-icons">do_not_disturb_alt</i></a>
+                        <label>Lorem</label>
+                      </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        
+        
+        <router-outlet></router-outlet>
+        <app-loader></app-loader>
+        <app-mensagens></app-mensagens>

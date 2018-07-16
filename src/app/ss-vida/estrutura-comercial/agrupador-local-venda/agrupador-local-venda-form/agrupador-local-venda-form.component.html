@@ -1,0 +1,101 @@
+<div class="mainContent">
+  <!-- ######################## CADASTRO LOCAL DE VENDA #######################  -->
+
+  <div class="input-field col s8">
+    <h5>Cadastrar Agrupador de Local de Venda</h5>
+    <div class="boxNext row"></div>
+
+    <div class="clearfix"></div>
+    <div class="col s12">
+      <form class="form-horizontal" [formGroup]="formulario">
+        <div class="row">
+
+          <div *ngIf="isNovo()">
+
+            <div class="input-field col s4">
+              <label class="active" for="descricao">Descrição <span class="asterisco">*</span></label>
+              <input id="descricao" formControlName="descricao" name="descricao" type="text">
+              <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'descricao', formulario )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+
+            <div class="input-field col s4">
+              <label class="active" for="dataInicioVigencia">Início de Vigência <span class="asterisco">*</span></label>
+              <input class="datepicker" id="dataInicioVigencia" formControlName="dataInicioVigencia" name="dataInicioVigencia" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+              <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'dataInicioVigencia', formulario )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+
+          </div>
+
+          <div *ngIf="isEdicao()">
+            <div class="input-field col s4">
+              <label class="active" for="situacao">Situação</label>
+              <input id="situacao" formControlName="situacao" name="situacao" type="text" readonly>
+            </div>
+
+            <div class="input-field col s4">
+              <label class="active" for="codigo">Código</label>
+              <input id="codigo" formControlName="codigo" name="codigo" type="text" readonly>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="input-field col s4">
+              <label class="active" for="descricao">Descrição <span class="asterisco">*</span></label>
+              <input id="descricao" formControlName="descricao" name="descricao" type="text">
+            </div>
+
+            <div class="input-field col s4">
+              <label class="active" for="dataInicioVigencia">Início de Vigência <span class="asterisco">*</span></label>
+              <input class="datepicker" id="dataInicioVigencia" formControlName="dataInicioVigencia" name="dataInicioVigencia" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+            </div>
+
+          </div>
+
+          <div *ngIf="isEncerrar()">
+            <div class="input-field col s4">
+              <label class="active" for="situacao">Situação</label>
+              <input id="situacao" formControlName="situacao" name="situacao" type="text" readonly>
+            </div>
+
+            <div class="input-field col s4">
+              <label class="active" for="codigo">Código</label>
+              <input id="codigo" formControlName="codigo" name="codigo" type="text" readonly>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="input-field col s4">
+              <label class="active" for="descricao">Descrição</label>
+              <input id="descricao" formControlName="descricao" name="descricao" type="text" readonly>
+            </div>
+
+            <div class="input-field col s4">
+              <label class="active" for="dataInicioVigencia">Início de Vigência</label>
+              <input class="datepicker" id="dataInicioVigencia" formControlName="dataInicioVigencia" name="dataInicioVigencia" type="text" readonly>
+            </div>
+
+            <div class="input-field col s4">
+              <label class="active" for="dataFimVigencia">Fim da Vigência <span class="asterisco">*</span></label>
+              <input class="datepicker" id="dataFimVigencia" formControlName="dataFimVigencia" name="dataFimVigencia" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+              <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'dataFimVigencia', formulario )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+
+          </div>
+
+          <div class="clearfix"></div>
+          <div class="box-buttons">
+            <button type="submit" class="waves-effect waves-light btn btnPrimary" *ngIf="isNovo()" (click)="criar()">Salvar</button>
+            <button type="submit" class="waves-effect waves-light btn btnPrimary" *ngIf="isEdicao()" (click)="salvar()">Salvar</button>
+            <button type="button" class="waves-effect waves-light btn btnPrimary" *ngIf="isEdicao()" (click)="aprovar()">Aprovar</button>
+            <button type="button" class="waves-effect waves-light btn btnPrimary" *ngIf="isEncerrar()" (click)="encerrar()">Encerrar</button>
+            <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="voltar()">Fechar</button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ######################## FIM DE CADASTRO LOCAL DE VENDA #######################  -->
+
+</div>

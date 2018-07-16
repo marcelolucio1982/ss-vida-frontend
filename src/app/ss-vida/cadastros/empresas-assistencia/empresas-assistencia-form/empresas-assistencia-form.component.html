@@ -1,0 +1,94 @@
+<!-- Tela de Cadastrar Empresa de Assistência  -->
+<div class="mainContent">
+  <h5 class="mainTitle">Empresa de Assistência</h5>
+
+  <div class="clearfix"></div>
+
+  <div class="col s12">
+  <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="salvarEmpresaAssistencia()" >
+    <div class="row">
+  
+      <div class="input-field col s4" *ngIf="(isVisualizacao() || isEdicao())">
+          <label class="active" for="situacao">Situação</label>          
+          <input id="status" formControlName="status" name="status" type="text">
+      </div>
+      
+     <div class="clearfix"></div>
+
+     <div class="input-field col s4">
+        <label class="active" for="codigo">ID</label>
+        <input id="codigo" formControlName="codigo" name="codigo" type="text" disabled>
+      </div>
+     
+      <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('nome', formulario)">
+        <label class="active" for="nome">Nome <span class="asterisco">*</span></label>
+        <input id="nome" formControlName="nome" name="nome" type="text" [textMask]="constantesService.getMaskDef().alfaNumerico(100)" [readonly]="isVisualizacao() || isNovaVersao() || isEncerramento()">
+        <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('nome', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+      </div>
+
+      <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('razaoSocial', formulario)">
+          <label class="active" for="razaoSocial">Razão Social <span class="asterisco">*</span></label>
+          <input id="razaoSocial" formControlName="razaoSocial" name="razaoSocial" type="text" [textMask]="constantesService.getMaskDef().alfaNumerico(100)" [readonly]="isVisualizacao() || isNovaVersao() || isEncerramento()">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('razaoSocial', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+      </div>
+ 
+      <div class="clearfix"></div>
+
+      <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('cpfCnpj', formulario)">
+        <label class="active" for="cpfCnpj">CNPJ <span class="asterisco">*</span></label>
+        <input id="cpfCnpj" formControlName="cpfCnpj" name="cpfCnpj" type="text" [textMask]="constantesService.getMaskDef().numerico(14)" [readonly]="isVisualizacao() || isNovaVersao() || isEncerramento()">
+        <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('cpfCnpj', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+      </div>
+
+      <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('contatoCaixa', formulario)">
+        <label class="active" for="contatoCaixa">Contato Caixa <span class="asterisco">*</span></label>
+        <input id="contatoCaixa" formControlName="contatoCaixa" name="contatoCaixa" type="tel" [textMask]="constantesService.getMaskDef().numerico(20)" [readonly]="isVisualizacao() || isNovaVersao() || isEncerramento()">
+        <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('cpfCnpj', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+      </div>
+
+      <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('contatoCliente', formulario)">
+        <label class="active" for="contatoCliente">Contato Cliente <span class="asterisco">*</span></label>
+        <input id="contatoCliente" formControlName="contatoCliente" name="contatoCliente" type="tel" [textMask]="constantesService.getMaskDef().numerico(20)" [readonly]="isVisualizacao() || isNovaVersao() || isEncerramento()">
+        <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('contatoCliente', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('dataInicioVigencia', formulario)">
+          <label class="active" for="dataInicioVigencia">Data de Início de Vigência <span class="asterisco">*</span></label>
+          <input id="dataInicioVigencia" formControlName="dataInicioVigencia" name="dataInicioVigencia" class="datepicker {{bloquearEdicaoDataInicio() ? 'pickadate-readonly' : ''}}" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('dataInicioVigencia', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>          
+      </div>
+           
+      <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('dataFimVigencia', formulario)" *ngIf="(( isEncerramento() || isSituacaoEncerrado()) && !isNovaVersao())">
+          <label class="active" for="dataFimVigencia">Data de Fim de Vigência <span class="asterisco">*</span></label>
+          <input id="dataFimVigencia" formControlName="dataFimVigencia" name="dataFimVigencia" class="datepicker {{bloquearEdicaoDataFim() ? 'pickadate-readonly' : ''}}" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('dataFimVigencia', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+      </div>
+
+      <div class="box-buttons" *ngIf="isVisualizacao()">
+        <!-- Exibe apenas quando a tela eh configurada para exibicao -->
+          <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="editarEmpresaAssistencia( getEmpresaAssistencia() )" *ngIf="isSituacaoEditavel()">Editar</button>
+          <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="gerarVersao( getEmpresaAssistencia() )" *ngIf="isSituacaoVigente() || isSituacaoEncerrado()">Nova Versão</button>          
+          <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="pesquisarEmpresaAssistencia()">Fechar</button>
+      </div>
+
+      <div class="box-buttons" *ngIf="( isCadastro() || isEdicao() || isNovaVersao() )">
+        <!-- Exibe apenas quando a tela eh configurada para cadastro (Novo), Edicao ou Nova Versao -->
+          <button type="submit" class="waves-effect waves-light btn btnPrimary">Salvar</button>
+          <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="salvarEmpresaAssistencia(true)">Aprovar</button>
+          <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="pesquisarEmpresaAssistencia()">Cancelar</button>          
+      </div>
+
+      <div class="box-buttons" *ngIf="isEncerramento()">
+        <!-- Exibe apenas quando a tela eh configurada para encerramento -->
+          <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="salvarEmpresaAssistencia()">Encerrar</button>
+          <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="pesquisarEmpresaAssistencia()">Fechar</button>
+      </div>
+
+      <div class="grid-divider"></div>
+    </div>
+  </form>
+   </div>
+</div>
+<!-- ############# FIM DA TELA DE CADASTRAR EMPRESA DE ASSISTENCIA ################ -->

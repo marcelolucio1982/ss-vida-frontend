@@ -1,0 +1,141 @@
+<!-- Tela de Pesquisar Produto  -->
+<div class="mainContent">
+    <h5>Configuração de Produto</h5>
+
+    <!--<div class="boxNext">
+        <a class="waves-effect waves-light btn nextButton btnNext" (click)="btnNovo()"><i class="material-icons left">send</i>Novo</a>
+    </div>-->
+
+   <div class="clearfix"></div>
+
+    <!-- Formulário -->
+    <div class="col s12">
+        <form class="form-horizontal" [formGroup]="formulario">
+
+            <div class="row" *ngIf="exibeConfiguracaoNova">
+                
+                <div class="input-field col s6">
+                    <select class="noUppercase" formControlName="produtoSelecionado" name="produtoSelecionado" materialize="material_select" [materializeSelectOptions]="this.produtosNaoConfigurados">
+                        <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+                        <option *ngFor='let e of this.produtosNaoConfigurados;' [ngValue]="e">{{e.codigo}} - {{e.descricao}}</option>
+                    </select>
+                    <label for="produtoSelecionado">Produto</label>
+                </div>
+
+                <div class="box-buttons">
+                    <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="btnCancelar()">Cancelar</button>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="exibePesquisaConfiguracao">
+
+                <div class="input-field col s2">
+                    <label class="active" for="codigoProduto">Código</label>          
+                    <input id="codigoProduto" formControlName="codigoProduto" name="codigoProduto" type="number">
+                </div>
+        
+                <div class="input-field col s10">
+                    <label class="active" for="nomeProduto">Nome</label>
+                    <input id="nomeProduto" formControlName="nomeProduto" name="nomeProduto" type="text">
+                </div>
+                <div class="box-buttons">
+                    <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="pesquisarProduto()">Pesquisar</button>          
+                </div>
+                                
+            </div>
+            <div class="row" *ngIf="exibeHeaderProduto">
+                <div formGroupName="produtoReadOnly">
+                    <app-produto-header [produtoHeaderForm]="formulario.controls.produtoReadOnly"></app-produto-header>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--/ Fim do Formulário -->
+
+    <!-- Grid Produtos Configurados -->
+    <div class="row" *ngIf="exibeGridProdutosConfigurados" >
+            <table class="striped" *ngIf="retorno || retorno.length == 0">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome do Produto</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>                            
+                    <tr *ngFor="let i of retorno; let aux = index;">
+                        <td>{{i.codigo}}</td>
+                        <td>{{i.descricao}}</td>
+
+                        <td class="tdCenter">
+
+                            <a [routerLink]="" materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10" 
+                                (click)="visualizar(i)"> <i class="material-icons actionButtons">search</i>
+                            </a>
+        
+                            <!-- <a [routerLink]="" materialize="tooltip" data-tooltip="Editar" class="view tooltipped edit" data-position="left" data-delay="10" 
+                                (click)="editar(i)" *ngIf="i.situacao.codigo <= 1"><i class="material-icons actionButtons">edit</i>
+                            </a>
+        
+                            <a [routerLink]="" materialize="tooltip" data-tooltip="Excluir" class="view tooltipped delete" data-position="left" data-delay="10" 
+                                (click)="excluir(i)" *ngIf="i.situacao.codigo <= 1"><i class="material-icons actionButtons">delete_forever</i>
+                            </a>
+        
+                            <a [routerLink]="" materialize="tooltip" data-tooltip="Encerrar" class="view tooltipped delete" data-position="left" data-delay="10" 
+                                (click)="encerrar(i)" *ngIf="i.situacao.codigo >= 3"><i class="material-icons actionButtons">remove_red_eye</i>
+                            </a>-->
+        
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+          </div>
+    <!--/ Fim da Grid -->
+    
+    <div *ngIf="exibeDashboard" >
+        <!-- <h6 class="subTitle">{{ produtoTitulo ? produtoTitulo : '' }}</h6> -->
+        <h5 class="subTitle">Versões</h5>
+        <div class="boxNextSubTitle row"></div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="dashboard row" *ngIf="exibeDashboard" >
+
+            <table class="striped">
+                    <thead>
+                        <tr>
+                            <th>Versão</th>
+                            <th>Situação</th>
+                            <th>Inicio de vigência</th>
+                            <th>Fim de vigência</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+    
+                    <tbody>                            
+                        <tr *ngFor="let i of retornoVersoes; let aux = index;">
+                            <td>{{i.versaoProduto}}</td>
+                            <td>{{i.statusDescricao}}</td>
+                            <td>{{i.dataInicioVigencia | date:constantesService.getFormatoDataP()}}</td>
+                            <td>{{i.dataFimVigencia | date:constantesService.getFormatoDataP()}}</td>
+                            <td class="tdCenter">
+    
+                                <a [routerLink]="" materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10" 
+                                    (click)="visualizarVersao(i)"> <i class="material-icons actionButtons">search</i>
+                                </a>
+            
+                            </td>
+                        </tr>
+    
+                    </tbody>
+                </table>
+                <div class="box-buttons">
+                    <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="voltarBusca()">Fechar</button>          
+                </div>
+
+    </div>
+
+    </div>
+

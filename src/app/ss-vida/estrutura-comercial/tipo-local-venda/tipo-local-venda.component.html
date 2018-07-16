@@ -1,0 +1,85 @@
+<!-- ######################## TIPO DE LOCAL DE VENDA #######################  -->
+<div class="mainContent">
+    <h5>Pesquisar Tipo de Local de Venda</h5>
+    <div class="boxNext">
+        <a class="waves-effect waves-light btn nextButton btnNext" routerLink="/tipo-local-venda/novo"><i class="material-icons left">send</i>Cadastrar</a>
+    </div>
+        
+    <div class="clearfix"></div>
+    <div class="col s12">
+        <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="pesquisar()">
+            <div class="row">
+    
+                <div class="input-field col s4">
+                    <select class="noUppercase" formControlName="situacao" name="situacao" materialize="material_select" [materializeSelectOptions]="constantesService.getSituacoes()">
+                        <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+                        <option *ngFor='let e of constantesService.getSituacoes();' [ngValue]="e.codigo">{{e.descricao}}</option>
+                    </select>          
+                    <label for="situacao">Situação </label>
+                </div>
+
+                <div class="input-field col s4">
+                    <label class="active" for="tipoLocalVenda">Tipo de Local de Venda<span class="asterisco">*</span></label>
+                    <input id="descricao" formControlName="descricao" name="descricao" type="text" [textMask]="constantesService.getMaskDef().alfaNumerico(100)">
+                </div>
+    
+                <div class="clearfix"></div>
+                
+                <div class="box-buttons">
+                    <button type="submit" class="waves-effect waves-light btn btnPrimary">
+                        <i class="material-icons left">search</i> Pesquisar</button>
+                </div>                
+    
+                <div class="grid-divider"></div>
+                
+                <div class="row">
+                        <table class="striped" *ngIf="retorno || retorno.length == 0">
+                        <thead>
+                            <tr>
+                                <th>Tipo de Local de Venda</th>
+                                <th>Início de vigência</th>
+                                <th>Fim de vigência</th>
+                                <th>Situação</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+    
+                        <tbody>                            
+                            <tr *ngFor="let i of retorno; let aux = index;">
+                                <td>{{i.descricao}}</td>
+                                <td>{{i.dataInicioVigencia | date:constantesService.getFormatoDataP()}}</td>
+                                <td>{{i.dataFimVigencia | date:constantesService.getFormatoDataP()}}</td>
+                                <td>{{i.situacao.descricao}}</td>
+
+                                <td class="tdCenter">
+
+                                    <a [routerLink]="" materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10" 
+                                        (click)="visualizar(i)"> <i class="material-icons actionButtons">search</i>
+                                    </a>
+                
+                                    <a [routerLink]="" materialize="tooltip" data-tooltip="Editar" class="view tooltipped edit" data-position="left" data-delay="10" 
+                                        (click)="editar(i)" *ngIf="i.situacao.codigo <= 1"><i class="material-icons actionButtons">edit</i>
+                                    </a>
+                
+                                    <a [routerLink]="" materialize="tooltip" data-tooltip="Excluir" class="view tooltipped delete" data-position="left" data-delay="10" 
+                                        (click)="excluir(i)" *ngIf="i.situacao.codigo <= 1"><i class="material-icons actionButtons">delete_forever</i>
+                                    </a>
+                
+                                    <a [routerLink]="" materialize="tooltip" data-tooltip="Encerrar" class="view tooltipped delete" data-position="left" data-delay="10" 
+                                        (click)="encerrar(i)" *ngIf="i.situacao.codigo >= 3"><i class="material-icons actionButtons">remove_red_eye</i>
+                                    </a>
+                
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+    
+            </div>
+        </form>
+    
+    </div>
+          
+</div>
+<!-- ######################## FIM DE LOCAL DE VENDA #######################  -->

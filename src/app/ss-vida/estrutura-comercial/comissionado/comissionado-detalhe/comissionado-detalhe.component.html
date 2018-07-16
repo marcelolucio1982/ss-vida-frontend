@@ -1,0 +1,204 @@
+<div class="mainContent">
+
+  <!-- ######################## INICIO DETALHAMENTO #######################  -->
+  <h5>Visualizar Comissionado</h5>
+  <div class="boxNext row"></div>
+
+  <div class="clearfix"></div>
+  <div class="col s12">
+    <div class="row">
+
+      <div class="input-field col s3">
+        <label class="active">Código</label>
+        <input name="codigo" type="text" value="{{ comissionado?.codigo }}" readonly>
+      </div>
+
+      <div class="input-field col s3">
+        <label class="active">CNPJ</label>
+        <input name="cnpj" type="text" value="{{ comissionado?.papeisNegocio[0].pessoa.cpfCnpj }}" readonly>
+      </div>
+
+      <div class="input-field col s6">
+        <label class="active">Tipo de Comissionado</label>
+        <input name="tipoLocalVenda" type="text" value="{{ comissionado?.tipoComissionado.descricao }}" readonly>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="input-field col s12">
+        <label class="active">Razão Social / Nome Local de Venda</label>
+        <input name="razaoSocial" type="text" value="{{ comissionado?.nome }}" readonly>
+      </div>
+
+      <div class="input-field col s4" *ngIf="comissionado?.registroSusep != ''">
+        <label class="active" for="cadRegistroSusep">Código SUSEP</label>
+        <input name="cadRegistroSusep" type="text" value="{{ comissionado?.registroSusep }}">
+      </div>
+
+      <div class="input-field col s4" *ngIf="comissionado?.registroSusepVida != ''">
+        <label class="active" for="cadRegistroSusepVida">Código SUSEP Vida</label>
+        <input name="cadRegistroSusep" type="text" value="{{ comissionado?.registroSusepVida }}">
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="input-field col s3">
+        <label class="active">CEP</label>
+        <input name="cep" type="text" value="{{ comissionado?.papeisNegocio[0].enderecos[0]?.pessoaEndereco?.codigoEnderecoPostal }}" readonly>
+      </div>
+
+      <div class="input-field col s3">
+        <label class="active">Endereço</label>
+        <input name="endereco" type="text" value="{{ comissionado?.papeisNegocio[0].enderecos[0]?.pessoaEndereco?.logradouro }}" readonly>
+      </div>
+
+      <div class="input-field col s3">
+        <label class="active">Complemento</label>
+        <input name="complemento" type="text" value="{{ comissionado?.papeisNegocio[0].enderecos[0]?.pessoaEndereco?.complemento }}" readonly>
+      </div>
+
+      <div class="input-field col s3">
+        <label class="active">Bairro</label>
+        <input name="bairro" type="text" value="{{ comissionado?.papeisNegocio[0].enderecos[0]?.pessoaEndereco?.bairro }}" readonly>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="input-field col s3">
+        <label class="active">Cidade</label>
+        <input name="cidade" type="text" value="{{ comissionado?.papeisNegocio[0].enderecos[0]?.pessoaEndereco?.cidade }}" readonly>
+      </div>
+
+      <div class="input-field col s3">
+        <label class="active">UF</label>
+        <input name="uf" type="text" value="{{ comissionado?.papeisNegocio[0].enderecos[0]?.pessoaEndereco?.uf.sigla }}" readonly>
+      </div>
+
+      <div class="input-field col s6">
+        <label class="active">Contato</label>
+        <input name="contato" type="text" value="{{ comissionado?.papeisNegocio[0].contatos[0]?.pessoaContato?.nome }}" readonly>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="input-field col s3">
+        <label class="active">E-mail Principal</label>
+        <input name="emailP" type="text" value="{{ comissionado?.papeisNegocio[0].contatos[0]?.pessoaContato?.email }}" readonly>
+      </div>
+
+      <div class="input-field col s3">
+        <label class="active">E-mail Secundário</label>
+        <input name="emailS" type="text" value="{{ comissionado?.papeisNegocio[0].contatos[1]?.pessoaContato?.email }}" readonly>
+      </div>
+
+      <div class="input-field col s2">
+        <label class="active">Comercial</label>
+        <input name="telComercial" type="text" value="{{ telefoneComercial() }}" readonly>
+      </div>
+
+      <div class="input-field col s2">
+        <label class="active">Celular</label>
+        <input name="telCelular" type="text" value="{{ telefoneCelular() }}" readonly>
+      </div>
+
+      <div class="input-field col s2">
+        <label class="active">Residencial</label>
+        <input name="telResidencial" type="text" value="{{ telefoneResidencial() }}" readonly>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="input-field col s3">
+        <label class="active">Empresa Publica</label>
+        <input name="empresaPublica" type="text" value="{{ comissionado?.indicadorEmpresaPublica.descricao }}" readonly>
+      </div>
+
+      <div class="input-field col s3">
+        <label class="active">Data Início Vigência</label>
+        <input name="dataInicioVigencia" type="text" value="{{ comissionado?.dataInicioVigencia | date:constantesService.getFormatoDataP() }}" readonly>
+      </div>
+
+      <div *ngIf="representanteLegal">
+
+        <div class="clearfix"></div>
+        <h5 class="subTitle">Representante Legal</h5>
+        <div class="boxNextSubTitle row"></div>
+
+        <div class="input-field col s4">
+          <label class="active" for="cadCpfContato">CPF</label>
+          <input name="cadCpfContato" type="text" value="{{ representanteLegal?.cpfCnpj }}">
+        </div>
+
+        <div class="input-field col s8">
+          <label class="active" for="cadNomeContato">Nome</label>
+          <input name="cadNomeContato" type="text" value="{{ representanteLegal?.nomeRazaoSocial }}">
+        </div>
+
+        <div class="input-field col s3">
+          <label class="active" for="cadNumeroIdentidadeContato">RG</label>
+          <input name="cadNumeroIdentidadeContato" type="text" value="{{ documentosIdentidade?.numero }}">
+        </div>
+
+        <div class="input-field col s3">
+          <label class="active" for="cadOrgaoExpedidorContato">Órgão Emissor</label>
+          <input name="cadOrgaoExpedidorContato" type="text" value="{{ documentosIdentidade?.orgaoExpedidor }}">
+        </div>
+
+        <div class="input-field col s3">
+          <label class="active" for="cadUfIdentidadeContato">UF</label>
+          <input type="text" value="{{ documentosIdentidade?.uf.sigla }}" readonly>
+        </div>
+
+        <div class="input-field col s3">
+          <label class="active" for="cadDataExpedicaoContato">Data de Expedição</label>
+          <input name="cadDataExpedicaoContato"  value="{{ utilService.formatarDataVisao( documentosIdentidade?.dataExpedicao ) }}">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="cadCepContato">Cep</label>
+          <input name="cadCepContato" type="text" value="{{ enderecos?.codigoEnderecoPostal }}">
+        </div>
+
+        <div class="input-field col s8">
+          <label class="active" for="cadEnderecoContato">Endereço</label>
+          <input name="cadEnderecoContato" type="text" value="{{ enderecos?.logradouro }}">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="cadComplementoContato">Complemento</label>
+          <input name="cadComplementoContato" type="text" value="{{ enderecos?.complemento }}">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="cadBairroContato">Bairro</label>
+          <input name="cadBairroContato" type="text" value="{{ enderecos?.bairro }}">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="cadCidadeContato">Cidade</label>
+          <input name="cadCidadeContato" type="text" value="{{ enderecos?.cidade }}">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="cadUfContato">UF</label>
+          <input name="cadUfContato" type="text" value="{{ enderecos?.uf.sigla }}" readonly>
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="cadFoneContato">Telefone</label>
+          <input name="cadFoneContato" type="text" value="{{ telefones?.numeroCompleto }}">
+        </div>
+
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="box-buttons">
+        <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="voltar()">Fechar</button>
+      </div>
+
+    </div>
+  </div>
+  <!-- ######################## FIM DETALHAMENTO #######################  -->
+
+</div>

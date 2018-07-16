@@ -1,0 +1,102 @@
+<div class="mainContent">
+
+  <!-- ######################## INICIO DETALHAMENTO #######################  -->
+  <h5>Visualizar Local de Venda</h5>
+  <div class="boxNext row"></div>
+
+  <div class="clearfix"></div>
+  <div class="col s12">
+    <div class="row">
+
+      <div class="input-field col s4">
+        <label class="active">Parceiro</label>
+        <input name="parceiro" type="text" value="{{ localVenda?.parceiro?.descricao }}" readonly>
+      </div>
+
+      <div class="input-field col s4">
+        <label class="active">Tipo Local de Venda</label>
+        <input id="tipoLocalVenda" name="tipoLocalVenda" type="text" value="{{ localVenda?.tipoLocalVenda?.descricao }}" readonly>
+      </div>
+
+      <div class="input-field col s4">
+        <label class="active">Tipo de Rede</label>
+        <input id="tipoRede" name="tipoRede" type="text" value="{{ localVenda?.tipoRede?.descricao }}" readonly>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="input-field col s4">
+        <label class="active">Código Externo</label>
+        <input name="codigoExterno" type="text" value="{{ localVenda?.codigoExterno }}" readonly>
+      </div>
+
+      <div class="input-field col s4">
+        <label class="active">CNPJ</label>
+        <input id="cnpj" name="cnpj" type="text" value="{{ localVenda?.pessoaPapelNegocio?.pessoa?.cpfCnpj }}" readonly>
+      </div>
+
+      <div class="input-field col s4">
+        <label class="active">Razão Social / Nome do Local de Venda</label>
+        <input id="razaoSocial" name="razaoSocial" type="text" value="{{ localVenda?.pessoaPapelNegocio?.pessoa?.nomeRazaoSocial }}" readonly>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="input-field col s3">
+        <label class="active">Agrupador</label>
+        <input name="agrupador" type="text" value="{{ localVenda?.agrupador?.descricao }}" readonly>
+      </div>
+
+      <div class="input-field col s3">
+        <label class="active">Permissão de Venda</label>
+        <input id="permissaoVenda" name="permissaoVenda" type="text" value="{{ localVenda?.permissaoVenda?.descricao }}" readonly>
+      </div>
+
+      <div class="input-field col s3">
+        <label class="active">Início Vigência</label>
+        <input id="inicioVigencia" name="inicioVigencia" type="text" value="{{ utilService.formatarDataVisao( localVenda?.dataInicioVigencia ) }}" readonly>
+      </div>
+
+      <div class="input-field col s3">
+        <label class="active">Fim Vigência</label>
+        <input id="fimVigencia" name="fimVigencia" type="text" value="{{ utilService.formatarDataVisao( localVenda?.dataFimVigencia ) }}" readonly>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="grid-divider"></div>
+      <div class="row">
+        <table class="striped" *ngIf="localVenda?.relacionamentos || localVenda?.relacionamentos.length == 0">
+          <thead>
+            <tr>
+              <th>Tipo Relacionamento</th>
+              <th>Parceiro</th>
+              <th>Tipo de Local de Venda</th>
+              <th>Código Externo</th>
+              <th>Razão Social / Nome do Local de Venda</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let i of localVenda.relacionamentos; let aux = index;">
+              <td>{{ i.tipoRelacionamento?.descricao }}</td>
+              <td>{{ i.localVenda?.parceiro?.descricao }}</td>
+              <td>{{ i.localVenda?.tipoLocalVenda?.descricao }}</td>
+              <td>{{ i.localVenda?.codigoExterno }}</td>
+              <td>{{ i.localVenda?.descricao }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="box-buttons">
+        <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="voltar()">Fechar</button>
+      </div>
+
+    </div>
+  </div>
+  <!-- ######################## FIM DETALHAMENTO #######################  -->
+
+</div>

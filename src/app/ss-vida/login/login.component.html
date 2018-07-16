@@ -1,0 +1,29 @@
+<div class="bg-full">
+    <div class="row">
+       <div class="col s12" >
+           <div class="row grid">
+              <div class="logo"><img src="./assets/img/logo-ss.png"></div>
+              <form (ngSubmit)="fazerLogin()">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input name="idNome" [(ngModel)]="usuario.username" type="text" class="validate" autocomplete="off" style="display: none;">
+                    <input name="idNome" id="idNome" [(ngModel)]="usuario.username" type="text" class="validate" autocomplete="off">
+                    <label for="idNome">Usuário</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">lock</i>
+                    <input name="idSenha" [(ngModel)]="usuario.password" type="password" class="validate" autocomplete="off" style="display: none;">
+                    <input name="idSenha" id="idSenha" [(ngModel)]="usuario.password" type="password" class="validate" autocomplete="off">
+                    <label for="idSenha">Senha</label>
+                </div>
+                <div class="input-field col s12">
+                    <p class="flat-text small pull-right pull-large">
+                        <button type="submit" name="action" class="waves-effect waves-light btn">Entrar</button>
+                    </p>
+                </div>
+              </form>
+           </div>
+       </div>
+    </div>
+    <div class="filet-center-effect-2"></div>
+    </div>

@@ -1,0 +1,105 @@
+<div class="mainContent">
+    <!-- ######################## PESQUISAR PARCEIRO #######################  -->
+    
+        <h5>Pesquisar Parceiro</h5>
+        <div class="boxNext">
+            <a class="waves-effect waves-light btn nextButton btnNext" routerLink="/parceiro/novo"><i class="material-icons left">send</i>Cadastrar</a>
+        </div>
+    
+        <div class="clearfix"></div>
+        <div class="col s12">
+            <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="pesquisar()">
+                <div class="row">
+    
+                    <div class="input-field col s4">
+                        <label class="active" for="cnpj">CNPJ<span class="asterisco">*</span></label>
+                        <input id="cnpj" formControlName="cnpj" name="cnpj" type="text" [textMask]="constantesService.getMaskDef().numerico(14)">
+                    </div>
+                    
+                    <div class="input-field col s4">
+                        <label class="active" for="razaoSocial">Razão Social<span class="asterisco">*</span></label>
+                        <input id="razaoSocial" name="razaoSocial" type="text" formControlName="razaoSocial" [textMask]="constantesService.getMaskDef().alfaNumerico(100)">
+                    </div>
+    
+                    <div class="input-field col s4">
+                        <select class="noUppercase" formControlName="codigoAgrupador" name="codigoAgrupador" materialize="material_select" [materializeSelectOptions]="this.agrupadoresParceiro">
+                            <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+                            <option *ngFor='let e of this.agrupadoresParceiro;' [ngValue]="e.codigo">{{e.descricao}}</option>
+                        </select>
+                        <label  for="codigoAgrupador">Agrupador </label>
+                    </div>
+    
+                    <div class="input-field col s4">
+                        <select class="noUppercase" formControlName="codigoSituacao" name="codigoSituacao" materialize="material_select" [materializeSelectOptions]="constantesService.getSituacoes()">
+                            <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+                            <option *ngFor='let e of constantesService.getSituacoes();' [ngValue]="e.codigo">{{e.descricao}}</option>
+                        </select>          
+                        <label for="codigoSituacao">Situação </label>
+                    </div>
+    
+                    <div class="clearfix"></div>
+    
+                    <div class="box-buttons">
+                        <button type="submit" class="waves-effect waves-light btn btnPrimary">
+                            <i class="material-icons left">search</i> Pesquisar</button>
+                    </div>                
+        
+                    <div class="grid-divider"></div>
+    
+                    <div class="row">
+                        <table class="striped" *ngIf="retorno || retorno.length == 0">
+                            <thead>
+                                <tr>
+                                    <th>Razão Social</th>
+                                    <th>Unidade Responsável</th>
+                                    <th>Início de vigência</th>
+                                    <th>Fim de vigência</th>
+                                    <th>Situação</th>
+                                    <th>Ação</th>
+                                </tr>
+                            </thead>
+    
+                            <tbody>
+    
+                                <tr *ngFor="let i of retorno; let aux = index;">
+                                    <td>{{(i.pessoaPapelNegocio.pessoa ? i.pessoaPapelNegocio.pessoa.nomeRazaoSocial : '')}}</td>
+                                    <td>{{i.unidadeNegocio ? i.unidadeNegocio.sigla : '' }}</td>
+                                    <td>{{i.dataInicioVigencia | date:constantesService.getFormatoDataP()}}</td>
+                                    <td>{{i.dataFimVigencia | date:constantesService.getFormatoDataP()}}</td>
+                                    <td>{{i.situacao.descricao}}</td>
+    
+                                    <td class="tdCenter">
+    
+                                        <a [routerLink]="" materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10" 
+                                            (click)="visualizar(i)"> <i class="material-icons actionButtons">search</i>
+                                        </a>
+                    
+                                        <a [routerLink]="" materialize="tooltip" data-tooltip="Editar" class="view tooltipped edit" data-position="left" data-delay="10" 
+                                            (click)="editar(i)" *ngIf="i.situacao.codigo <= 1"><i class="material-icons actionButtons">edit</i>
+                                        </a>
+                    
+                                        <a [routerLink]="" materialize="tooltip" data-tooltip="Excluir" class="view tooltipped delete" data-position="left" data-delay="10" 
+                                            (click)="excluir(i)" *ngIf="i.situacao.codigo <= 1"><i class="material-icons actionButtons">delete_forever</i>
+                                        </a>
+                    
+                                        <a [routerLink]="" materialize="tooltip" data-tooltip="Encerrar" class="view tooltipped delete" data-position="left" data-delay="10" 
+                                            (click)="encerrar(i)" *ngIf="i.situacao.codigo >= 3"><i class="material-icons actionButtons">remove_red_eye</i>
+                                        </a>
+                    
+                                    </td>
+                                </tr>
+                                  
+    
+                            </tbody>
+                        </table>
+                    </div>
+    
+                </div>
+            </form>
+    
+        </div>
+    
+    <!-- ######################## FIM DE PESQUISAR PARCEIRO #######################  -->
+    
+    </div>          
+      

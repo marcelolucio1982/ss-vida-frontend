@@ -1,0 +1,67 @@
+<!-- Tela de Pesquisar Carregamentos  -->
+<div class="mainContent">
+  <h5>Pesquisar Carregamentos</h5>
+  <div class="boxNext row">
+      <a class="waves-effect waves-light btn nextButton btnNext" (click)="cadastrar()"><i class="material-icons left">send</i>Cadastrar</a>
+  </div>
+
+  <div class="clearfix"></div>
+  <div class="col s12">
+    <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="pesquisar()" >
+      <div class="row">
+        <div class="input-field col s4">
+          <label class="active" for="status">Situação</label>
+          <select class="noUppercase" formControlName="status" name="status" materialize="material_select">
+            <option value="" selected>TODOS</option>
+            <option *ngFor='let e of constantesService.getSituacoes();' [ngValue]="e.codigo">{{e.descricao}}</option>
+          </select>
+        </div>
+    
+        <div class="box-buttons">
+          <button type="submit" class="waves-effect waves-light btn btnPrimary">Pesquisar</button>          
+        </div>
+        <div class="grid-divider"></div>
+        <div class="row">
+          <table class="striped" *ngIf="retorno && retorno.length > 0">
+            <thead>
+              <tr>
+                <th>Sigla</th>
+                <th>Despesas</th>
+                <th>Data de Inclusão</th>
+                <th>Data de Alteração</th>
+                <th>Usuário</th>
+                <th>Data Início Vigência</th>
+                <th>Data Fim Vigência</th>
+                <th>Situação</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+    
+            <tbody>
+              <tr *ngFor='let i of retorno; trackBy: index;'>
+                <td>{{i.sigla}}</td>
+                <td>{{i.descricao}}</td>
+                <td>{{i.dataInclusao | date:constantesService.getFormatoDataP()}}</td>
+                <td>{{i.getDataAtualizacaoDate | date:constantesService.getFormatoDataP()}}</td>
+                <td>{{i.usuarioInclusao}}</td>
+                <td>{{i.dataInicioVigencia | date:constantesService.getFormatoDataP()}}</td>
+                <td>{{i.dataFimVigencia | date:constantesService.getFormatoDataP()}}</td>
+                <td>{{i.status.descricao}}</td>
+                <td>
+                  <a (click)="visualizar(i)" class="view" materialize="tooltip" data-position="top" data-delay="10" data-tooltip="Visualizar"><i class="material-icons actionButtons">remove_red_eye</i></a>
+                  <a *ngIf="podeEditar(i)" (click)="editar(i)" class="edit"><i class="material-icons actionButtons" materialize="tooltip" data-position="left" data-delay="10" data-tooltip="Editar">edit</i></a>
+                  <a *ngIf="podeExcluir(i)" (click)="excluir(i)" class="terminate" materialize="tooltip" data-position="top" data-delay="10" data-tooltip="Excluir"><i class="material-icons actionButtons">delete</i></a>
+                  <a *ngIf="podeCriarVersao(i)" (click)="criarVersao(i)" class="nova-versao" materialize="tooltip" data-position="top" data-delay="10" data-tooltip="Nova versão"><i class="material-icons actionButtons">control_point</i></a>
+                  <a *ngIf="podeEncerrar(i)" (click)="encerrar(i)" class="delete" materialize="tooltip" data-position="top" data-delay="10" data-tooltip="Encerrar"><i class="material-icons actionButtons">block</i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- <h4>Debug</h4><pre>{{formulario.value | json}} - {{retorno | json}}</pre> -->
+</div>
+<!-- ############# FIM DA TELA DE PESQUISAR CARREGAMENTOS ################ -->

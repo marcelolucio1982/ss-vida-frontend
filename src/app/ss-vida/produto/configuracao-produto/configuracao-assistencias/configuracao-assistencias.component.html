@@ -1,0 +1,316 @@
+<div class="mainContent">
+  <!-- ######################## CONFIGURAR ASSISTÊNCIA #######################  -->
+
+  <div class="clearfix"></div>
+  <div class="col s12">
+    <form class="form-horizontal" [formGroup]="formulario">
+
+      <div class="row" formGroupName="assistenciaGroup">
+          <div class="input-field col s4" *ngIf="!editarItem">
+            <div class="box-buttons-wizard">
+              <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="incluirItem()"><i class="material-icons left">send</i> Incluir</button>
+            </div>
+          </div>
+
+          <div class="row" *ngIf="editarItem">
+
+            <h5>Configuração de Assistências e Serviços</h5>
+            <div class="boxNext row"></div>
+
+            <div class="clearfix"></div>
+
+            <div class="input-field col s6">
+              <label class="active" for="parceiro">Parceiro <span class="asterisco">*</span></label>
+              <select class="noUppercase" formControlName="parceiro" name="parceiro" materialize="material_select" [materializeSelectOptions]="listaParceiros">
+                <option value="">Selecione uma opção</option>
+                <option *ngFor='let e of listaParceiros;' [ngValue]="e">{{e.descricao}}</option>
+              </select>
+            </div>
+
+            <div class="input-field col s6">
+              <label class="active" for="tipoLocalVenda">Tipo de local de venda <span class="asterisco">*</span></label>
+              <select class="noUppercase" formControlName="tipoLocalVenda" name="tipoLocalVenda" materialize="material_select" [materializeSelectOptions]="listaTipoLocalVenda">
+                <option value="">Selecione uma opção</option>
+                <option *ngFor='let e of listaTipoLocalVenda;' [ngValue]="e">{{e.descricao}}</option>
+              </select>
+            </div>
+
+            <div class="input-field col s4">
+              <label class="active" for="dominioAssistencia">Nome de impressão <span class="asterisco">*</span></label>
+              <select class="noUppercase" formControlName="dominioAssistencia" name="dominioAssistencia" materialize="material_select" [materializeSelectOptions]="listaDominioAssistencias">
+                <option value="">Selecione uma opção</option>
+                <option *ngFor='let e of listaDominioAssistencias;' [ngValue]="e">{{e.nomeImpressao}}</option>
+              </select>
+            </div>
+
+            <div class="input-field col s4">
+              <label class="active" for="dominioAssistenciaNomeImpressao">Assistência e serviço</label>
+              <input formControlName="dominioAssistenciaNomeImpressao" name="dominioAssistenciaNomeImpressao" type="text">
+            </div>
+
+            <div class="input-field col s4">
+              <label class="active" for="valor">Valor <span class="asterisco">*</span></label>
+              <input formControlName="valor" name="valor" type="text">
+            </div>
+
+            <div class="input-field col s4">
+              <label class="active" for="empresaAssistencia">Empresa de assistência <span class="asterisco">*</span></label>
+              <select class="noUppercase" formControlName="empresaAssistencia" name="empresaAssistencia" materialize="material_select" [materializeSelectOptions]="listaDominioEmpresaAssistencias">
+                <option value="">Selecione uma opção</option>
+                <option *ngFor='let e of listaDominioEmpresaAssistencias;' [ngValue]="e">{{e.nome}}</option>
+              </select>
+            </div>
+
+            <div class="input-field col s4">
+              <label class="active" for="contrato">Contrato</label>
+              <input formControlName="contrato" name="contrato" type="text">
+            </div>
+
+            <div class="input-field col s4">
+              <label class="active" for="formaContratacao">Forma de contratação <span class="asterisco">*</span></label>
+              <select class="noUppercase" formControlName="formaContratacao" name="formaContratacao" materialize="material_select" [materializeSelectOptions]="listaFormaContratacao">
+                <option value="">Selecione uma opção</option>
+                <option *ngFor='let e of listaFormaContratacao;' [ngValue]="e">{{e.descricao}}</option>
+              </select>
+            </div>
+
+            <div class="input-field col s4">
+              <label class="active" for="acionamentoAssistencias">Acionamento da Assistência</label>
+              <select class="noUppercase" formControlName="acionamentoAssistencias" name="acionamentoAssistencias" materialize="material_select" [materializeSelectOptions]="listaAcionamentoAssistencia">
+                <option value="">Selecione uma opção</option>
+                <option *ngFor='let e of listaAcionamentoAssistencia;' [ngValue]="e">{{e.descricao}}</option>
+              </select>
+            </div>
+
+            <div class="input-field col s4" *ngIf="mostrarEventoAssistencias">
+              <label class="active" for="eventoAssistencias">Evento</label>
+              <select class="noUppercase" formControlName="eventoAssistencias" name="eventoAssistencias" materialize="material_select" [materializeSelectOptions]="listaEventoAssistencia">
+                <option value="">Selecione uma opção</option>
+                <option *ngFor='let e of listaEventoAssistencia;' [ngValue]="e">{{e.descricao}}</option>
+              </select>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="input-field col s4">
+              <label class="active" for="beneficiarioAssistencias">Beneficiário da Assistência</label>
+              <select class="noUppercase" formControlName="beneficiarioAssistencias" name="beneficiarioAssistencias" materialize="material_select" [materializeSelectOptions]="listaBeneficiarioAssistencia">
+                <option value="">Selecione uma opção</option>
+                <option *ngFor='let e of listaBeneficiarioAssistencia;' [ngValue]="e">{{e.descricao}}</option>
+              </select>
+            </div>
+
+            <div class="col s4">
+              <label class="active blackFont">Área geográfica da Assistência</label>
+              <p class="boxRadio">
+                <span>
+                  <input class="with-gap"  name="brasilConfigAssistencias" type="radio" />
+                  <label for="percentual">Brasil</label>
+                  <input class="with-gap"  name="mundoConfigAssistencias" type="radio" />
+                  <label for="valorRs">Mundo</label>
+                </span>
+              </p>
+            </div>
+
+            <div class="input-field col s4">
+              <label class="active" for="maximoAcionamentoAssistencias">Possui máximo de acionamento</label>
+              <select class="noUppercase" formControlName="maximoAcionamentoAssistencias" name="maximoAcionamentoAssistencias" materialize="material_select" [materializeSelectOptions]="listaEventoAssistencia">
+                <option value="">Selecione uma opção</option>
+                <option *ngFor='let e of listaPossuiMaximoAcionamento;' [ngValue]="e">{{e.descricao}}</option>
+              </select>
+            </div>
+
+            <div class="input-field col s4" *ngIf="mostrarQuantidadeAcionamento">
+              <label class="active" for="quantidadeAcionamentoAssistencias">Quantidade de acionamento</label>
+              <input formControlName="quantidadeAcionamentoAssistencias" name="quantidadeAcionamentoAssistencias" type="text">
+            </div>
+
+            <div class="input-field col s4">
+              <label class="active" for="tipoLimitacaoAssitencia">Tipo de Limitação</label>
+              <select class="noUppercase" formControlName="tipoLimitacaoAssitencia" name="tipoLimitacaoAssitencia" materialize="material_select" [materializeSelectOptions]="listaEventoAssistencia">
+                <option value="">Selecione uma opção</option>
+                <option *ngFor='let e of listaTipoLimitacaoAssitencia;' [ngValue]="e">{{e.descricao}}</option>
+              </select>
+            </div>
+
+              <div class="input-field col s12">
+                  <textarea id="observacoesConfigAssistencias" class="materialize-textarea" materialize="characterCounter"></textarea>
+                  <label for="observacoesConfigAssistencias">Observações</label>
+              </div>
+
+              <h5 class="subTitle">Especificidade</h5>
+              <div class="boxNextSubTitle row"></div>
+
+              <div class="input-field col s4">
+                  <label class="active" for="periodicidadePagamentoConfigAssistencias">Por periodicidade de pagamento</label>
+                  <select id="periodicidadePagamentoConfigAssistencias" class="noUppercase" formControlName="periodicidadePagamentoConfigAssistencias"
+                      name="periodicidadePagamentoConfigAssistencias" materialize="material_select">
+                      <option value="">Selecione uma opção</option>
+                      <option>lorem ipsulum</option>
+                  </select>
+              </div>
+
+              <div class="col s4">
+                  <label class="active blackFont">Opções</label>
+                  <p class="boxRadio">
+                      <span>
+                          <input class="with-gap"  name="antecipadoConfigAssistencias" type="radio" />
+                          <label for="percentual">Antecipado</label>
+                          <input class="with-gap"  name="mensalConfigAssistencias" type="radio" />
+                          <label for="valorRs">Mensal</label>
+                          <input class="with-gap"  name="pagamentoUnicoConfigAssistencias" type="radio"
+                          />
+                          <label for="valorRs">Pagamento único</label>
+                      </span>
+                  </p>
+              </div>
+
+              <div class="input-field col s4">
+                  <label class="active" for="porProfissaoConfigAssistencias">Por profissão</label>
+                  <select id="porProfissaoConfigAssistencias" class="noUppercase" formControlName="porProfissaoConfigAssistencias" name="porProfissaoConfigAssistencias"
+                      materialize="material_select">
+                      <option value="">Selecione uma opção</option>
+                      <option>lorem ipsulum</option>
+                  </select>
+              </div>
+
+              <div class="clearfix"></div>
+              <h5 class="subTitle">Profissões</h5>
+              <div class="boxNextSubTitle row"></div>
+              <div class="clearfix"></div>
+
+              <div class="input-field col s5">
+                  <label class="active" for="profissoesLeftConfigAssistencias"></label>
+                  <select id="profissoesLeftConfigAssistencias" class="noUppercase multipleSelect" formControlName="profissoesLeftConfigAssistencias"
+                      name="profissoesLeftConfigAssistencias" multiple materialize="material_select">
+                      <option value="">Selecione uma opção</option>
+                      <option>lorem ipsulum</option>
+                      <option>lorem ipsulum</option>
+                      <option>lorem ipsulum</option>
+                  </select>
+              </div>
+
+              <div class="input-field col s2 textCenter controlsDouble">
+                  <a href="">
+                      <i class="material-icons dp48">navigate_next</i>
+                  </a>
+                  <br />
+                  <a href="">
+                      <i class="material-icons dp48">navigate_before</i>
+                  </a>
+                  <br />
+                  <br />
+                  <a href="">
+                      <i class="material-icons dp48">navigate_next</i>
+                      <i class="material-icons dp48 double">navigate_next</i>
+                  </a>
+                  <br />
+                  <a href="">
+                      <i class="material-icons dp48">navigate_before</i>
+                      <i class="material-icons dp48 double">navigate_before</i>
+                  </a>
+              </div>
+
+
+              <div class="input-field col s5">
+                  <label class="active" for="profissoesRighttConfigAssistencias"></label>
+                  <select id="profissoesRighttConfigAssistencias" class="noUppercase multipleSelect" formControlName="profissoesRighttConfigAssistencias"
+                      name="profissoesRighttConfigAssistencias" materialize="material_select">
+                      <option value="">Selecione uma opção</option>
+                      <option>lorem ipsulum</option>
+                  </select>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="input-field col s4">
+                  <div class="box-buttons-wizard">
+                      <button type="submit" class="waves-effect waves-light btn btnPrimary">
+                          <i class="material-icons left">delete</i> Adicionar</button>
+                  </div>
+              </div>
+            </div>
+      </div>
+
+      <div class="row" *ngIf="listaAssistencias.length > 0">
+        <h5 class="subTitle">Assistência(s) e Serviço(s) Configurados</h5>
+        <div class="boxNextSubTitle row"></div>
+
+        <div class="row">
+          <table class="striped">
+            <thead>
+              <tr>
+                <th>Parceiro</th>
+                <th>Tipo Local Venda</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let assistencia of listaAssistencias">
+                <td>{{assistencia.parceiro.descricao}}</td>
+                <td>{{assistencia.tipoLocalVenda.descricao}}</td>
+                <td>
+                  <a href="#" class="edit">
+                    <i class="material-icons actionButtons">edit</i>
+                  </a>
+                  <a href="#" class="delete">
+                    <i class="material-icons actionButtons">delete_forever</i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="listaAssistenciasDetalhe.length > 0">
+        <h5 class="subTitle">Itens adicionados</h5>
+        <div class="boxNextSubTitle row"></div>
+
+        <div class="row">
+          <table class="striped">
+            <thead>
+              <tr>
+                <th>Nome de impressão</th>
+                <th>Assistência</th>
+                <th>Empresa</th>
+                <th>Contrato</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let assistencia of listaAssistenciasDetalhe">
+                <td>{{assistencia.assistencia.descricao}}</td>
+                <td>{{assistencia.assistencia.nomeImpressao}}</td>
+                <td>{{assistencia.empresa.nome}}</td>
+                <td>{{assistencia.empresa.contatoCliente}}</td>
+                <td>
+                  <a href="#" class="edit">
+                    <i class="material-icons actionButtons">edit</i>
+                  </a>
+                  <a href="#" class="delete">
+                    <i class="material-icons actionButtons">delete_forever</i>
+                  </a>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+      <div class="box-buttons">
+        <button type="submit" class="waves-effect waves-light btn btnPrimary">Salvar</button>
+        <button type="button" class="waves-effect waves-light btn btnSecondary">Voltar</button>
+      </div>
+
+    </form>
+
+  </div>
+
+  <!-- ######################## FIM DE CONFIGURAR ASSISTÊNCIAS #######################  -->
+
+</div>

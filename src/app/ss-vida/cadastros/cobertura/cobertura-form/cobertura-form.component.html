@@ -1,0 +1,102 @@
+<!-- Tela de Cadastrar Cobertura  -->
+<div class="mainContent">
+  <h5>Cobertura</h5>
+  <div class="boxNext row"></div>
+  
+  <div class="clearfix"></div>
+  <div class="col s12">
+    <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="salvarCobertura()">
+      <div class="row">
+        <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('dataInicioVigencia', formulario)">
+          <label class="active" for="dataInicioVigencia">Início de vigência <span class="asterisco">*</span></label>
+          <input id="dataInicioVigencia" formControlName="dataInicioVigencia" name="dataInicioVigencia" class="datepicker {{bloquearEdicaoPrimaria() ? 'pickadate-readonly' : ''}}" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('dataInicioVigencia', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="codigo">Código</label>
+          <input id="codigo" formControlName="codigo" name="codigo" type="text" readonly>
+        </div>
+        
+        <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('descricao', formulario)">
+          <label class="active" for="descricao">Nome da cobertura <span class="asterisco">*</span></label>
+          <input id="descricao" formControlName="descricao" name="descricao" type="text" [textMask]="constantesService.getMaskDef().alfaNumerico(20)" [readonly]="bloquearEdicaoPrimaria()">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('descricao', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="clearfix"></div>
+        
+        <div class="input-field col s4">
+          <label class="active" for="sigla">Sigla</label>
+          <input id="sigla" formControlName="sigla" name="sigla" type="text" [textMask]="constantesService.getMaskDef().alfaNumericoSimples(5)" [readonly]="bloquearEdicaoPrimaria()">
+        </div>
+        
+        <div class="input-field col s4">
+          <label class="active" for="nomeImpressao">Nome de impressão</label>
+          <input id="nomeImpressao" formControlName="nomeImpressao" name="nomeImpressao" type="text" [textMask]="constantesService.getMaskDef().alfaNumerico(20)" [readonly]="bloquearEdicaoPrimaria()">
+        </div>
+
+        <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('descricaoGarantia', formulario)">
+          <label class="active" for="descricao">Descrição de garantia <span class="asterisco">*</span></label>
+          <input id="descricaoGarantia" formControlName="descricaoGarantia" name="descricaoGarantia" type="text" [textMask]="constantesService.getMaskDef().alfaNumerico(20)">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('descricaoGarantia', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('tipoSegurado', formulario)">
+          <label class="active" for="tipoSegurado">Segurado da cobertura <span class="asterisco">*</span></label>
+          <select class="noUppercase" formControlName="tipoSegurado" name="tipoSegurado" materialize="material_select">
+            <option value="" disabled selected>Selecione uma opção</option>
+            <option *ngFor='let e of constantesService.getTiposSegurados();' [ngValue]="e">{{e.descricao}}</option>
+          </select>
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('tipoSegurado', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('tipoBeneficiario', formulario)">
+          <label class="active" for="tipoBeneficiario">Beneficiários da cobertura <span class="asterisco">*</span></label>
+          <select class="noUppercase" formControlName="tipoBeneficiario" name="tipoBeneficiario" materialize="material_select">
+            <option value="" disabled selected>Selecione uma opção</option>
+            <option *ngFor='let e of constantesService.getTiposBeneficiarios();' [ngValue]="e">{{e.descricao}}</option>
+          </select>
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('tipoBeneficiario', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="col s4" [ngClass]="utilService.aplicaCssErro('indicadorDataDiagnostico', formulario)">
+          <label class="active blackFont" for="indicadorDataDiagnostico">Utiliza data de diagnóstico? <span class="asterisco">*</span></label>
+          <p class="boxRadio">
+            <span *ngFor='let e of constantesService.getValoresSimNao();'>
+              <input class="with-gap" formControlName="indicadorDataDiagnostico" name="indicadorDataDiagnostico" type="radio" id="diagnostico_{{e.codigo}}" [value]="e"/>
+              <label for="diagnostico_{{e.codigo}}">{{e.descricao}}</label>
+            </span>
+          </p>
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('indicadorDataDiagnostico', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="clearfix"></div>
+        
+        <div class="col s4" [ngClass]="utilService.aplicaCssErro('indicadorCalculoIndenizacao', formulario)">
+          <label class="active blackFont" for="indicadorCalculoIndenizacao">Utiliza tabela de cálculo de indenização? <span class="asterisco">*</span></label>
+          <p class="boxRadio">
+            <span *ngFor='let e of constantesService.getValoresSimNao();'>
+              <input class="with-gap" formControlName="indicadorCalculoIndenizacao" name="indicadorCalculoIndenizacao" type="radio" id="indenizacao_{{e.codigo}}" [value]="e"/>
+              <label for="indenizacao_{{e.codigo}}">{{e.descricao}}</label>
+            </span>
+          </p>
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('indicadorCalculoIndenizacao', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+        
+        <div class="clearfix"></div>
+        <div class="box-buttons">
+          <button type="submit" class="waves-effect waves-light btn btnPrimary">Salvar</button>
+          <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="salvarCobertura(true)" *ngIf="!getEhNovaVersao()">Aprovar</button>
+          <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="pesquisarCobertura()">Fechar</button>
+        </div>
+        <div class="grid-divider"></div>
+      </div>
+    </form>
+
+    <!-- <h4>Debug</h4><pre>{{formulario.value | json}}</pre> -->
+  </div>
+</div>
+<!-- ############# FIM DA TELA DE CADASTRAR ASSISTENCIA ################ -->

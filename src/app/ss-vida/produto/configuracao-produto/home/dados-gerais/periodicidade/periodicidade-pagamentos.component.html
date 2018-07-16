@@ -1,0 +1,55 @@
+<div class="input-field col s12" [formGroup]="periodicidadeForm">
+  
+  <div formGroupName="periodicidadeAgrupada">
+    
+    <div class="input-field col s6">
+        <label class="active" for="periodicidade">Periodicidade de pagamento <span class="asterisco">*</span></label>
+        <select class="noUppercase" formControlName="periodicidade" name="periodicidade" 
+        materialize="material_select" [materializeSelectOptions]="constantesService.getPeriodicidadesPagamento()">
+            <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+            <option *ngFor='let e of constantesService.getPeriodicidadesPagamento();' [ngValue]="e">{{e.descricao}}</option>
+        </select>                    
+        <small [hidden]="isPeriodicidadeValida()" class="text-danger">
+            Periodicidade é obrigatória
+        </small>
+    </div>
+
+    <div class="input-field col s6">
+        <label class="active" for="indicadorVigencia">Possui vigência específica? <span class="asterisco">*</span></label>
+        <select class="noUppercase" formControlName="indicadorVigencia" name="indicadorVigencia" 
+        (change)="exibePeriodoVigencia($event.target.value)" materialize="material_select" [materializeSelectOptions]="constantesService.getValoresSimNao()">
+            <option value="" disabled selected>Selecione uma opção</option>
+            <option *ngFor='let e of constantesService.getValoresSimNao();' [ngValue]="e">{{e.descricao}}</option>
+        </select>
+        <small [hidden]="periodicidadeForm['controls'].periodicidadeAgrupada['controls'].indicadorVigencia.valid" class="text-danger">
+            Indicador de vigência é obrigatório
+        </small> 
+    </div>
+    
+  </div>
+
+  <div formGroupName="periodo" *ngIf="isExibePeriodoVigencia">
+                      
+      <div class="input-field col s6">
+          <label class="active" for="periodicidade">Período de vigência <span class="asterisco">*</span></label>
+          <select class="noUppercase" formControlName="periodicidade" name="periodicidade" materialize="material_select" [materializeSelectOptions]="constantesService.getPeriodicidadesApolice()">
+              <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+              <option *ngFor='let e of constantesService.getPeriodicidadesApolice();' [ngValue]="e">{{e.descricao}}</option>
+          </select>
+          
+          <small [hidden]="periodicidadeForm.controls.periodo.controls.periodicidade.valid" class="text-danger">
+              Período de vigência é obrigatório
+          </small>
+      </div>
+
+      <div class="input-field col s4">
+          <label class="active" for="quantidade">Quantidade <span class="asterisco">*</span></label>
+          <input id="quantidade" formControlName="quantidade" name="quantidade" type="number">
+          <small [hidden]="periodicidadeForm.controls.periodo.controls.quantidade.valid" class="text-danger">
+              Quantidade período é obrigatória
+          </small>
+      </div>
+
+    </div>
+
+</div>

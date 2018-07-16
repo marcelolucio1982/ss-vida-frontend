@@ -1,0 +1,62 @@
+<div class="input-field col s12" [formGroup]="novaContaForm">
+
+  <div class="input-field col s6">
+      <label class="active" for="novoBanco">Banco <span class="asterisco">*</span></label>
+      <select class="noUppercase" formControlName="novoBanco" name="novoBanco"
+          (change)="selectNovoBanco($event.target.value)" materialize="material_select" [materializeSelectOptions]="constantesService.getListaBancos()">
+          <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+          <option *ngFor='let e of constantesService.getListaBancos();' [ngValue]="e"> {{e.codigo}} - {{e.nome}}</option>
+      </select>     
+      <small [hidden]="novaContaForm.controls.novoBanco.valid" class="text-danger">
+          Banco é obrigatório
+      </small>
+  </div>
+
+  <div class="input-field col s6" *ngIf="exibeOperacoesCaixa" >
+    <label class="active" for="novaOperacao">Operação <span class="asterisco">*</span></label>
+    <select class="noUppercase" formControlName="novaOperacao" name="novaOperacao" materialize="material_select" [materializeSelectOptions]="constantesService.getOperacoesCaixa()">
+        <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+        <option *ngFor='let e of constantesService.getOperacoesCaixa();' [ngValue]="e">{{e.descricao}}</option>
+    </select>                    
+    <small [hidden]="novaContaForm.controls.novaOperacao.valid" class="text-danger">
+        Operação é obrigatória
+    </small>
+  </div>
+
+  <div class="input-field col s3">
+    <label class="active" for="novaAgencia">Agência <span class="asterisco">*</span></label>
+    <input id="agencia" formControlName="novaAgencia" name="novaAgencia" type="text" [textMask]="constantesService.getMaskDef().numerico(4)">
+    <small [hidden]="novaContaForm.controls.novaAgencia.valid" class="text-danger">
+        Agência é obrigatória
+    </small>
+  </div>
+
+  <div class="input-field col s3">
+    <label class="active" for="novoDvAgencia">DV <span class="asterisco">*</span></label>
+    <input id="dvAgencia" formControlName="novoDvAgencia" name="novoDvAgencia" type="text" [textMask]="constantesService.getMaskDef().alfaNumerico(1)">
+    <small [hidden]="novaContaForm.controls.novoDvAgencia.valid" class="text-danger">
+        Dígito Agência é obrigatório
+    </small>
+  </div>
+
+  <div class="input-field col s3">
+    <label class="active" for="novaConta">Conta <span class="asterisco">*</span></label>
+    <input id="conta" formControlName="novaConta" name="novaConta" type="text" [textMask]="constantesService.getMaskDef().numerico(12)">
+    <small [hidden]="novaContaForm.controls.novaConta.valid" class="text-danger">
+        Conta é obrigatória
+    </small>
+  </div>
+
+  <div class="input-field col s3">
+    <label class="active" for="novoDvConta">DV <span class="asterisco">*</span></label>
+    <input id="dvConta" formControlName="novoDvConta" name="novoDvConta" type="text" [textMask]="constantesService.getMaskDef().alfaNumerico(2)">
+    <small [hidden]="novaContaForm.controls.novoDvConta.valid" class="text-danger">
+        Dígito Conta é obrigatório
+    </small>
+  </div>
+
+  <div class="box-buttons">
+    <a (click)="incluirConta()" class="waves-effect waves-light btn btnPrimary"><i class="material-icons left">add_circle_outline</i> Incluir </a>
+ </div>
+
+</div>

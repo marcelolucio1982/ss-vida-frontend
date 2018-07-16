@@ -1,0 +1,153 @@
+<div class="mainContent">
+  <!-- ######################## PESQUISAR APOLICE #######################  -->
+
+  <h5>Pesquisar Apólice</h5>
+  <div class="boxNext row"></div>
+
+  <div class="clearfix"></div>
+
+  <div class="col s12">
+    <form class="form-horizontal" [formGroup]="formulario">
+      <div class="row">
+
+        <div class="input-field col s4">
+          <label class="active" for="tipoPesquisaApolice">Pesquisasr por <span class="asterisco">*</span></label>
+          <select class="noUppercase" formControlName="tipoPesquisaApolice" name="tipoPesquisaApolice"
+            materialize="material_select">
+            <option [ngValue]="null">Selecione uma opção</option>
+            <option value="11">CPF</option>
+            <option value="12">Nome</option>
+            <option value="13">Apólice</option>
+            <option value="14">Proposta</option>
+            <option value="16">Data</option>
+            <option value="18">Situação da Apólice</option>
+          </select>
+        </div>
+
+        <div formGroupName="cpfGroup" *ngIf="formulario.value[ 'tipoPesquisaApolice' ] === '11'">
+          <div class="input-field col s4">
+            <label class="active" for="numCpf">CPF <span class="asterisco">*</span></label>
+            <input formControlName="numCpf" name="numCpf" type="text">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'numCpf', formulario.get( 'cpfGroup' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+        </div>
+
+        <div formGroupName="nomeGroup" *ngIf="formulario.value[ 'tipoPesquisaApolice' ] === '12'">
+          <div class="input-field col s4">
+            <label class="active" for="nome">Nome <span class="asterisco">*</span></label>
+            <input formControlName="nome" name="nome" type="text">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'nome', formulario.get( 'nomeGroup' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+        </div>
+
+        <div formGroupName="apoliceGroup" *ngIf="formulario.value[ 'tipoPesquisaApolice' ] === '13'">
+          <div class="input-field col s4">
+            <label class="active" for="apolice">Apolice <span class="asterisco">*</span></label>
+            <input formControlName="apolice" name="apolice" type="text">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'apolice', formulario.get( 'apoliceGroup' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+        </div>
+
+        <div formGroupName="propostaGroup" *ngIf="formulario.value[ 'tipoPesquisaApolice' ] === '14'">
+          <div class="input-field col s4">
+            <label class="active" for="proposta">Proposta <span class="asterisco">*</span></label>
+            <input id="proposta" formControlName="proposta" name="proposta" type="text">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'proposta', formulario.get( 'propostaGroup' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+        </div>
+
+        <div formGroupName="situacaoApoliceGroup" *ngIf="formulario.value[ 'tipoPesquisaApolice' ] === '18'">
+          <div class="input-field col s4">
+            <label class="active" for="situacaoApolice">Situação <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="situacaoApolice" name="situacaoApolice"
+              materialize="material_select" [materializeSelectOptions]="situacaoApoliceList">
+              <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+              <option *ngFor='let e of situacaoApoliceList' [ngValue]="e">{{ e.descricao }}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'situacaoApolice', formulario.get( 'situacaoApoliceGroup' ) )" msgErro="Campo de seleção obrigatório."></app-campos-control-erro>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div formGroupName="dataGroup" *ngIf="+formulario.value[ 'tipoPesquisaApolice' ] > 15">
+          <div class="input-field col s4">
+            <label class="active" for="periodoInicial">Período Inicial <span class="asterisco">*</span></label>
+            <input class="datepicker" id="periodoInicial" formControlName="periodoInicial" name="periodoInicial" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'periodoInicial', formulario.get( 'dataGroup' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="periodoFinal">Período Final <span class="asterisco">*</span></label>
+            <input class="datepicker" id="periodoFinal" formControlName="periodoFinal" name="periodoFinal" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'periodoFinal', formulario.get( 'dataGroup' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+        </div>
+
+        <div class="box-buttons">
+          <button type="button" class="buttonResultado waves-effect waves-light btn btnPrimary" (click)="pesquisar( true )"><i class="material-icons left">search</i> Pesquisar</button>
+        </div>
+
+        <div class="grid-divider"></div>
+
+        <div class="row">
+        <div class="row tableScroll" *ngIf="retorno && retorno.length > 0">
+          <table class="striped tableCenter">
+            <thead>
+              <tr>
+                <th>CPF</th>
+                <th>Nome</th>
+                <th>Produto</th>
+                <th>Apólice</th>
+                <th>Proposta</th>
+                <th>Situação</th>
+                <th>Endosso</th>
+                <th>Sinistro</th>
+                <th>Início de Vigência</th>
+                <th>Fim de Vigência</th>
+                <th>Prêmio</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              <tr *ngFor="let i of retorno; let aux = index;">
+                <td>{{ i.pessoa.cpfCnpj | cpfMask }}</td>
+                <td>{{ i.pessoa.nome }}</td>
+                <td>{{ i.produto.descricao }}</td>
+                <td>{{ i.numeroApolice }}</td>
+                <td>{{ i.numeroPropostaExterna }}</td>
+                <td>{{ i.situacaoProposta.descricao }}</td>
+                <td>{{ i.indicadorEndosso }}</td>
+                <td>{{ i.indicadorSinistro }}</td>
+                <td>{{ i.dataInicioVigencia | date:constantesService.getFormatoDataP() }}</td>
+                <td>{{ i.dataFimVigencia | date:constantesService.getFormatoDataP() }}</td>
+                <td>{{ utilService.formatarValorRealVisao(  i.valorPremioAdesao ) }}</td>
+                <td>
+                  <a materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10" (click)="visualizar( i )">
+                  <!--<a materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10" (click)="visualizacao()">-->
+                    <i class="material-icons actionButtons">search</i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="retorno && retorno.length > 0">
+          <app-pagination
+          (goPage)="goToPage($event)"
+          (goNext)="onNext()"
+          (goPrev)="onPrev()"
+          [pagesToShow]="5"
+          [page]="page"
+          [perPage]="limit"
+          [count]="total"></app-pagination>
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <!-- ######################## FIM DE PESQUISAR APOLICE #######################  -->
+</div>

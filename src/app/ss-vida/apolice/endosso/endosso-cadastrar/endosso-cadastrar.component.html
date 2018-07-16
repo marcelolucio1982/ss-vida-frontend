@@ -1,0 +1,459 @@
+<h5 class="subTitle titleNivel1">Incluir Endosso</h5>
+<div class="generalBox">
+
+  <div class="divider10"></div>
+  <form class="form-horizontal" [formGroup]="formulario">
+    <div class="boxNivel2">
+      <div class="input-field col s3">
+        <label class="active">Número Proposta Endosso</label>
+        <span class="spanResult">{{ propostaEndosso?.proposta.numeroProposta }}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Número Endosso</label>
+        <span class="spanResult">-</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Data Solicitação do Endosso</label>
+        <span class="spanResult">{{ propostaEndosso?.dataSolicitacao | date:constantesService.getFormatoDataP() }}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Situação do Endosso</label>
+        <span class="spanResult">{{ propostaEndosso?.situacao.descricao }}</span>
+      </div>
+
+      <div class="input-field col s6">
+        <label class="active" for="origem">Origem <span class="asterisco">*</span></label>
+        <input formControlName="origem" name="origem" type="text" (blur)="setAreaSolicitante()">
+        <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'origem', formulario )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+      </div>
+
+      <div class="input-field col s3">
+        <label class="active" for="dataInicioVigencia">Início de vigência do Endosso <span class="asterisco">*</span></label>
+        <input class="datepicker" formControlName="dataInicioVigencia" name="dataInicioVigencia" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+        <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'dataInicioVigencia', formulario )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+      </div>
+
+      <div class="input-field col s3">
+        <label class="active">Fim de vigência do Endosso</label>
+        <span class="spanResult">{{ propostaEndosso?.fimVigencia | date:constantesService.getFormatoDataP() }}</span>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="input-field col s3">
+        <label class="active">Usuário Responsável</label>
+        <span class="spanResult">{{ propostaEndosso?.codigoUsuarioSolicitante }}</span>
+      </div>
+
+      <h5>Endosso</h5>
+
+      <div class="input-field col s8">
+        <label class="active">Motivo Endosso <span class="asterisco">*</span></label>
+        <select class="noUppercase" formControlName="motivoEndosso" name="motivoEndosso"
+                materialize="material_select" [materializeSelectOptions]="motivosEndosso">
+          <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+          <option *ngFor='let e of motivosEndosso' [ngValue]="e">{{ e.descricao }}</option>
+        </select>
+      </div>
+
+      <div class="input-field col s4">
+        <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="adicionar()">Adicionar</button>
+      </div>
+
+    </div>
+
+    <div formGroupName="dadosCadastrais" *ngIf="mostrarAlterarDadosPessoaFisica">
+     <!-- Dados Cadastrais -->
+     <div class="boxTipoSucesso">
+        <h5 class="subTitle titleNivel1">Dados Cadastrais</h5>
+        <div class="divider10"></div>
+
+        <div class="input-field col s8" [ngClass]="utilService.aplicaCssErro('nome', formulario.get( 'dadosCadastrais' ))">
+          <label class="active">Nome <span class="asterisco">*</span></label>
+          <input type="text" class="input-field" formControlName="nome" name="nome">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'nome', formulario.get( 'dadosCadastrais' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+        <div class="box-buttons-classic">
+          <button type="button" class="flatButton btnSecondary" (click)="salvarAlterarDadosPessoaFisica()"><i class="material-icons right">save</i></button>
+          <button type="button" class="flatButton btnSecondary" (click)="removerAlterarDadosPessoaFisica()"><i class="material-icons right">delete_forever</i></button>
+        </div>
+      </div>
+      <!--/ Dados Cadastrais -->
+    </div>
+
+    <div formGroupName="beneficiarios" *ngIf="mostrarAlterarBeneficiarios">
+      <!-- Incluir/Editar dados do beneficiário -->
+        <div class="boxTipoPendente">
+          <h5 class="subTitle titleNivel1">Incluir/Editar Dados do Beneficiário</h5>
+          <div class="divider10"></div>
+
+            <div class="input-field col s8" [ngClass]="utilService.aplicaCssErro('nome', formulario.get( 'beneficiarios' ))">
+              <label class="active">Nome <span class="asterisco">*</span></label>
+              <input type="text" class="input-field" formControlName="nome" name="nome" [textMask]="this.constantesService.getMaskDef().alfaNumerico(200)">
+              <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'nome', formulario.get( 'beneficiarios' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('grauParentesco', formulario.get( 'beneficiarios' ))">
+              <label class="active" for="grauParentesco">Grau de Parentesco <span class="asterisco">*</span></label>
+              <select class="noUppercase" formControlName="grauParentesco" name="grauParentesco" materialize="material_select"
+                [materializeSelectOptions]="this.constantesService.findParentescos()">
+                <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+                <option *ngFor='let e of this.constantesService.findParentescos()' [ngValue]="e">{{ e.descricao }}</option>
+              </select>
+              <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'grauParentesco', formulario.get( 'beneficiarios' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+
+            <div class="input-field col s8" [ngClass]="utilService.aplicaCssErro('descParentesco', formulario.get( 'beneficiarios' ))">
+              <label class="active">Descrição do Parentesco</label>
+              <input type="text" class="input-field" formControlName="descParentesco" name="descParentesco" [textMask]="this.constantesService.getMaskDef().alfaNumerico(200)">
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="input-field col s2" [ngClass]="utilService.aplicaCssErro('percentual', formulario.get( 'beneficiarios' ))">
+              <label class="active">Percentual <span class="asterisco">*</span></label>
+              <input type="text" class="input-field" formControlName="percentual" name="percentual" [textMask]="this.constantesService.getMaskDef().numerico(3)">
+              <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'percentual', formulario.get( 'beneficiarios' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+
+            <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('cpf', formulario.get( 'beneficiarios' ))">
+              <label class="active" for="cpf">CPF <span class="asterisco">*</span></label>
+              <input id="cpf" [ngModel]="formulario.value.cpf | cpfMask" (ngModelChange)="formulario.get( 'beneficiarios' ).value.cpf = $event"
+                formControlName="cpf" name="cpf" type="text" maxlength="14">
+              <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('cpf', formulario.get( 'beneficiarios' ))" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+
+           <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('dataNascimento', formulario.get( 'beneficiarios' ))">
+              <label class="active" for="dataNascimento">Data de Nascimento <span class="asterisco">*</span></label>
+              <input class="datepicker" formControlName="dataNascimento" name="dataNascimento"
+                type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+              <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'dataNascimento', formulario.get( 'beneficiarios' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+
+            <div class="input-field col s2" [ngClass]="utilService.aplicaCssErro('sexo', formulario.get( 'beneficiarios' ))">
+              <label class="active" for="sexo">Sexo <span class="asterisco">*</span></label>
+              <select class="noUppercase" formControlName="sexo" name="sexo" materialize="material_select"
+                [materializeSelectOptions]="this.constantesService.findGeneros()">
+                <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+                <option *ngFor='let e of this.constantesService.findGeneros()' [ngValue]="e">{{ e.descricao }}</option>
+              </select>
+              <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'sexo', formulario.get( 'beneficiarios' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+
+            <div class="box-buttons-classic">
+                <button type="button" class="flatButton btnSecondary" (click)="incluirBeneficiario"><i class="material-icons right">save</i></button>
+                <button type="button" class="flatButton btnSecondary" (click)="limparBeneficiarioForm"><i class="material-icons right">close</i></button>
+            </div>
+        </div>
+        <!--/ Fim do Incluir/Editar dados do beneficiário -->
+
+    
+          <!-- Incluir/Editar dados do beneficiário -->
+          <div class="boxTipoPendente">
+              <h5 class="subTitle titleNivel1">Alterar Beneficiário</h5>
+              <div class="divider10"></div>
+                <div class="row">
+                    <table class="striped">
+                      <thead>
+                        <tr>
+                          <th>Nome</th>
+                          <th>CPF</th>
+                          <th>Data de Nascimento</th>
+                          <th>Sexo</th>
+                          <th>Grau de Parentesco</th>
+                          <th>Percentual</th>
+                          <th>Ações</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let beneficiario of this.getBeneficiariosList()">
+                          <td>{{beneficiario.pessoa.nome}}</td>
+                          <td>{{beneficiario.pessoa.cpfCnpj | cpfMask}}</td>
+                          <td>{{beneficiario.pessoa.dataNascimento | date:constantesService.getFormatoDataP()}}</td>
+                          <td>{{beneficiario.pessoa.sexo.descricao}}</td>
+                          <td>{{beneficiario.parentesco.descricao}}</td>
+                          <td>{{this.utilService.formatarPercentualVisao( beneficiario.percentualParticipacao )}}</td>
+                          <td>
+                            <a materialize="tooltip" data-tooltip="Editar" class="view tooltipped edit" data-position="left" data-delay="10" (click)="editarBeneficiario(beneficiario)"><i class="material-icons actionButtons">edit</i></a>
+                            <a materialize="tooltip" data-tooltip="Excluir" class="view tooltipped edit" data-position="left" data-delay="10" (click)="deleteBeneficiario(beneficiario)"><i class="material-icons actionButtons">delete_forever</i></a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                  </div>
+    
+                <div class="box-buttons-classic">
+                    <button type="button" class="flatButton btnSecondary" (click)="salvarAlterarBeneficiarios()"><i class="material-icons right">save</i></button>
+                    <button type="button" class="flatButton btnSecondary" (click)="removerAlterarBeneficiarios()"><i class="material-icons right">close</i></button>
+                </div>
+            </div>
+          <!--/ Fim do Incluir/Editar dados do beneficiário -->
+        </div>
+
+    <div formGroupName="enderecoTelefoneEmail" *ngIf="mostrarAlterarEnderecoTelefoneEmail">
+      <!-- Alterar Endereço, telefone e E-Mail Geral -->
+      <div class="boxTipoSucesso">
+        <h5 class="subTitle titleNivel1">Alterar Endereço, Telefone e E-Mail</h5>
+        <div class="divider10"></div>
+
+        <!-- Endereço -->
+        <div class="boxNivel2">
+          <h5>Endereço</h5>
+          <div class="divider10"></div>
+          <div class="input-field col s2">
+            <label class="active">CEP <span class="asterisco">*</span></label>
+            <input type="text" class="input-field" formControlName="cep" name="cep">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cep', formulario.get( 'enderecoTelefoneEmail' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+          <div class="input-field col s2">
+            <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="pesquisarCep()">
+              <i class="material-icons actionButtons">search</i>
+            </button>
+          </div>
+          <div class="input-field col s8">
+            <label class="active">Logradouro <span class="asterisco">*</span></label>
+            <input type="text" class="input-field" formControlName="logradouro" name="logradouro">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'logradouro', formulario.get( 'enderecoTelefoneEmail' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+          <div class="input-field col s6">
+            <label class="active">Complemento</label>
+            <input type="text" class="input-field" formControlName="complemento" name="complemento">
+          </div>
+          <div class="input-field col s6">
+            <label class="active">Bairro <span class="asterisco">*</span></label>
+            <input type="text" class="input-field" formControlName="bairro" name="bairro">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'bairro', formulario.get( 'enderecoTelefoneEmail' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+          <div class="input-field col s4">
+            <label class="active">Cidade <span class="asterisco">*</span></label>
+            <input type="text" class="input-field" formControlName="cidade" name="cidade">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cidade', formulario.get( 'enderecoTelefoneEmail' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+          <div class="input-field col s4">
+            <label class="active" for="uf">UF <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="uf" name="uf" materialize="material_select" [materializeSelectOptions]="this.constantesService.findUnidadeFederacao()">
+              <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+              <option *ngFor='let e of this.constantesService.findUnidadeFederacao()' [ngValue]="e">{{ e.descricao }}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'uf', formulario.get( 'enderecoTelefoneEmail' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+          <div class="input-field col s4">
+            <label class="active" for="pais">País</label>
+            <input type="text" class="input-field" name="pais" disabled="true" value="Brasil">
+          </div>
+          <div class="box-buttons-classic">
+            <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="pesquisarEndereco()">Pesquisar</button>
+            <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="limparEndereco()">Limpar</button>
+          </div>
+        </div>
+
+        <div class="divider20"></div>
+        <!-- Pesquisar Endereço -->
+        <div class="boxNivelGhost" *ngIf="mostrarPesquisaEndereco">
+          <h5>Selecione o Endereço</h5>
+          <div class="row pd10">
+            <table class="striped tableCenter">
+              <thead>
+                <tr>
+                  <th>Logradouro</th>
+                  <th>Complemento</th>
+                  <th>Bairro</th>
+                  <th>CEP</th>
+                  <th>Cidade</th>
+                  <th>UF</th>
+                  <th>País</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let end of listaEnderecos" class="trAncora" (click)="selecionandoEndereco( end )">
+                  <td>{{ end.logradouro }}</td>
+                  <td>{{ end.complemento }}</td>
+                  <td>{{ end.bairro }}</td>
+                  <td>{{ end.cep }}</td>
+                  <td>{{ end.cidade }}</td>
+                  <td>{{ end.uf.sigla }}</td>
+                  <td>{{ end.pais.codigo }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="box-buttons-classic-modal">
+            <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="fecharPesquisaEndereco()">Fechar</button>
+          </div>
+        </div>
+        <!--/ Pesquisar Endereço -->
+        <!--/ Endereço -->
+
+        <!-- Telefones -->
+        <div class="boxNivel2">
+          <h5>Telefones</h5>
+          <div class="divider10"></div>
+          <div formGroupName="formTelefone">
+            <div class="input-field col s2">
+              <label class="active">Tipo <span class="asterisco">*</span></label>
+              <select class="noUppercase" formControlName="tipoTelefone" name="tipoTelefone" materialize="material_select" [materializeSelectOptions]="this.listaTipoTelefones">
+                <option [ngValue]="null" readOnly selected>Selecione</option>
+                <option *ngFor='let e of this.listaTipoTelefones' [ngValue]="e">{{ e.descricao }}</option>
+              </select>
+              <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'tipoTelefone', formulario.get( 'enderecoTelefoneEmail' ).get( 'formTelefone' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+            <div class="input-field col s2">
+              <label class="active">DDI <span class="asterisco">*</span></label>
+              <input type="text" class="input-field" formControlName="ddi" name="ddi">
+              <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'ddi', formulario.get( 'enderecoTelefoneEmail' ).get( 'formTelefone' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+            <div class="input-field col s2">
+              <label class="active">DDD <span class="asterisco">*</span></label>
+              <input type="text" class="input-field" formControlName="ddd" name="ddd">
+              <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'ddd', formulario.get( 'enderecoTelefoneEmail' ).get( 'formTelefone' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+            <div class="input-field col s2">
+              <label class="active">Número <span class="asterisco">*</span></label>
+              <input type="text" class="input-field" formControlName="numeroTelefone" name="numeroTelefone">
+              <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'numeroTelefone', formulario.get( 'enderecoTelefoneEmail' ).get( 'formTelefone' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+            <div class="input-field col s4">
+              <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="incluirTelefone()">Incluir</button>
+              <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="limparTelefone()">Limpar</button>
+            </div>
+          </div>
+          <div class="divider10"></div>
+          <div class="row" *ngIf="this.formulario.get( 'enderecoTelefoneEmail' ).get( 'telefones' ).value.length > 0">
+            <table class="striped">
+              <thead>
+                <tr>
+                  <th>Tipo</th>
+                  <th>DDI</th>
+                  <th>DDD</th>
+                  <th>Número</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let contato of this.formulario.get( 'enderecoTelefoneEmail' ).get( 'telefones' ).value" >
+                  <td>{{ contato.telefone.tipo.descricao }}</td>
+                  <td>{{ contato.telefone.ddi }}</td>
+                  <td>{{ contato.telefone.ddd }}</td>
+                  <td>{{ contato.telefone.numero }}</td>
+                  <td>
+                    <a materialize="tooltip" data-tooltip="Editar" class="view tooltipped edit" data-position="left" data-delay="10"><i class="material-icons actionButtons" (click)="editarTelefone( contato.telefone )">edit</i></a>
+                    <a materialize="tooltip" data-tooltip="Excluir" class="view tooltipped edit" data-position="left" data-delay="10"><i class="material-icons actionButtons" (click)="removerTelefone( contato.telefone )">delete_forever</i></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="box-buttons-classic">
+            <button type="button" class="flatButton btnSecondary" (click)="pesquisarTelefones()"><i class="material-icons">search</i></button>
+          </div>
+        </div>
+
+        <div class="divider20"></div>
+        <!-- Pesquisar Telefones -->
+        <div class="boxNivelGhost" *ngIf="mostrarPesquisaTelefone">
+          <h5>Adicionar Telefone</h5>
+          <div class="row pd10">
+            <table class="striped tableCenter">
+              <thead>
+                <tr>
+                  <th>Tipo</th>
+                  <th>DDI</th>
+                  <th>DDD</th>
+                  <th>Número</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let tel of listaTelefones" class="trAncora" (click)="selecionandoTelefone( tel )">
+                  <td>{{ tel.tipo.descricao }}</td>
+                  <td>{{ tel.ddi }}</td>
+                  <td>{{ tel.ddd }}</td>
+                  <td>{{ tel.numero }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="box-buttons-classic-modal">
+            <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="fecharPesquisaTelefone()">Fechar</button>
+          </div>
+        </div>
+        <!--/ Pesquisar Telefones -->
+        <!--/ Telefones -->
+
+        <!-- Email -->
+        <div class="boxNivel2">
+          <h5>E-Mail</h5>
+          <div class="divider10"></div>
+          <div class="input-field col s8">
+            <label class="active">E-Mail <span class="asterisco">*</span></label>
+            <input type="text" class="input-field" formControlName="email" name="email">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'email', formulario.get( 'enderecoTelefoneEmail' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+          <div class="box-buttons-classic">
+            <button type="button" class="flatButton btnSecondary" (click)="pesquisarEmails()"><i class="material-icons">search</i></button>
+          </div>
+        </div>
+
+        <div class="divider20"></div>
+        <!-- Pesquisar E-Mail -->
+        <div class="boxNivelGhost" *ngIf="mostrarPesquisaEmail">
+          <h5>Selecionar E-Mail</h5>
+          <div class="row pd10">
+            <table class="striped tableCenter">
+              <thead>
+                <tr>
+                  <th>E-Mail</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let e of listaEmails"  class="trAncora" (click)="selecionandoEmail( e )">
+                  <td>{{ e.email }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="box-buttons-classic-modal">
+            <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="fecharPesquisaEmail()">Fechar</button>
+          </div>
+        </div>
+        <!--/ Pesquisar E-Mail -->
+        <!--/ Email -->
+
+        <!-- Preferência de Contato -->
+        <div class="boxNivel2">
+          <h5>Preferência de Contato</h5>
+          <div class="divider10"></div>
+          <div class="col s8">
+            <div class="checkDiv">
+              <input type="checkbox" id="preferenciaCorreio" formControlName="preferenciaCorreio" name="preferenciaCorreio" [checked]="dadosContato.endereco.indicativoAutorizacaoComunicacao === '1'"/>
+              <label for="preferenciaCorreio">Correio</label>
+            </div>
+            <div class="checkDiv">
+              <input type="checkbox" id="preferenciaSms" formControlName="preferenciaSms" name="preferenciaSms" [checked]="dadosContato.telefones[0].indicativoAutorizacaoComunicacao === '1'"/>
+              <label for="preferenciaSms">SMS</label>
+            </div>
+            <div class="checkDiv">
+              <input type="checkbox" id="preferenciaEmail" formControlName="preferenciaEmail" name="preferenciaEmail" [checked]="dadosContato.email.indicativoAutorizacaoComunicacao === '1'"/>
+              <label for="preferenciaEmail">E-Mail</label>
+            </div>
+          </div>
+        </div>
+        <!--/ Preferência de Contato -->
+
+        <div class="box-buttons-classic">
+          <button type="button" class="flatButton btnSecondary" (click)="salvarAlterarEnderecoTelefoneEmail()"><i class="material-icons right">save</i></button>
+          <button type="button" class="flatButton btnSecondary" (click)="removerAlterarEnderecoTelefoneEmail()"><i class="material-icons right">delete_forever</i></button>
+        </div>
+      </div>
+      <!--/ Alterar Endereço, telefone e E-Mail Geral -->
+    </div>
+
+  </form>
+  <div class="box-buttons">
+    <button type="submit" class="buttonResultado waves-effect waves-light btn btnPrimary"
+      [routerLink]="['./../../endosso']"><i class="material-icons left">arrow_back</i> Voltar</button>
+  </div>
+
+</div>

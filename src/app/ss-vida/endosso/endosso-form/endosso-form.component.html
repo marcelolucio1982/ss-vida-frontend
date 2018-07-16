@@ -1,0 +1,364 @@
+
+
+        <!-- ######################## CADASTRAR ENDOSSO #######################  -->
+        <!-- Colocar esta tela com ng-if por enquanto -->
+         <div class="mainContent">
+                <h5>Cadastrar Endosso</h5>
+                <div class="boxNext row"></div>
+                <h5 class="subTitle titleNivel1">Informações</h5>
+                <div class="row generalBox">
+                <form class="form-horizontal" [formGroup]="formulario">
+                  <div class="boxNivel2">
+                    <div class="divider10"></div>
+                        <div class="input-field col s3">
+                          <label class="active">Nome</label>
+                          <span class="spanResult">lorem</span>
+                        </div>
+                        <div class="input-field col s3">
+                          <label class="active">CPF</label>
+                          <span class="spanResult">lorem</span>
+                        </div>
+                        <div class="input-field col s3">
+                          <label class="active">Produto</label>
+                          <span class="spanResult">lorem</span>
+                        </div>
+                        <div class="input-field col s3">
+                          <label class="active">Apólice</label>
+                          <span class="spanResult">lorem</span>
+                        </div>
+                        <div class="input-field col s3">
+                          <label class="active">Data de Emissão</label>
+                          <span class="spanResult">lorem</span>
+                        </div>
+                        <div class="input-field col s3">
+                          <label class="active">Situação</label>
+                          <span class="spanResult">lorem</span>
+                        </div>
+                        <div class="input-field col s3">
+                          <label class="active">Proposta</label>
+                          <span class="spanResult">0000</span>
+                        </div>
+                        <div class="input-field col s3">
+                          <label class="active">Número do bilhete</label>
+                          <span class="spanResult">009000</span>
+                        </div>
+                  </div>
+                  <div class="boxNivel2">
+                    <div class="divider10"></div>
+                        <div class="input-field col s3">
+                          <label class="active">Número Proposta Endosso</label>
+                          <span class="spanResult">lorem</span>
+                        </div>
+                        <div class="input-field col s3">
+                          <label class="active">Número Endosso</label>
+                          <span class="spanResult">lorem</span>
+                        </div>
+                        <div class="input-field col s3">
+                          <label class="active">Data e Solicitação do Endosso</label>
+                          <span class="spanResult">lorem</span>
+                        </div>
+                        <div class="input-field col s3">
+                          <label class="active">Situação do Endosso</label>
+                          <span class="spanResult">lorem</span>
+                        </div>
+                        <div class="input-field col s3">
+                          <label class="active">Origem</label>
+                          <span class="spanResult">lorem</span>
+                        </div>
+                        <div class="input-field col s3">
+                          <label class="active">Início de Vigência do Endosso</label>
+                          <span class="spanResult">lorem</span>
+                        </div>
+                        <div class="input-field col s3">
+                          <label class="active">Fim de Vigência do Endosso</label>
+                          <span class="spanResult">0000</span>
+                        </div>
+                        <div class="input-field col s3">
+                          <label class="active">Usuário</label>
+                          <span class="spanResult">009000</span>
+                        </div>
+                        <h5>Endosso</h5>
+                        <div class="input-field col s4">
+                            <label class="active" for="motivoEndosso">Motivo do Endosso <span class="asterisco">*</span></label>
+                            <select id="motivoEndosso" class="noUppercase" name="motivoEndosso" materialize="material_select">
+                                <option value="">Selecione uma opção</option>
+                                <option>lorem ipsulum</option>
+                            </select>
+                        </div>
+                        <div class="input-field col s4">
+                          <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="cadastrar()">Cadastrar</button>
+                        </div>
+                  </div>
+
+
+                  
+                  <!-- Dados Cadastrais -->
+                  <div class="boxTipoSucesso">
+                    <h5 class="subTitle titleNivel1">Dados Cadastrais</h5>
+                    <div class="divider10"></div>
+                      <div class="input-field col s4">
+                          <label class="active">Usuário Responsável</label>
+                          <span class="spanResult">34377</span>
+                      </div>
+                      
+                      <div class="input-field col s8">
+                          <label class="active">Nome</label>
+                          <input type="text" class="input-field" name="nome">
+                      </div>
+                      <div class="box-buttons-classic">
+                          <button type="button" class="flatButton btnSecondary"><i class="material-icons right">save</i></button>
+                          <button type="button" class="flatButton btnSecondary"><i class="material-icons right">delete_forever</i></button>
+                        </div>
+                  </div>
+                  <!--/ Dados Cadastrais -->
+               
+                <!--/ Fim da Div do Outlet -->
+
+                <!-- Incluir/Editar dados do beneficiário -->
+                <div class="boxTipoPendente">
+                  <h5 class="subTitle titleNivel1">Incluir/Editar dados do beneficiário</h5>
+                  <div class="divider10"></div>
+                    <div class="input-field col s6">
+                      <label class="active">Nome</label>
+                      <input type="text" class="input-field" name="nome">
+                    </div>
+                    <div class="input-field col s2">
+                        <label class="active" for="parentescoGrau">Grau de Parentesco <span class="asterisco">*</span></label>
+                        <select id="parentescoGrau" class="noUppercase" name="parentescoGrau" materialize="material_select">
+                            <option value="">Selecione uma opção</option>
+                            <option>lorem ipsulum</option>
+                        </select>
+                    </div>
+                    <div class="input-field col s4">
+                      <label class="active">Descrição do Parentesco</label>
+                      <input type="text" class="input-field" name="nome">
+                    </div>
+                    <div class="input-field col s3">
+                      <label class="active">Percentual</label>
+                      <input type="text" class="input-field" name="nome">
+                    </div>
+                    <div class="input-field col s3">
+                      <label class="active">CPF</label>
+                      <input type="text" class="input-field" name="nome">
+                    </div>
+                    <div class="input-field col s2">
+                      <label class="active">Data de Nascimento</label>
+                      <input class="datepicker" id="dataNascimento" formControlName="dataNascimento" name="dataNascimento" type="text" materialize="pickadate">
+                    </div>
+                    <div class="input-field col s4">
+                        <label class="active" for="sexo">Sexo <span class="asterisco">*</span></label>
+                        <select id="sexo" class="noUppercase" name="sexo" materialize="material_select">
+                            <option value="">Selecione uma opção</option>
+                            <option>Masculino</option>
+                            <option>Feminino</option>
+                        </select>
+                    </div>
+                    <div class="box-buttons-classic">
+                        <button type="button" class="flatButton btnSecondary"><i class="material-icons right">save</i></button>
+                        <button type="button" class="flatButton btnSecondary"><i class="material-icons right">close</i></button>
+                      </div>
+                </div>
+                <!--/ Fim do Incluir/Editar dados do beneficiário -->
+
+                <!-- Incluir/Editar dados do beneficiário -->
+                <div class="boxTipoPendente">
+                    <h5 class="subTitle titleNivel1">Alterar beneficiário</h5>
+                    <div class="divider10"></div>
+                      <div class="input-field col s6">
+                        <label class="active">Usuário responsável</label>
+                        <input type="text" class="input-field" name="nome">
+                      </div>
+                      <div class="input-field col s4">
+                          <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="incluir()">Incluir</button>
+                      </div>
+                      
+                      <div class="row">
+                          <table class="striped">
+                            <thead>
+                              <tr>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th>Data de Nascimento</th>
+                                <th>Sexo</th>
+                                <th>Grau de Parentesco</th>
+                                <th>Percentual</th>
+                                <th>Ações</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>lorem</td>
+                                <td>lorem</td>
+                                <td>lorem</td>
+                                <td>lorem</td>
+                                <td>lorem</td>
+                                <td>lorem</td>
+                                <td>
+                                 <a materialize="tooltip" data-tooltip="Editar" class="view tooltipped edit" data-position="left" data-delay="10"><i class="material-icons actionButtons">edit</i></a>
+                                 <a materialize="tooltip" data-tooltip="Excluir" class="view tooltipped edit" data-position="left" data-delay="10"><i class="material-icons actionButtons">delete_forever</i></a>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                      <div class="box-buttons-classic">
+                          <button type="button" class="flatButton btnSecondary"><i class="material-icons right">save</i></button>
+                          <button type="button" class="flatButton btnSecondary"><i class="material-icons right">close</i></button>
+                        </div>
+                  </div>
+                  <!--/ Fim do Incluir/Editar dados do beneficiário -->
+
+                  <!-- Alterar Endereço, telefone e E-Mail Geral -->
+                  <div class="boxTipoSucesso">
+                    <h5 class="subTitle titleNivel1">Alterar Endereço, Telefone e E-Mail</h5>
+                    <div class="divider10"></div>
+                      <div class="input-field col s4">
+                          <label class="active">Usuário Responsável</label>
+                          <span class="spanResult">código do usuário</span>
+                      </div>
+                      
+                      <!-- Endereço -->
+                      <div class="boxNivel2">
+                          <h5>Endereço</h5>
+                          <div class="divider10"></div>
+                          <div class="input-field col s2">
+                              <label class="active">CEP</label>
+                              <input type="text" class="input-field" name="nome">
+                          </div>
+                          <div class="input-field col s10">
+                              <label class="active">Logradouro <span class="asterisco">*</span></label>
+                              <input type="text" class="input-field" name="nome">
+                          </div>
+                          <div class="input-field col s6">
+                              <label class="active">Complemento</label>
+                              <input type="text" class="input-field" name="nome">
+                          </div>
+                          <div class="input-field col s3">
+                              <label class="active">Bairro</label>
+                              <input type="text" class="input-field" name="nome">
+                          </div>
+                          <div class="input-field col s3">
+                              <label class="active">Cidade</label>
+                              <input type="text" class="input-field" name="nome">
+                          </div>
+                          <div class="input-field col s2">
+                              <label class="active" for="uf">UF</label>
+                              <select id="uf" class="noUppercase" name="uf" materialize="material_select">
+                                  <option value="">Selecione uma opção</option>
+                                  <option>AC</option>
+                                  <option>AM</option>
+                                  <option>DF</option>
+                                  <option>RJ</option>
+                                  <option>CE</option>
+                              </select>
+                          </div>
+                          <div class="input-field col s4">
+                              <label class="active" for="pais">País</label>
+                              <select id="pais" class="noUppercase" name="pais" materialize="material_select">
+                                  <option value="">Selecione uma opção</option>
+                                  <option>lorem</option>
+                                  <option>lorem</option>
+                                  <option>lorem</option>
+                                  <option>lorem</option>
+                                  <option>lorem</option>
+                              </select>
+                          </div>
+                          <div class="box-buttons-classic">
+                              <button type="button" class="waves-effect waves-light btn btnSecondary"> Buscar Cep</button>
+                              <button type="button" class="waves-effect waves-light btn btnSecondary"> Pesquisar</button>
+                              <button type="button" class="waves-effect waves-light btn btnSecondary"> Limpar</button>
+                          </div>
+                      </div>
+                      <!--/ Endereço -->
+
+                      <!-- Telefones -->
+                      <div class="boxNivel2">
+                          <h5>Telefones</h5>
+                          <div class="divider10"></div>
+                          <div class="input-field col s2">
+                              <label class="active">Tipo</label>
+                              <input type="text" class="input-field" name="nome">
+                          </div>
+                          <div class="input-field col s2">
+                              <label class="active">DDI <span class="asterisco">*</span></label>
+                              <input type="text" class="input-field" name="nome">
+                          </div>
+                          <div class="input-field col s2">
+                              <label class="active">DDD</label>
+                              <input type="text" class="input-field" name="nome">
+                          </div>
+                          <div class="input-field col s2">
+                              <label class="active">Número</label>
+                              <input type="text" class="input-field" name="nome">
+                          </div>
+                          <div class="input-field col s4">
+                              <button type="button" class="waves-effect waves-light btn btnPrimary">Salvar</button>
+                              <button type="button" class="waves-effect waves-light btn btnPrimary">Limpar</button>
+                          </div>
+                          <div class="divider10"></div>
+                          <div class="row">
+                              <table class="striped">
+                                <thead>
+                                  <tr>
+                                    <th>Tipo</th>
+                                    <th>DDI</th>
+                                    <th>DDD</th>
+                                    <th>Número</th>
+                                    <th>Enviar SMS</th>
+                                    <th>Ações</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>lorem</td>
+                                    <td>lorem</td>
+                                    <td>lorem</td>
+                                    <td>lorem</td>
+                                    <td>lorem</td>
+                                    <td>
+                                     <a materialize="tooltip" data-tooltip="Editar" class="view tooltipped edit" data-position="left" data-delay="10"><i class="material-icons actionButtons">edit</i></a>
+                                     <a materialize="tooltip" data-tooltip="Excluir" class="view tooltipped edit" data-position="left" data-delay="10"><i class="material-icons actionButtons">delete_forever</i></a>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          
+                          <div class="box-buttons-classic">
+                              <button type="button" class="flatButton btnSecondary"><i class="material-icons">search</i></button>
+                          </div>
+                      </div>
+                      <!--/ Telefones -->
+
+                      <!-- Email -->
+                      <div class="boxNivel2">
+                          <h5>E-Mail</h5>
+                          <div class="divider10"></div>
+                          <div class="input-field col s8">
+                              <label class="active">Tipo</label>
+                              <input type="text" class="input-field" name="nome">
+                          </div>
+                          <div class="input-field col s4">
+                              <button type="button" class="waves-effect waves-light btn btnPrimary">Pesquisar</button>
+                              <button type="button" class="waves-effect waves-light btn btnPrimary">Limpar</button>
+                          </div>
+                      </div>
+                      <!--/ Email -->
+
+                      
+                  </div>
+                  <!--/ Alterar Endereço, telefone e E-Mail Geral -->
+
+
+                  <div class="box-buttons">
+                    <button type="button" class="waves-effect waves-light btn btnSecondary">Voltar</button>
+                    <button type="button" class="waves-effect waves-light btn btnPrimary">Emitir Endosso</button>
+                  </div>
+                </form>
+                </div>
+                
+          </div>
+          <!-- ######################## FIM DE CADASTRAR ENDOSSO #######################  -->
+          
+  

@@ -1,0 +1,49 @@
+<div class="mainContent">
+
+    <!-- ######################## INICIO DETALHAMENTO #######################  -->
+    <h5>Visualizar Agrupador de Parceiro</h5>
+    <div class="boxNext row"></div>
+
+    <div class="clearfix"></div>
+    <div class="col s12">
+      <div class="row">
+
+        <div class="input-field col s4">
+          <label class="active">Situação</label>
+          <input name="situacao" type="text" [value]="agrupadorParceiro?.situacao?.descricao" readonly>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="input-field col s4">
+          <label class="active">Código</label>
+          <input id="codigo" name="codigo" type="text" [value]="agrupadorParceiro?.codigo" readonly>
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active">Descrição</label>
+          <input id="descricao" name="descricao" type="text" [value]="agrupadorParceiro?.descricao" readonly>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="input-field col s4">
+          <label class="active">Início de Vigência</label>
+          <input  id="dataInicioVigencia" name="dataInicioVigencia" type="text" [value]="utilService.formatarDataVisao( agrupadorParceiro?.dataInicioVigencia )" readonly>
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active">Início de Fim da Vigência</label>
+          <input id="dataFimVigencia" name="dataFimVigencia" type="text" [value]="utilService.formatarDataVisao( agrupadorParceiro?.dataFimVigencia )" readonly>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="box-buttons">
+          <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="voltar()">Fechar</button>
+        </div>
+
+      </div>
+    </div>
+    <!-- ######################## FIM DETALHAMENTO #######################  -->
+
+  </div>

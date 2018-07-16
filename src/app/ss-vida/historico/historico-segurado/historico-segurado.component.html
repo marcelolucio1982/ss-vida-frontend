@@ -1,0 +1,78 @@
+<div class="mainContent">
+
+  <app-historico-header></app-historico-header>
+
+  <div class="boxNivel2 boxAlpha">
+    <h5>PEP</h5>
+    <div class="row secondTable">
+      <table class="striped tableCenter">
+        <thead>
+          <tr>
+            <th>Entrada</th>
+            <th>Saída</th>
+            <th>CPF/CNPJ</th>
+            <th>Titular</th>
+            <th>Cod. COAF</th>
+            <th>Cargo</th>
+            <th>Relacionado</th>
+            <th>Cod. COAF Relacionado</th>
+            <th>Nome do Órgão</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngIf="pepList.length === 0">
+            <td colspan="9">Nenhum Registro Encontrado</td>
+          </tr>
+          <tr *ngFor="let pep of pepList">
+            <td>{{ pep.entrada | date:constantesService.getFormatoDataP() }}</td>
+            <td>{{ pep.saida | date:constantesService.getFormatoDataP() }}</td>
+            <td>{{ pep.cpfCnpjTitular | cpfMask }}</td>
+            <td>{{ pep.nomeTitular }}</td>
+            <td>{{ pep.codigoCoaf }}</td>
+            <td>{{ pep.nomeCargo }}</td>
+            <td>{{ pep.nomeRelacionado }}</td>
+            <td>{{ pep.codigoCoafRelacionado }}</td>
+            <td>{{ pep.nomeOrgao }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="boxNivel2 boxAlpha">
+    <h5>NLIST</h5>
+    <div class="row secondTable">
+      <table class="striped tableCenter">
+        <thead>
+          <tr>
+            <th>Entrada</th>
+            <th>Saída</th>
+            <th>Motivo da Entrada</th>
+            <th>Adicionado por</th>
+            <th>Motivo da Saída</th>
+            <th>Retirador por</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngIf="nList.length === 0">
+            <td colspan="6">Nenhum Registro Encontrado</td>
+          </tr>
+          <tr *ngFor="let listaNlist of nList">
+            <td>{{ listaNlist.entrada | date:constantesService.getFormatoDataP() }}</td>
+            <td>{{ listaNlist.saida | date:constantesService.getFormatoDataP() }}</td>
+            <td>{{ listaNlist.descricaoMotivoEntrada }}</td>
+            <td>{{ listaNlist.codigoUsuario }}</td>
+            <td>{{ listaNlist.descricaoMotivoSaida }}</td>
+            <td>{{ listaNlist.codigoUsuarioEncerramentoVigencia }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="box-buttons">
+    <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="voltar()">Voltar</button>
+  </div>
+</div>

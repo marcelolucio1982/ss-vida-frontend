@@ -1,0 +1,32 @@
+<!-- Header -->
+<h5 class="mainTitle">{{ title }}</h5>
+<div class="col s12">
+  <div class="row">
+    <div class="boxInfoClientes">
+      <div class="input-field col s5">
+        <label class="active">Nome</label>
+        <span class="spanResult">{{proposta?.pessoa.nome}}</span>
+      </div>
+      <div class="input-field col s2">
+        <label class="active">CPF</label>
+        <span class="spanResult">{{proposta?.pessoa.cpfCnpj | cpfMask}}</span>
+      </div>
+      <div class="input-field col s5">
+        <label class="active">Produto</label>
+        <span class="spanResult">{{proposta?.produto.codigo}} - {{proposta?.produto.descricao}}</span>
+      </div>
+      <div class="input-field col s3">
+        <label class="active">Apólice</label>
+        <span class="spanResult">{{proposta?.numeroApolice}}</span>
+      </div>
+      <div class="input-field col s2">
+        <label class="active">Proposta</label>
+        <span class="spanResult">{{proposta?.numeroPropostaExterna}}</span>
+      </div>
+      <div class="input-field col s2">
+        <label class="active">Situação</label>
+        <span class="spanResult">{{proposta?.situacaoProposta.descricao}}</span>
+      </div>
+    </div>
+  </div>
+</div>

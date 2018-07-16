@@ -1,0 +1,254 @@
+<!-- ######################## CADASTRAR VENDEDOR #######################  -->
+
+<div class="mainContent">
+
+<h5>Cadastrar Vendedor</h5>
+<div class="boxNext row"></div>
+
+<div class="clearfix"></div>
+<div class="col s12">
+    <form class="form-horizontal" [formGroup]="formulario">
+        <div class="row">
+
+            <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('codigoExterno', formulario)">
+                <label class="active" for="codigoExterno">Código Externo <span class="asterisco" *ngIf="!isVisualizacao()">*</span></label>
+                <input id="codigoExterno" formControlName="codigoExterno" name="codigoExterno" type="text"
+                    [textMask]="constantesService.getMaskDef().numerico(11)" 
+                    [readonly]="isVisualizacao() || isNovaVersao() || isEncerramento()">
+                <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('codigoExterno', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+
+            <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('cpf', formulario)">
+                <label class="active" for="cpf">CPF <span class="asterisco" *ngIf="!isVisualizacao()">*</span></label>
+                <input id="cpf" [ngModel]="formulario.value.cpf | cpfMask" (ngModelChange)="formulario.value.cpf = $event"
+                    formControlName="cpf" name="cpf" type="text" maxlength="14" 
+                    [readonly]="isVisualizacao() || isNovaVersao() || isEncerramento()">
+                <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('cpf', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+
+            <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('nome', formulario)">
+                <label class="active" for="codigoExterno">Nome <span class="asterisco" *ngIf="!isVisualizacao()">*</span></label>
+                <input id="nome" formControlName="nome" name="nome" type="text"
+                    [textMask]="constantesService.getMaskDef().alfaNumerico(100)" 
+                    [readonly]="isVisualizacao() || isNovaVersao() || isEncerramento()">
+                <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('nome', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+
+            <div class="input-field col s4">
+                <label class="active" for="parceiro">Parceiro <span class="asterisco" *ngIf="!isVisualizacao()">*</span></label>
+                <span class="selectResult" *ngIf="isVisualizacao()">{{formulario.value.parceiro ? formulario.value.parceiro.descricao : ''}}</span>
+                <select *ngIf="!isVisualizacao()" class="noUppercase" formControlName="parceiro" 
+                    materialize="material_select" [materializeSelectOptions]="constantesService.getParceiros()">
+                    <option value="" selected disabled>Selecione uma opção</option>
+                    <option *ngFor='let e of constantesService.getParceiros();' [ngValue]="e">{{e.descricao}}</option>
+                </select>
+                <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('parceiro', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+
+            <div class="input-field col s4">
+                <label class="active" for="parceiro">Tipo de Vendedor <span class="asterisco" *ngIf="!isVisualizacao()">*</span></label>
+                <span class="selectResult" *ngIf="isVisualizacao()">{{formulario.value.tipoVendedor ? formulario.value.tipoVendedor.descricao : ''}}</span>
+                <select *ngIf="!isVisualizacao()" class="noUppercase" formControlName="tipoVendedor" 
+                    materialize="material_select" [materializeSelectOptions]="constantesService.getTiposVendedores()">
+                    <option value="" selected disabled>Selecione uma opção</option>
+                    <option *ngFor='let e of constantesService.getTiposVendedores();' [ngValue]="e">{{e.descricao}}</option>
+                </select>
+                <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('tipoVendedor', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+
+            <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('dataInicioVigencia', formulario)">
+                <label class="active" for="dataInicioVigencia">Data de Início de Vigência <span class="asterisco" *ngIf="!isVisualizacao()">*</span></label>
+                <input id="dataInicioVigencia" formControlName="dataInicioVigencia" name="dataInicioVigencia" class="datepicker {{bloquearEdicaoDataInicio() ? 'pickadate-readonly' : ''}}" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+                <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('dataInicioVigencia', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>          
+            </div>
+                    
+            <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('dataFimVigencia', formulario)" *ngIf="(( isEncerramento() || isSituacaoEncerrado()) && !isNovaVersao())">
+                <label class="active" for="dataFimVigencia">Data de Fim de Vigência <span class="asterisco">*</span></label>
+                <input id="dataFimVigencia" formControlName="dataFimVigencia" name="dataFimVigencia" class="datepicker {{bloquearEdicaoDataFim() ? 'pickadate-readonly' : ''}}" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+                <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('dataFimVigencia', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+            </div>
+
+            <div class="clearfix"></div>
+            <h5 class="subTitle">Restrição de Local de Venda</h5>
+            <div class="boxNextSubTitle row"></div>
+
+            <div class="box-buttons">
+                <button type="submit" class="waves-effect waves-light btn btnPrimary">Incluir</button>
+            </div>
+
+            <div class="grid-divider"></div>
+            <div class="row">
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th>Parceiro</th>
+                            <th>Tipo de Local de Venda</th>
+                            <th>Código Externo</th>
+                            <th>Razão Social / Nome do Local de Venda</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        
+                        <tr>
+                            <td>xxx</td>
+                            <td>xxx</td>
+                            <td>xxx</td>
+                            <td>xxx</td>
+                            <td>
+                                <a materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10"> <i class="material-icons actionButtons">search</i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>xxx</td>
+                            <td>xxx</td>
+                            <td>xxx</td>
+                            <td>xxx</td>
+                            <td>
+                                <a materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10"> <i class="material-icons actionButtons">search</i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>xxx</td>
+                            <td>xxx</td>
+                            <td>xxx</td>
+                            <td>xxx</td>
+                            <td>
+                                <a materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10"> <i class="material-icons actionButtons">search</i>
+                                </a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="box-buttons" *ngIf="isVisualizacao()">
+            <!-- Exibe apenas quando a tela eh configurada para exibicao -->
+                <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="editarVendedor( getVendedor() )" *ngIf="isSituacaoEditavel()">Editar</button>
+                <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="gerarVersao( getVendedor() )" *ngIf="isSituacaoVigente() || isSituacaoEncerrado()">Nova Versão</button>          
+                <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="pesquisar()">Fechar</button>
+            </div>
+    
+            <div class="box-buttons" *ngIf="( isCadastro() || isEdicao() || isNovaVersao() )">
+            <!-- Exibe apenas quando a tela eh configurada para cadastro (Novo), Edicao ou Nova Versao -->
+                <button type="submit" class="waves-effect waves-light btn btnPrimary">Salvar</button>
+                <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="salvarVendedor(true)">Aprovar</button>
+                <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="pesquisar()">Cancelar</button>          
+            </div>
+    
+            <div class="box-buttons" *ngIf="isEncerramento()">
+            <!-- Exibe apenas quando a tela eh configurada para encerramento -->
+                <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="salvarVendedor()">Encerrar</button>
+                <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="pesquisar()">Fechar</button>
+            </div>
+           
+        </div>
+    </form>
+
+    <!-- Deslizar o campo de pesquisar para inserir -->
+    <h5 class="subTitle">Restrição de Local de Venda</h5>
+    <div class="boxNextSubTitle row"></div>
+    <div class="col s12">
+            <form class="form-horizontal" [formGroup]="formulario">
+                <div class="row">
+
+                    <div class="input-field col s4">
+                        <label class="active" for="parceiroLocalVenda">Parceiro <span class="asterisco">*</span></label>
+                        <select id="parceiroLocalVenda" class="noUppercase" formControlName="parceiroLocalVenda" name="parceiroLocalVenda" materialize="material_select">
+                            <option value="">Selecione uma opção</option>
+                            <option>lorem ipsulum</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field col s4">
+                        <label class="active" for="opcaoLocalVenda">Opção <span class="asterisco">*</span></label>
+                        <select id="opcaoLocalVenda" class="noUppercase" formControlName="opcaoLocalVenda" name="opcaoLocalVenda" materialize="material_select">
+                            <option value="">Selecione uma opção</option>
+                            <option>lorem ipsulum</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field col s4">
+                        <label class="active" for="codigoExternoNomeLocalVenda">Código Externo / Nome<span class="asterisco">*</span></label>
+                        <input id="codigoExternoNomeLocalVenda" formControlName="codigoExternoNomeLocalVenda" name="codigoExternoNomeLocalVenda" type="text">
+                    </div>
+        
+                    <div class="clearfix"></div>
+        
+                        <div class="box-buttons">
+                            <button type="submit" class="waves-effect waves-light btn btnPrimary">
+                            <i class="material-icons left">search</i> Pesquisar</button>
+                        </div>
+        
+                    <div class="grid-divider"></div>
+                    <div class="row">
+                        <table class="striped">
+                            <thead>
+                                <tr>
+                                    <th>Parceiro</th>
+                                    <th>Tipo de Local de Venda</th>
+                                    <th>Código Externo</th>
+                                    <th>Razão Social / Nome do Local de Venda</th>
+                                    <th>Ação</th>
+                                </tr>
+                            </thead>
+        
+                            <tbody>
+                                
+                                <tr>
+                                    <td>xxx</td>
+                                    <td>xxx</td>
+                                    <td>xxx</td>
+                                    <td>xxx</td>
+                                    <td>
+                                        <a materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10"> <i class="material-icons actionButtons">search</i>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>xxx</td>
+                                    <td>xxx</td>
+                                    <td>xxx</td>
+                                    <td>xxx</td>
+                                    <td>
+                                        <a materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10"> <i class="material-icons actionButtons">search</i>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>xxx</td>
+                                    <td>xxx</td>
+                                    <td>xxx</td>
+                                    <td>xxx</td>
+                                    <td>
+                                        <a materialize="tooltip" data-tooltip="Visualizar" class="view tooltipped view" data-position="left" data-delay="10"> <i class="material-icons actionButtons">search</i>
+                                        </a>
+                                    </td>
+                                </tr>
+        
+                            </tbody>
+                        </table>
+                    </div>
+        
+                </div>
+            </form>
+        
+        </div>
+    <!--/ fim da janela que desliza -->
+</div>
+
+
+</div>
+<!-- ######################## FIM DE CADASTRAR PARCEIRO #######################  -->
+          
+  

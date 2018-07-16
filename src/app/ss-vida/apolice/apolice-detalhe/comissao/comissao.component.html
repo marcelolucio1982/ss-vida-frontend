@@ -1,0 +1,72 @@
+<h5 class="subTitle titleNivel1">Comissão</h5>
+<div class="generalBox">
+  
+  <h5 class="subTitle titleNivel1">Cadeia de Comissionado</h5>
+  <div class="">
+    <div class="row" *ngIf="cadeiaComissionado && cadeiaComissionado.length > 0">
+      <table class="striped tableCenter">
+        <thead>
+          <tr>
+            <th>Tipo de despesa</th>
+            <th>A quem pagar</th>
+            <th>Parâmetro</th>
+            <th>Critério de Comissão</th>
+            <th>Parcela do Seguro</th>
+            <th>Forma de Pagamento</th>
+            <th>Percentual / Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of cadeiaComissionado; let aux = index;">
+            <td>{{ i.descricaoTipoDespesa }}</td>
+            <td>{{ i.descricaoAQuemPagar }}</td>
+            <td>{{ i.parametro }}</td>
+            <td>{{ i.descricaoCriterioComissao }}</td>
+            <td>{{ i.descricaoNumParcela }}</td>
+            <td>{{ i.formaPagamento.descricao }}</td>
+            <td>{{ i.percentualValor.indUnidadeReferencia === 'P' ? 
+              utilService.formatarPercentualVisao( i.percentualValor.percentualComissao ) :
+              utilService.formatarValorRealVisao( i.percentualValor.valorComissao ) }}
+            </td>
+          </tr>
+        </tbody>
+        </table>
+      </div>
+    </div>
+    <h5 class="subTitle titleNivel1">Comissão Calculada</h5>
+      <div class="">
+        <div class="row" *ngIf="comissoesCalculadas && comissoesCalculadas.length > 0">
+          <table class="striped tableCenter">
+            <thead>
+              <tr>
+                <th>Tipo de Despesa</th>
+                <th>Favorecido</th>
+                <th>Endosso</th>
+                <th>Parcela Seguro</th>
+                <th>Data de Quitação</th>
+                <th>Percentual / Valor</th>
+                <th>Valor Base</th>
+                <th>Valor Comissão</th>
+                <th>Data de Envio (SIGDC)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let i of comissoesCalculadas; let aux = index;">
+                <td>{{ i.descricaoTipoComissionado }}</td>
+                <td>{{ i.descricaoFavorecido }}</td>
+                <td>{{ i.tipoEndosso.codigo }} - {{ i.tipoEndosso.descricao }}</td>
+                <td>{{ i.numParcelaEndosso }}</td>
+                <td>{{ i.dataQuitacao | date:constantesService.getFormatoDataP() }}</td>
+                <td>{{ i.percentualValor.indUnidadeReferencia === 'P' ? 
+                  utilService.formatarPercentualVisao( i.percentualValor.percentualComissao ) :
+                  utilService.formatarValorRealVisao( i.percentualValor.valorComissao ) }}
+                </td>
+                <td>{{ utilService.formatarValorRealVisao( i.valorBase ) }}</td>
+                <td>{{ utilService.formatarValorRealVisao( i.valorComissao ) }}</td>
+                <td>{{ i.dataEnvio | date:constantesService.getFormatoDataP() }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>

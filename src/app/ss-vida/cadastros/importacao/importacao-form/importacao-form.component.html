@@ -1,0 +1,76 @@
+<!-- Tela de Cadastrar Carregamentos  -->
+<div class="mainContent">
+  <h5>Importação</h5>
+  <div class="boxNext row"></div>
+
+  <div class="clearfix"></div>
+  <div class="col s12">
+    <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="salvar()">
+      <div class="row">
+        <div class="input-field col s3" [ngClass]="utilService.aplicaCssErro('sigla', formulario)">
+          <label class="active" for="sigla">Sigla <span class="asterisco" *ngIf="!getEhVisualizacao()">*</span></label>
+          <span *ngIf="getEhVisualizacao()">{{formulario.value.sigla}}</span>
+          <input *ngIf="!getEhVisualizacao()" type="text" name="sigla" formControlName="sigla" [textMask]="constantesService.getMaskDef().alfaNumericoSimples(5)" [readonly]="getEhNovaVersao() || getEhEncerramento() || !getEhPrimeiraVersao()">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('sigla', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s3" [ngClass]="utilService.aplicaCssErro('descricao', formulario)">
+          <label class="active" for="descricao">Despesa <span class="asterisco" *ngIf="!getEhVisualizacao()">*</span></label>
+          <span *ngIf="getEhVisualizacao()">{{formulario.value.descricao}}</span>
+          <input *ngIf="!getEhVisualizacao()" type="text" name="descricao" formControlName="descricao" [textMask]="constantesService.getMaskDef().alfaNumerico(20)" [readonly]="getEhNovaVersao() || getEhEncerramento() || !getEhPrimeiraVersao()">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('descricao', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s3" *ngIf="getEhVisualizacao()">
+          <label class="active">Data de Inclusão</label>
+          <span>{{formulario.value.dataInclusao | date:constantesService.getFormatoDataP()}}</span>
+        </div>
+
+        <div class="input-field col s3" *ngIf="getEhVisualizacao()">
+          <label class="active">Data de alteração</label>
+          <span>{{formulario.value.getDataAtualizacaoDate | date:constantesService.getFormatoDataP()}}</span>
+        </div>
+
+        <div class="input-field col s3" *ngIf="getEhVisualizacao()">
+          <label class="active">Usuário</label>
+          <span>{{formulario.value.usuarioInclusao}}</span>
+        </div>
+
+        <div class="input-field col s3" [ngClass]="utilService.aplicaCssErro('dataInicioVigencia', formulario)">
+          <label class="active" for="dataInicioVigencia">Início de vigência <span class="asterisco" *ngIf="!getEhVisualizacao()">*</span></label>
+          <span *ngIf="getEhVisualizacao()">{{formulario.value.dataInicioVigencia | date:constantesService.getFormatoDataP()}}</span>
+          <input *ngIf="!getEhVisualizacao()" id="dataInicioVigencia" formControlName="dataInicioVigencia" name="dataInicioVigencia" class="datepicker {{getEhEncerramento() ? 'pickadate-readonly' : ''}}" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('dataInicioVigencia', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s3" [ngClass]="utilService.aplicaCssErro('dataFimVigencia', formulario)"  *ngIf="getEhEncerramento() || getEhVisualizacao()">
+          <label class="active" for="dataFimVigencia">Fim de vigência <span class="asterisco" *ngIf="!getEhVisualizacao()">*</span></label>
+          <span *ngIf="getEhVisualizacao()">{{formulario.value.dataFimVigencia}}</span>
+          <input *ngIf="!getEhVisualizacao()" id="dataFimVigencia" formControlName="dataFimVigencia" name="dataFimVigencia" class="datepicker" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('dataFimVigencia', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s3" *ngIf="getEhVisualizacao()">
+          <label class="active">Situação</label>
+          <span>{{formulario.value.status ? formulario.value.status.descricao : ''}}</span>
+        </div>
+    
+        <div class="grid-divider"></div>
+
+        <div class="box-buttons">
+          <button type="button" class="waves-effect waves-light btn btnPrimary" *ngIf="getEhVisualizacao() && podeEditar()" (click)="editar()">ALTERAR</button>
+          <button type="button" class="waves-effect waves-light btn btnPrimary" *ngIf="getEhVisualizacao() && podeExcluir()" (click)="excluir()">EXCLUIR</button>
+          <button type="button" class="waves-effect waves-light btn btnPrimary" *ngIf="getEhVisualizacao() && podeCriarVersao()" (click)="criarVersao()">NOVA VERSÃO</button>
+          <button type="button" class="waves-effect waves-light btn btnPrimary" *ngIf="getEhVisualizacao() && podeEncerrar()" (click)="encerrar()">ENCERRAR</button>
+          <button type="button" class="waves-effect waves-light btn btnPrimary" *ngIf="getEhEncerramento() && podeEncerrar()" (click)="encerrar(true)">ENCERRAR</button>
+          <button type="submit" class="waves-effect waves-light btn btnPrimary" *ngIf="!getEhEncerramento() && !getEhVisualizacao()">Salvar</button>
+          <button type="button" class="waves-effect waves-light btn btnPrimary" *ngIf="!getEhEncerramento() && !getEhVisualizacao()" (click)="salvar(true)">Aprovar</button>
+          <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="pesquisar()">Fechar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- <h4>Debug</h4><pre>{{formulario.value | json}}</pre> -->
+</div>
+<!-- ############# FIM DA TELA DE CADASTRAR CARREGAMENTOS ################ -->

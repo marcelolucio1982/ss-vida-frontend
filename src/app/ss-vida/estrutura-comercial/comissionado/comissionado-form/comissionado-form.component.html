@@ -1,0 +1,267 @@
+<div class="mainContent">
+  <!-- ######################## CADASTRO COMISSIONADO #######################  -->
+
+  <h5>Cadastrar Comissionado</h5>
+  <div class="boxNext row"></div>
+
+  <div class="clearfix"></div>
+
+  <div class="col s12">
+    <form class="form-horizontal" [formGroup]="formulario">
+      <div class="row">
+
+        <input type="hidden" formControlName="comissionado" name="comissionado"/>
+        <input type="hidden" formControlName="codigo" name="codigo"/>
+        <div class="input-field col s4">
+          <label class="active" for="cadCnpjParceiro">CNPJ<span class="asterisco">*</span></label>
+          <input [ngModel]="formulario.value.cadCnpjParceiro | cnpjMask" (ngModelChange)="formulario.value.cadCnpjParceiro = $event" formControlName="cadCnpjParceiro" name="cadCnpjParceiro" type="text">
+          
+        </div>
+
+        <div class="input-field col s1" *ngIf="formulario.get( 'comissionado' ).value == null">
+          <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="pesquisarPessoaJuridica()">
+            <i class="material-icons actionButtons">search</i>
+          </button>
+        </div>
+
+        <div class="input-field col s7">
+          <label class="active" for="cadTipoComissionado">Tipo de Comissionado <span class="asterisco">*</span></label>
+          <select class="noUppercase" formControlName="cadTipoComissionado" name="cadTipoComissionado" materialize="material_select" [materializeSelectOptions]="tipoComissionadoList">
+            <option value="">Selecione uma opção</option>
+            <option *ngFor='let e of tipoComissionadoList' [ngValue]="e">{{e.descricao}}</option>
+          </select>
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cadTipoComissionado', formulario )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4" *ngIf="corretorSelecionado">
+          <label class="active" for="cadRegistroSusep">Código SUSEP <span class="asterisco">*</span></label>
+          <input formControlName="cadRegistroSusep" name="cadRegistroSusep" type="text">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cadRegistroSusep', formulario )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4" *ngIf="corretorSelecionado">
+          <label class="active" for="cadRegistroSusepVida">Código SUSEP Vida <span class="asterisco">*</span></label>
+          <input formControlName="cadRegistroSusepVida" name="cadRegistroSusep" type="text">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cadRegistroSusepVida', formulario )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="input-field col s12">
+          <label class="active" for="cadRazaoSocial">Razão Social <span class="asterisco">*</span></label>
+          <input formControlName="cadRazaoSocial" name="cadRazaoSocial" type="text">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cadRazaoSocial', formulario )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="cadCepComissionado">Cep <span class="asterisco">*</span></label>
+          <input [ngModel]="formulario.value.cadCepComissionado | cepMask" (ngModelChange)="formulario.value.cadCepComissionado = $event" formControlName="cadCepComissionado" name="cadCepComissionado" type="text">
+          
+        </div>
+
+        <div class="input-field col s1" *ngIf="formulario.get( 'comissionado' ).value == null">
+          <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="pesquisarCep()">
+            <i class="material-icons actionButtons">search</i>
+          </button>
+        </div>
+
+        <div class="input-field col s7">
+          <label class="active" for="cadEnderecoComissionado">Endereço</label>
+          <input formControlName="cadEnderecoComissionado" name="cadEnderecoComissionado" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="cadComplementoComissionado">Complemento</label>
+          <input formControlName="cadComplementoComissionado" name="cadComplementoComissionado" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="cadBairroComissionado">Bairro <span class="asterisco">*</span></label>
+          <input formControlName="cadBairroComissionado" name="cadBairroComissionado" type="text">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cadBairroComissionado', formulario )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="cadCidadeComissionado">Cidade <span class="asterisco">*</span></label>
+          <input formControlName="cadCidadeComissionado" name="cadCidadeComissionado" type="text">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cadCidadeComissionado', formulario )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="cadUfComissionado">UF <span class="asterisco">*</span></label>
+          <select class="noUppercase" formControlName="cadUfComissionado" name="cadUfComissionado"
+            materialize="material_select" [materializeSelectOptions]="constantesService.findUnidadeFederacao()">
+            <option value="">Selecione uma opção</option>
+            <option *ngFor='let e of constantesService.findUnidadeFederacao()' [ngValue]="e">{{e.descricao}}</option>
+          </select>
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cadUfComissionado', formulario )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="cadContatoComissionado">Contato <span class="asterisco">*</span></label>
+          <input formControlName="cadContatoComissionado" name="cadContatoComissionado" type="text">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cadContatoComissionado', formulario )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="cadEmailPrincipal">E-Mail Principal <span class="asterisco">*</span></label>
+          <input formControlName="cadEmailPrincipal" name="cadEmailPrincipal" type="text">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cadEmailPrincipal', formulario )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="cadEmailSecundario">E-Mail Secundário</label>
+          <input formControlName="cadEmailSecundario" name="cadEmailSecundario" type="text">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="cadFoneComercial">Comercial <span class="asterisco">*</span></label>
+          <input [ngModel]="formulario.value.cadFoneComercial | telMask" (ngModelChange)="formulario.value.cadFoneComercial = $event"  formControlName="cadFoneComercial" name="cadFoneComercial" type="text" maxlength="14">
+         
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="cadFoneCelular">Celular</label>
+          <input [ngModel]="formulario.value.cadFoneCelular | telMask" (ngModelChange)="formulario.value.cadFoneCelular = $event"  formControlName="cadFoneCelular" name="cadFoneCelular" type="text"  maxlength="14">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="cadFoneResidencial">Residencial</label>
+          <input [ngModel]="formulario.value.cadFoneResidencial | telMask" (ngModelChange)="formulario.value.cadFoneResidencial = $event"  formControlName="cadFoneResidencial" name="cadFoneResidencial" type="text" maxlength="14">
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="cadEmpresaPublica">Empresa Pública <span class="asterisco">*</span></label>
+          <select class="noUppercase" formControlName="cadEmpresaPublica" name="cadEmpresaPublica"
+            materialize="material_select" [materializeSelectOptions]="constantesService.getValoresSimNao()">
+            <option value="">Selecione uma opção</option>
+            <option *ngFor='let e of constantesService.getValoresSimNao()' [ngValue]="e">{{e.descricao}}</option>
+          </select>
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cadEmpresaPublica', formulario )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4">
+          <label class="active" for="cadInicioVigenciaComissionado">Data Início de Vigência <span class="asterisco">*</span></label>
+          <input formControlName="cadInicioVigenciaComissionado" name="cadInicioVigenciaComissionado" class="datepicker" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+          <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('cadInicioVigenciaComissionado', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div formGroupName="representanteLegal" *ngIf="empresaPrivada">
+
+          <div class="clearfix"></div>
+          <h5 class="subTitle">Representante Legal</h5>
+          <div class="boxNextSubTitle row"></div>
+
+          <div class="input-field col s4">
+            <label class="active" for="cadCpfContato">CPF <span class="asterisco">*</span></label>
+            <input formControlName="cadCpfContato" name="cadCpfContato" type="text">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cadCpfContato', formulario.get( 'representanteLegal' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+
+          <div class="input-field col s1" *ngIf="formulario.get( 'comissionado' ).value == null">
+            <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="pesquisarRepresentanteLegal()">
+              <i class="material-icons actionButtons">search</i>
+            </button>
+          </div>
+
+          <div class="input-field col s7">
+            <label class="active" for="cadNomeContato">Nome <span class="asterisco">*</span></label>
+            <input formControlName="cadNomeContato" name="cadNomeContato" type="text">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cadNomeContato', formulario.get( 'representanteLegal' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+
+          <div class="input-field col s3">
+            <label class="active" for="cadNumeroIdentidadeContato">RG <span class="asterisco">*</span></label>
+            <input formControlName="cadNumeroIdentidadeContato" name="cadNumeroIdentidadeContato" type="text">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cadNumeroIdentidadeContato', formulario.get( 'representanteLegal' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+
+          <div class="input-field col s3">
+            <label class="active" for="cadOrgaoExpedidorContato">Órgão Emissor <span class="asterisco">*</span></label>
+            <input formControlName="cadOrgaoExpedidorContato" name="cadOrgaoExpedidorContato" type="text">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cadOrgaoExpedidorContato', formulario.get( 'representanteLegal' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+
+          <div class="input-field col s3">
+            <label class="active" for="cadUfIdentidadeContato">UF <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="cadUfIdentidadeContato" name="cadUfIdentidadeContato"
+                    materialize="material_select" [materializeSelectOptions]="constantesService.findUnidadeFederacao()">
+              <option value="">Selecione uma opção</option>
+              <option *ngFor='let e of constantesService.findUnidadeFederacao()' [ngValue]="e">{{e.descricao}}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cadUfIdentidadeContato', formulario.get( 'representanteLegal' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+
+          <div class="input-field col s3">
+            <label class="active" for="cadDataExpedicaoContato">Data de Expedição <span class="asterisco">*</span></label>
+            <input formControlName="cadDataExpedicaoContato" name="cadDataExpedicaoContato" class="datepicker" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cadNomeContato', formulario.get( 'representanteLegal' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="cadCepContato">Cep <span class="asterisco">*</span></label>
+            <input formControlName="cadCepContato" name="cadCepContato" type="text">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cadCepContato', formulario.get( 'representanteLegal' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+
+          <div class="input-field col s1" *ngIf="formulario.get( 'comissionado' ).value == null">
+            <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="pesquisarCepContato()">
+              <i class="material-icons actionButtons">search</i>
+            </button>
+          </div>
+
+          <div class="input-field col s7">
+            <label class="active" for="cadEnderecoContato">Endereço</label>
+            <input formControlName="cadEnderecoContato" name="cadEnderecoContato" type="text">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cadEnderecoContato', formulario.get( 'representanteLegal' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="cadComplementoContato">Complemento</label>
+            <input formControlName="cadComplementoContato" name="cadComplementoContato" type="text">
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="cadBairroContato">Bairro <span class="asterisco">*</span></label>
+            <input formControlName="cadBairroContato" name="cadBairroContato" type="text">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cadBairroContato', formulario.get( 'representanteLegal' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="cadCidadeContato">Cidade <span class="asterisco">*</span></label>
+            <input formControlName="cadCidadeContato" name="cadCidadeContato" type="text">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cadCidadeContato', formulario.get( 'representanteLegal' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="cadUfContato">UF <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="cadUfContato" name="cadUfContato"
+                    materialize="material_select" [materializeSelectOptions]="constantesService.findUnidadeFederacao()">
+              <option value="">Selecione uma opção</option>
+              <option *ngFor='let e of constantesService.findUnidadeFederacao()' [ngValue]="e">{{e.descricao}}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched( 'cadUfContato', formulario.get( 'representanteLegal' ) )" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+          </div>
+
+          <div class="input-field col s4">
+            <label class="active" for="cadFoneContato">Telefone</label>
+            <input [ngModel]="formulario.get( 'cadFoneContato' ).value | telMask" (ngModelChange)="formulario.get( 'cadFoneContato' ).value = $event" formControlName="cadFoneContato" name="cadFoneContato" type="text">
+          </div>
+
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="box-buttons">
+          <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="salvar( false )">Salvar</button>
+          <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="salvar( true )">Aprovar</button>
+          <button type="button" class="waves-effect waves-light btn btnSecondary" (click)="voltar()">Fechar</button>
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+  <!-- ######################## FIM DE CADASTRO COMISSIONADO #######################  -->
+
+</div>

@@ -1,0 +1,38 @@
+<div class="mainContent">
+
+  <app-historico-header></app-historico-header>
+
+  <h5 class="subTitle">Controle de Alterações</h5>
+  <div class="boxNextSubTitle row"></div>
+      
+  <div class="row" *ngIf="historicoSeguroList.length > 0">
+    <table class="striped tableCenter">
+      <thead>
+        <tr>
+          <th>Data/Hora</th>
+          <th>Situação</th>
+          <th>Evento</th>
+          <th>Usuário</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let hist of historicoSeguroList">
+          <td>{{ utilService.formatarDataVisao( hist.data ) }}</td>
+          <td>{{ hist.situacao.descricao }}</td>
+          <td>{{ hist.evento.descricao }}</td>
+          <td>{{ hist.usuario }}</td>
+        </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div class="box-buttons">
+    <button type="button" class="waves-effect waves-light btn btnPrimary" (click)="voltar()">Fechar</button>
+  </div>
+
+</div>

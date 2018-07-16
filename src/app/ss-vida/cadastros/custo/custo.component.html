@@ -1,0 +1,75 @@
+<!-- Tela de Cadastrar Assistência  -->
+<div class="mainContent">
+    <h5 class="mainTitle">Cobranças</h5>
+  
+    <div class="clearfix"></div>
+    <div class="col s12">
+    <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="custo()" >
+      <div class="row">
+        
+        <div class="input-field col s4">
+          <label class="active" for="codigo">Código</label>
+          <input id="codigo" formControlName="codigo" name="codigo" type="text">
+        </div>
+
+        <div class="input-field col s4">
+            <label class="active" for="codigo">Sigla</label>
+            <input id="codigo" formControlName="codigo" name="codigo" type="text">
+        </div>
+
+        <div class="input-field col s4">
+            <label class="active" for="codigo">Descrição</label>
+            <input id="codigo" formControlName="codigo" name="codigo" type="text">
+        </div>
+
+        <div class="box-buttons">
+            <button  class="waves-effect waves-light btn btnPrimary">Pesquisar</button>          
+        </div>
+
+        <div class="grid-divider"></div>
+      <div class="row">
+        <table class="striped">
+          <thead>
+            <tr>
+                <th>Código</th>
+                <th>Sigla</th>
+                <th>Descrição</th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr>
+                <td>003</td>
+                <td>AL5T</td>
+                <td>Lorem ipsulum</td>
+            </tr>
+            <tr>
+                <td>003</td>
+                <td>AL5T</td>
+                <td>Lorem ipsulum</td>
+            </tr>
+            <tr>
+                <td>003</td>
+                <td>AL5T</td>
+                <td>Lorem ipsulum</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+       
+        <div class="box-buttons">
+          <!-- Exibe apenas quando a tela eh configurada para exibicao -->
+            <button type="button" class="waves-effect waves-light btn btnPrimary">Salvar</button>
+            <button type="button" class="waves-effect waves-light btn btnSecondary">Cancelar</button>
+        </div>
+
+        
+  
+        <div class="grid-divider"></div>
+      </div>
+    </form>
+     </div>    
+  </div>
+  <!-- ############# FIM DA TELA DE CADASTRAR ASSISTENCIA ################ -->
+  

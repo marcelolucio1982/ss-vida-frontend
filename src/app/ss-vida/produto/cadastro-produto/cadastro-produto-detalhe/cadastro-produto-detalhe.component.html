@@ -1,0 +1,94 @@
+<!-- Tela de Pesquisar Produto  -->
+<div class="mainContent">
+  <h5>Pesquisar Produto</h5>
+  <!--<div class="boxNext">
+      <a class="waves-effect waves-light btn nextButton btnNext" (click)="cadastrar()"><i class="material-icons left">send</i>Cadastrar</a>
+  </div>-->
+
+  <div class="clearfix"></div>
+  <div class="col s12">
+    <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="pesquisar()" >
+      <div class="row">
+        <div class="input-field col s4">
+            <label class="active" for='tipoPesquisa'>Pesquisar por</label>
+            <select name="tipoPesquisa" formControlName="tipoPesquisa" materialize="material_select">
+              <option value="" disabled selected>Selecione uma opção</option>
+              <option value='nome'>Nome</option>
+              <option value='codigo'>Código</option>
+              <option value='ramoSusep'>Ramo SUSEP</option>
+              <option value='processoSusep'>Processo SUSEP</option>
+            </select>
+        </div>
+
+        <div class="input-field col s4" [hidden]="(formulario.value.tipoPesquisa !== 'codigo')">
+          <label>Código</label>
+          <input id="codigoProduto" name="codigoProduto" type="text" formControlName="codigoProduto" [textMask]="constantesService.getMaskDef().numerico(4)">
+        </div>
+    
+        <div class="input-field col s4" [hidden]="(formulario.value.tipoPesquisa !== 'nome')">
+          <label for="nomeProduto">Nome</label>
+          <input id="nomeProduto" name="nomeProduto" type="text" formControlName="nomeProduto" [textMask]="constantesService.getMaskDef().alfaNumerico(200)">
+        </div>
+
+        <div class="input-field col s4" [hidden]="(formulario.value.tipoPesquisa !== 'ramoSusep')">
+          <label class="active" for="grupoSusep">Grupo SUSEP</label>
+          <select formControlName="grupoSusep" name="grupoSusep" materialize="material_select" [materializeSelectOptions]="constantesService.getGruposSusep()">
+            <option value="" disabled selected>Selecione uma opção</option>
+            <option *ngFor='let e of constantesService.getGruposSusep();' [ngValue]="e.codigo">{{e.descricao}}</option>
+          </select>
+        </div>
+
+        <div class="input-field col s4" [hidden]="(formulario.value.tipoPesquisa !== 'ramoSusep')">
+          <label class="active" for="ramoSusep">Ramo SUSEP</label>
+          <select formControlName="ramoSusep" name="ramoSusep" materialize="material_select" [materializeSelectOptions]="constantesService.getRamosSusep(formulario.value.grupoSusep)">
+            <option value="" disabled selected>Selecione uma opção</option>
+            <option *ngFor='let e of constantesService.getRamosSusep(formulario.value.grupoSusep);' [ngValue]="e.codigo">{{e.descricao}}</option>
+          </select>
+        </div>
+
+        <div class="input-field col s4" [hidden]="(formulario.value.tipoPesquisa !== 'processoSusep')">
+          <label for="processoSusep">Processo SUSEP</label>
+          <input id="processoSusep" name="processoSusep" type="text" formControlName="processoSusep" [textMask]="constantesService.getMaskDef().alfaNumerico(10)">
+        </div>
+    
+        <div class="box-buttons">
+          <button type="submit" class="waves-effect waves-light btn btnPrimary">Pesquisar</button>          
+        </div>
+        <div class="grid-divider"></div>
+        <div class="row">
+          <table class="striped" *ngIf="retorno && retorno.length > 0">
+            <thead>
+              <tr>
+                  <th>Código</th>
+                  <th>Produto</th>
+                  <th>Ramo SUSEP</th>
+                  <th>Processo SUSEP</th>
+                  <th>Situação</th>
+                  <th>Ações</th>
+              </tr>
+            </thead>
+    
+            <tbody>
+              <tr *ngFor='let i of retorno; trackBy: index;'>
+                <td>{{i.codigo}}</td>
+                <td>{{i.descricao}}</td>
+                <td>{{i.ramoSusep.descricao}}</td>
+                <td>{{i.codigoProcessoSusep}}</td>
+                <td>{{i.statusDescricao}}</td>
+                <td>
+                  <a (click)="visualizar(i)" class="view" materialize="tooltip" data-position="top" data-delay="10" data-tooltip="Visualizar"><i class="material-icons actionButtons">search</i></a>
+                 <!-- <a *ngIf="podeEditar(i)" (click)="editar(i)" class="edit"><i class="material-icons actionButtons" materialize="tooltip" data-position="left" data-delay="10" data-tooltip="Editar">edit</i></a>
+                  <a *ngIf="podeExcluir(i)" (click)="excluir(i)" class="terminate" materialize="tooltip" data-position="top" data-delay="10" data-tooltip="Excluir"><i class="material-icons actionButtons">delete</i></a>-->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+    <!-- <h4>Debug</h4><pre>{{formulario.value | json}} - {{retorno | json}}</pre> -->
+</div>
+<!-- ############# FIM DA TELA DE PESQUISAR FORNECEDORES ################ -->

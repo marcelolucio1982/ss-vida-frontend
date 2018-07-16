@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('angular-example App', () => {
+describe('ss-vida-frontend App', () => {
   let page: AppPage;
 
   beforeEach(() => {

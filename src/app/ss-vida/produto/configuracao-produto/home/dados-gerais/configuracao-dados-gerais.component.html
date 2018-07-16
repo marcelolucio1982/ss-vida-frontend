@@ -1,0 +1,269 @@
+<div class="mainContent">
+<!-- ######################## DADOS GERAIS #######################  -->
+
+<div class="clearfix"></div>
+<div class="col s12">
+<form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="salvarDadosGerais()">
+    <div class="row">
+
+        <h5>Dados Gerais</h5>
+        <div class="boxNext row"></div>
+
+        <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('dataInicioVigencia', formulario)">
+            <label class="active" for="dataInicioVigencia">Início da comercialização da versão <span class="asterisco">*</span></label>
+            <input id="dataInicioVigencia" formControlName="dataInicioVigencia" name="dataInicioVigencia" class="datepicker {{bloquearEdicaoDataInicio() ? 'pickadate-readonly' : ''}}" type="text" materialize="pickadate" [materializeParams]="[constantesService.getDatePickerConfig()]">
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('dataInicioVigencia', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>          
+        </div>        
+
+        <div class="input-field col s4">
+            <label class="active" for="indiceReajuste">Índice de atualização <span class="asterisco">*</span></label>                
+            <select class="noUppercase" formControlName="indiceReajuste" name="indiceReajuste" materialize="material_select" [materializeSelectOptions]="constantesService.getIndicesReajuste()">
+                <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+                <option *ngFor='let e of constantesService.getIndicesReajuste();' [ngValue]="e">{{e.siglaMoeda}}</option>
+            </select>          
+        </div>
+
+        <div class="input-field col s4">
+            <label class="active" for="taxaJurosMora">Taxa de juros de mora mensal (R$) <span class="asterisco">*</span></label>
+            <input id="taxaJurosMora" formControlName="taxaJurosMora" name="taxaJurosMora" type="number" step=".01">
+        </div>
+
+        <div class="input-field col s4">
+            <label class="active" for="periodicidadeReajuste">Atualização de reajuste <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="periodicidadeReajuste" name="periodicidadeReajuste" materialize="material_select" [materializeSelectOptions]="constantesService.getPeriodicidadesReajuste()">
+                <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+                <option *ngFor='let e of constantesService.getPeriodicidadesReajuste();' [ngValue]="e">{{e.descricao}}</option>
+            </select>
+        </div>
+
+        <div class="input-field col s4">
+            <label class="active" for="periodicidadeVigencia">Período de vigência padrão da Apólice <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="periodicidadeVigencia" name="periodicidadeVigencia" materialize="material_select" [materializeSelectOptions]="constantesService.getPeriodicidadesApolice()">
+                <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+                <option *ngFor='let e of constantesService.getPeriodicidadesApolice();' [ngValue]="e">{{e.descricao}}</option>
+            </select>                    
+        </div>
+
+        <div class="input-field col s4">
+            <label class="active" for="qtdPeriodosVigencia">Quantidade período <span class="asterisco">*</span></label>
+            <input id="qtdPeriodosVigencia" formControlName="qtdPeriodosVigencia" name="qtdPeriodosVigencia"
+                type="number">
+        </div>
+
+        <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('contrataBilhete', formulario)">
+            <label class="active" for="contrataBilhete">Contratação na forma de bilhete? <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="contrataBilhete" name="contrataBilhete" 
+            (change)="onChangeContrataBilhete($event.target.value)" materialize="material_select" [materializeSelectOptions]="constantesService.getValoresSimNao()">
+                <option value="" disabled selected>Selecione uma opção</option>
+                <option *ngFor='let e of constantesService.getValoresSimNao();' [ngValue]="e">{{e.descricao}}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('contrataBilhete', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('renovacaoAutomatica', formulario)" *ngIf="!isContrataBilhete"  >
+            <label class="active" for="renovacaoAutomatica">Renovação automática? <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="renovacaoAutomatica" name="renovacaoAutomatica" 
+            (change)="onChangeRenovacaoAutomatica($event.target.value)" materialize="material_select" [materializeSelectOptions]="constantesService.getValoresSimNao()">
+                <option value="" disabled selected>Selecione uma opção</option>
+                <option *ngFor='let e of constantesService.getValoresSimNao();' [ngValue]="e">{{e.descricao}}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('renovacaoAutomatica', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4" *ngIf="(!isContrataBilhete && isRenovacaoAutomatica)" >
+            <label class="active" for="qtdRenovacaoAutomatica">Quantidade de renovação <span class="asterisco">*</span></label>
+            <input id="qtdRenovacaoAutomatica" formControlName="qtdRenovacaoAutomatica" name="qtdRenovacaoAutomatica" type="number">
+        </div>
+
+        <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('recontratacaoAutomatica', formulario)" *ngIf="isContrataBilhete"  >
+            <label class="active" for="recontratacaoAutomatica">Recontratação automática? <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="recontratacaoAutomatica" name="recontratacaoAutomatica" 
+            (change)="onChangeRecontratacaoAutomatica($event.target.value)" materialize="material_select" [materializeSelectOptions]="constantesService.getValoresSimNao()">
+                <option value="" disabled selected>Selecione uma opção</option>
+                <option *ngFor='let e of constantesService.getValoresSimNao();' [ngValue]="e">{{e.descricao}}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('recontratacaoAutomatica', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4" *ngIf="(isContrataBilhete && isRecontratacaoAutomatica)" >
+            <label class="active" for="qtdRecontratacaoAutomatica">Quantidade de recontratação <span class="asterisco">*</span></label>
+            <input id="qtdRecontratacaoAutomatica" formControlName="qtdRecontratacaoAutomatica" name="qtdRecontratacaoAutomatica" type="number">
+        </div>
+
+        <div class="input-field col s4">
+            <label class="active" for="moedaPremio">Moeda do prêmio <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="moedaPremio" name="moedaPremio" materialize="material_select" [materializeSelectOptions]="constantesService.getMoedasPremio()">
+                <option [ngValue]="null" readOnly selected>Selecione uma opção</option>
+                <option *ngFor='let e of constantesService.getMoedasPremio();' [ngValue]="e">{{e.siglaMoeda}}</option>
+            </select>          
+        </div>
+
+        <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('reenquadramentoPremio', formulario)">
+            <label class="active" for="reenquadramentoPremio">Reenquadramento do prêmio? <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="reenquadramentoPremio" name="reenquadramentoPremio" materialize="material_select" [materializeSelectOptions]="constantesService.getValoresSimNao()">
+                <option value="" disabled selected>Selecione uma opção</option>
+                <option *ngFor='let e of constantesService.getValoresSimNao();' [ngValue]="e">{{e.descricao}}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('reenquadramentoPremio', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('geraNumeroApoliceOnLine', formulario)">
+            <label class="active" for="geraNumeroApoliceOnLine">Gerar número de apólice online? <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="geraNumeroApoliceOnLine" name="geraNumeroApoliceOnLine" materialize="material_select" [materializeSelectOptions]="constantesService.getValoresSimNao()">
+                <option value="" disabled selected>Selecione uma opção</option>
+                <option *ngFor='let e of constantesService.getValoresSimNao();' [ngValue]="e">{{e.descricao}}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('geraNumeroApoliceOnLine', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4">
+            <label class="active" for="quantidadeDiasIndenizacao">Prazo de indenização do Sinistro (em dias) <span class="asterisco">*</span></label>
+            <input id="quantidadeDiasIndenizacao" formControlName="quantidadeDiasIndenizacao" name="quantidadeDiasIndenizacao"
+                type="number">
+        </div>
+
+        <div class="input-field col s4">
+            <label class="active" for="quantidadeDiasSuspensao">Prazo de suspensão do Sinistro (em dias) <span class="asterisco">*</span></label>
+            <input id="quantidadeDiasSuspensao" formControlName="quantidadeDiasSuspensao" name="quantidadeDiasSuspensao"
+                type="number">
+        </div>
+
+        <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('emiteApoliceManualmente', formulario)">
+            <label class="active" for="emiteApoliceManualmente">Emissão manual? <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="emiteApoliceManualmente" name="emiteApoliceManualmente" materialize="material_select" [materializeSelectOptions]="constantesService.getValoresSimNao()">
+                <option value="" disabled selected>Selecione uma opção</option>
+                <option *ngFor='let e of constantesService.getValoresSimNao();' [ngValue]="e">{{e.descricao}}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('emiteApoliceManualmente', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('possuiAssistencia', formulario)">
+            <label class="active" for="possuiAssistencia">Possui assistência e serviços? <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="possuiAssistencia" name="possuiAssistencia" 
+            (change)="onChangePossuiAssistencia($event.target.value)" materialize="material_select" [materializeSelectOptions]="constantesService.getValoresSimNao()">
+                <option value="" disabled selected>Selecione uma opção</option>
+                <option *ngFor='let e of constantesService.getValoresSimNao();' [ngValue]="e">{{e.descricao}}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('possuiAssistencia', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4" *ngIf="isPossuiAssistencia" >
+            <label class="active" for="qtdMinAssistenciaFacultativa">Quantidade mínima de assistências <span class="asterisco">*</span></label>
+            <input id="qtdMinAssistenciaFacultativa" formControlName="qtdMinAssistenciaFacultativa" name="qtdMinAssistenciaFacultativa"
+                type="number">
+        </div>
+
+        <div class="input-field col s4" *ngIf="isPossuiAssistencia" >
+            <label class="active" for="qtdMaxAssistenciaFacultativa">Quantidade máxima de assistências <span class="asterisco">*</span></label>
+            <input id="qtdMaxAssistenciaFacultativa" formControlName="qtdMaxAssistenciaFacultativa" name="qtdMaxAssistenciaFacultativa"
+                type="number">
+        </div>
+
+        <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('possuiDPS', formulario)">
+            <label class="active" for="possuiDPS">Possui DPS? <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="possuiDPS" name="possuiDPS" materialize="material_select" [materializeSelectOptions]="constantesService.getValoresSimNao()">
+                <option value="" disabled selected>Selecione uma opção</option>
+                <option *ngFor='let e of constantesService.getValoresSimNao();' [ngValue]="e">{{e.descricao}}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('possuiDPS', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('possuiAcoplados', formulario)">
+            <label class="active" for="possuiAcoplados">Possui acoplados? <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="possuiAcoplados" name="possuiAcoplados" materialize="material_select" [materializeSelectOptions]="constantesService.getValoresSimNao()">
+                <option value="" disabled selected>Selecione uma opção</option>
+                <option *ngFor='let e of constantesService.getValoresSimNao();' [ngValue]="e">{{e.descricao}}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('possuiAcoplados', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('possuiComunicadoVendaPosVenda', formulario)">
+            <label class="active" for="possuiComunicadoVendaPosVenda">Possui comunicação Venda/Pós venda? <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="possuiComunicadoVendaPosVenda" name="possuiComunicadoVendaPosVenda" materialize="material_select" [materializeSelectOptions]="constantesService.getValoresSimNao()">
+                <option value="" disabled selected>Selecione uma opção</option>
+                <option *ngFor='let e of constantesService.getValoresSimNao();' [ngValue]="e">{{e.descricao}}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('possuiComunicadoVendaPosVenda', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('possuiResseguro', formulario)">
+            <label class="active" for="possuiResseguro">Possui Resseguro? <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="possuiResseguro" name="possuiResseguro" materialize="material_select" [materializeSelectOptions]="constantesService.getValoresSimNao()">
+                <option value="" disabled selected>Selecione uma opção</option>
+                <option *ngFor='let e of constantesService.getValoresSimNao();' [ngValue]="e">{{e.descricao}}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('possuiResseguro', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+        
+        <div class="input-field col s4" [ngClass]="utilService.aplicaCssErro('possuiCosseguro', formulario)">
+            <label class="active" for="possuiCosseguro">Possui Cosseguro? <span class="asterisco">*</span></label>
+            <select class="noUppercase" formControlName="possuiCosseguro" name="possuiCosseguro" materialize="material_select" [materializeSelectOptions]="constantesService.getValoresSimNao()">
+                <option value="" disabled selected>Selecione uma opção</option>
+                <option *ngFor='let e of constantesService.getValoresSimNao();' [ngValue]="e">{{e.descricao}}</option>
+            </select>
+            <app-campos-control-erro [mostrarErro]="utilService.verificaValidTouched('possuiCosseguro', formulario)" msgErro="Campo de preenchimento obrigatório."></app-campos-control-erro>
+        </div>
+
+        <h5 class="subTitle titleNivel1">Periodicidade de pagamento</h5>
+        <div class="input-field col s12" formArrayName="periodicidadesPagamento">
+            <div class="input-field col s12 panel panel-default boxDinamico" *ngFor="let periodicidade of formulario['controls'].periodicidadesPagamento['controls']; let i=index">
+                
+                <div class="boxDinamicoTitle">
+                    <span>Periodicidade {{i + 1}}</span>
+                    <a *ngIf="podeExcluirPeriodicidade()" (click)="removePeriodicidadesPagamento(i)"><i class="material-icons right deleteComponent">close</i></a>
+                </div>
+    
+                
+                <div class="input-field col s12 panel-body" [formGroupName]="i">
+                    <app-periodicidade-pagamentos [periodicidadeForm]="formulario['controls'].periodicidadesPagamento['controls'][i]"></app-periodicidade-pagamentos>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-field col s4">
+            <a (click)="addPeriodicidadesPagamento()" class="waves-effect waves-light btn btnPrimary"><i class="material-icons left">add_circle_outline</i> Adicionar outra periodicidade </a>
+        </div>
+        
+        <h5 class="subTitle titleNivel1" *ngIf="isDataInicioVigenciaPreenchida()">Permissão de venda</h5>
+        <div class="generalBox" *ngIf="isDataInicioVigenciaPreenchida()">
+            <div class="input-field col s12" formArrayName="permissoesVenda"  >
+                <div class="input-field col s12 panel panel-default boxDinamico" *ngFor="let permissaoVenda of formulario.controls.permissoesVenda.controls; let i=index">
+                    
+                    <div class="boxDinamicoTitle">
+                        <span>Permissão Venda {{i + 1}}</span>
+                        <a *ngIf="podeExcluirPermissaoVenda()" (click)="removePermissoesVenda(i)"><i class="material-icons right">close</i></a>
+                    </div>
+        
+                    <!-- Angular assigns array index as group name by default 0, 1, 2, ... -->
+                    <div class="input-field col s12 panel-body" [formGroupName]="i">
+                        <app-permissoes-venda [parceiroList]="parceiroList" [permissoesVendaForm]="formulario.controls.permissoesVenda.controls[i]"></app-permissoes-venda>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-field col s4 margin-20" *ngIf="isDataInicioVigenciaPreenchida()">
+                <a (click)="addPermissoesVenda()" class="waves-effect waves-light btn btnPrimary"><i class="material-icons left">add_circle_outline</i> Adicionar outra permissão </a>
+            </div>
+
+        </div>
+
+        <div class="grid-divider"></div>
+
+        <div class="clearfix"></div>
+        <div class="box-buttons">
+            <button type="submit" class="waves-effect waves-light btn btnPrimary">Salvar</button>
+        </div>
+    </div>
+     
+    <!--<div class="margin-20">
+        <div>myForm details:-</div>
+        <pre>Is myForm valid?: <br>{{ formulario.valid | json }}</pre>
+        <pre>form value: <br>{{ formulario.value | json }}</pre>
+    </div>-->
+    
+</form>
+
+</div>
+
+<!-- ######################## FIM DE DADOS GERAIS #######################  -->
+</div>
