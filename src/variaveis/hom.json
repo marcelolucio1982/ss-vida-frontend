@@ -1,0 +1,6 @@
+{
+    "producao": false,
+    "ambiente": "HOM",
+    "backend": "http://hom",
+    "versao": "0.0.0"
+  }

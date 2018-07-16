@@ -1,0 +1,6 @@
+{
+    "backend": "http://local",
+    "ambiente": "LOCAL",
+    "producao": false,
+    "versao": "0.0.0"
+}

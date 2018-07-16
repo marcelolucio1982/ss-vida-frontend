@@ -1,0 +1,6 @@
+{
+    "producao": true,
+    "ambiente": "PROD",
+    "backend": "http://prod",
+    "versao": "0.0.0"
+  }
