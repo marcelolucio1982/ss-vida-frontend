@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { SharedModule } from './../../../shared/shared.module';
 import { HttpService } from './../../../shared/services/http.service';
 import { UtilService } from './../../../shared/services/util.service';

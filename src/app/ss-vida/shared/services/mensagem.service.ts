@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { style } from '@angular/animations/src/animation_metadata';
 import { NgStyle } from '@angular/common/src/directives/ng_style';

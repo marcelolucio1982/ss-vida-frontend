@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   exibirMenu: Boolean = false;
   retorno: any = {};
   variaveis = environment;
-  //value: string = require('https://ssvidadev.caixaseguradora.intranet/rest/comum/properties/ssvida.version').value;
+  // value: string = require('https://ssvidadev.caixaseguradora.intranet/rest/comum/properties/ssvida.version').value;
 
   today = Date.now();
   fixedTimezone = '2015-06-15T09:03:01+0900';
@@ -81,8 +81,8 @@ export class AppComponent implements OnInit {
     $('.hamburguer').css('display', 'none');
     $('.hamburguer-responsive').css('display', 'block');
     $('.mainContent').css('margin-left', '20px');
-    $( ".hamburguer" ).addClass( "inResponsive");
-    $( ".hamburguer-responsive" ).addClass( "inResponsive");
+    $( '.hamburguer' ).addClass( 'inResponsive');
+    $( '.hamburguer-responsive' ).addClass( 'inResponsive');
   }
 
   OnHamburguer() {
@@ -99,27 +99,27 @@ export class AppComponent implements OnInit {
     $('.hamburguer-responsive').css('display', 'none');
     $('.hamburguer').css('display', 'block');
     $('.mainContent').css('margin-left', '316px');
-    $( "div" ).removeClass( "inResponsive");
+    $( 'div' ).removeClass( 'inResponsive');
   }
 
-  ativaResponsivo(){
+  ativaResponsivo() {
     $('.menuDesativaResponsivo').css('display', 'block');
     $('.side-nav.fixed').animate({ 'margin-left': 316 }, 'slow');
     $('.menuAtivaResponsivo').css('display', 'none');
   }
 
-  desativaResponsivo(){
+  desativaResponsivo() {
     $('.menuAtivaResponsivo').css('display', 'block');
     $('.side-nav.fixed').animate({ 'margin-left': -316 }, 'slow');
     $('.menuDesativaResponsivo').css('display', 'none');
   }
 
-  responsiveFloatMenu(){
+  responsiveFloatMenu() {
   alert('Ativando o menu no estado responsivo');
   }
 
-  rest(){
-  
+  rest() {
+
   }
 }
 

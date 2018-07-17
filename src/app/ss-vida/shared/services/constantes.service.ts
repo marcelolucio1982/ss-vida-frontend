@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { UtilService } from './util.service';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 
 // Fonte: https://embed.plnkr.co/plunk/oA2Day
 @Injectable()
@@ -28,7 +28,7 @@ export class ConstantesService {
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15, // Creates a dropdown of 15 years to control year,
     closeOnSelect: false, // Close upon selecting a date,
-    //onStart: () => {},
+    // onStart: () => {},
     // onRender: () => {},
     // onClose: () => {},
     // onSet: () => {},
@@ -81,8 +81,8 @@ export class ConstantesService {
   private parentescos: any;
 
   private generos: any = [
-    {codigo: "M", descricao:"Masculino"}, 
-    {codigo: "F", descricao:"Feminino"}
+    {codigo: 'M', descricao: 'Masculino'},
+    {codigo: 'F', descricao: 'Feminino'}
   ];
 
   private tiposBeneficiarios: any = [

@@ -228,7 +228,7 @@ export class EndossoCadastrarComponent implements OnInit {
     }
   }
 
-  getBeneficiariosList(){
+  getBeneficiariosList() {
     return this.beneficiariosList;
   }
 
@@ -278,16 +278,16 @@ export class EndossoCadastrarComponent implements OnInit {
   public deleteBeneficiario(beneficiario: any) {
     this.mensagemService.enviarMsgConfirm('Deseja realmente remover esse registro?').subscribe( result => {
       if ( result ) {
-        const index= this.beneficiariosList.indexOf(beneficiario);
+        const index = this.beneficiariosList.indexOf(beneficiario);
         this.beneficiariosList.splice(index, 1);
       }
-    });    
+    });
   }
 
   public salvarAlterarBeneficiarios() {
 
     this.mensagemService.limparMensagens();
-    if(this.formulario.get( 'beneficiarios' ).valid) {
+    if (this.formulario.get( 'beneficiarios' ).valid) {
       this.apoliceService.salvarBeneficiarios( this.apolice.codigo, this.beneficiariosList ).subscribe( res => {
         this.mensagemService.enviarMensagem('Operação realizada com sucesso!');
       });
@@ -297,11 +297,11 @@ export class EndossoCadastrarComponent implements OnInit {
   }
 
   public removerAlterarBeneficiarios() {
-    
+
     this.mensagemService.enviarMsgConfirm('Deseja realmente remover esse registro?').subscribe( result => {
       if (result) {
         this.apoliceService.removeMotivoEndosso( this.apolice.codigo, 5 ).subscribe( res => {
-          
+
           this.motivosEndosso.push( this.motivosEndossoAdicionados.filter( (subject) => subject.codigo === 5 )[0] );
           if ( this.motivosEndossoAdicionados.length === 1 ) {
             this.motivosEndossoAdicionados.pop();
@@ -402,7 +402,7 @@ export class EndossoCadastrarComponent implements OnInit {
       this.formulario.get( 'enderecoTelefoneEmail' ).get( 'formTelefone' ).enable();
     }
   }
-  
+
   public removerAlterarDadosPessoaFisica() {
     this.mensagemService.enviarMsgConfirm('Deseja realmente remover esse registro?').subscribe( result => {
       if (result) {

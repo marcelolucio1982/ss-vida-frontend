@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { MensagemService } from '../../../shared/services/mensagem.service';
 import { UtilService } from '../../../shared/services/util.service';
 import { ConstantesService } from '../../../shared/services/constantes.service';
-import * as $ from 'jquery'
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-cadastro-produto-form',

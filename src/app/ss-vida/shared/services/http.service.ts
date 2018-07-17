@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs/observable/of';
 import { Http, RequestOptionsArgs, Response } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import { catch } from 'rxjs/add/operator/catch';
 
 import { MensagemService } from './mensagem.service';
 import { LoaderService } from './loader.service';
-import { environment } from '../../../../environments/environment'; 
+import { environment } from '../../../../environments/environment';
 
 @Injectable()
 export class HttpService {
@@ -16,7 +17,6 @@ export class HttpService {
     private mensagemService: MensagemService
     ) { }
 
-  // public backendPrefix: String = 'http://localhost:9082/rss-rs/rest/'; // local
   public backendPrefix: String = environment.backend;
 
   public get(url: string, objeto: any = {}): Observable<any[]> {
@@ -75,26 +75,4 @@ export class HttpService {
       .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(typeof obj[key] === 'string' ? obj[key].trim() : obj[key])}`)
       .join('&');
   }
-
-  /*
-  //chamada no servico
-  public get2(): Observable<Usuario[]> {
-     return this.HttpService.get(url)
-       .map(response => {
-         return <Usuario[]>response;
-       });
-  } */
-
-  /*
-  chamada no componente
-  // tslint:disable-next-line:member-ordering
-  _postsArray: Usuario[];
-
-  getPosts(): void {
-   this.get2('url').subscribe(
-           resultArray => this._postsArray = resultArray,
-       );
-
- }
- */
 }

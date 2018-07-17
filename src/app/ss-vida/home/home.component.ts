@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MensagemService } from './../shared/services/mensagem.service';
-import {MaterializeDirective} from "angular2-materialize";
-import * as $ from 'jquery'
+import {MaterializeDirective} from 'angular2-materialize';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
     $('h2.accordion').click(function(){
       $(this).parent().find('div.accordion').slideToggle('slow');
     });
-    
+
    $( '#loading' ).delay( 4200 ).fadeOut( 10 );
 
 

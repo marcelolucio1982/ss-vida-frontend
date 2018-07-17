@@ -22,7 +22,7 @@ export class ConfiguracaoVisualizacaoComponent implements OnInit {
   public cobrancasDetalhe: Array<any> = new Array();
   public codigo: number;
   public versao: number;
-  
+
   constructor (
     private router: Router,
     private route: ActivatedRoute,
