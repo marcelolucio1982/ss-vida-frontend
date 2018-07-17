@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs/observable/of';
 import { Http, RequestOptionsArgs, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { catch } from 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/catch';
 
 import { MensagemService } from './mensagem.service';
 import { LoaderService } from './loader.service';

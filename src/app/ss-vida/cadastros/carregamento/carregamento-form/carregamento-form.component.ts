@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/first';
 
 import { CarregamentoService } from './../service/carregamento.service';
 import { ConstantesService } from '../../../shared/services/constantes.service';
