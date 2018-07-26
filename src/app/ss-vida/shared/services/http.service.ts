@@ -15,38 +15,36 @@ export class HttpService {
     private http: Http,
     private loaderService: LoaderService,
     private mensagemService: MensagemService
-    ) { }
-
-  public backendPrefix: String = environment.backend;
+    ) { console.log(environment); }
 
   public get(url: string, objeto: any = {}): Observable<any[]> {
     this.loaderService.display(true);
     const qs: String = this.toQueryString(objeto);
-    return this.http.get(this.backendPrefix + url + '?' + qs)
+    return this.http.get(environment.backend + url + '?' + qs)
       .map(this.handleSuccess).catch(this.handleError);
   }
 
   public post(url: string, objeto: any = {}): Observable<any[]> {
     this.loaderService.display(true);
-    return this.http.post(this.backendPrefix + url, objeto)
+    return this.http.post(environment.backend + url, objeto)
     .map(this.handleSuccess).catch(this.handleError);
   }
 
   public put(url: string, objeto: any = {}): Observable<any[]> {
     this.loaderService.display(true);
-    return this.http.put(this.backendPrefix + url, objeto)
+    return this.http.put(environment.backend + url, objeto)
     .map(this.handleSuccess).catch(this.handleError);
   }
 
   public patch(url: string, objeto: any = {}): Observable<any[]> {
     this.loaderService.display(true);
-    return this.http.patch(this.backendPrefix + url, objeto)
+    return this.http.patch(environment.backend + url, objeto)
     .map(this.handleSuccess).catch(this.handleError);
   }
 
   public delete(url: string): Observable<any[]> {
     this.loaderService.display(true);
-    return this.http.delete(this.backendPrefix + url)
+    return this.http.delete(environment.backend + url)
     .map(this.handleSuccess).catch(this.handleError);
   }
 

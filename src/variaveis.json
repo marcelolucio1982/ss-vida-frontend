@@ -1,5 +1,5 @@
 {
-    "backend": "http://local",
+    "backend": "https://ssvidadev.caixaseguradora.intranet/rest/",
     "ambiente": "LOCAL",
     "producao": false,
     "versao": "0.0.0"

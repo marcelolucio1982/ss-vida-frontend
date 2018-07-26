@@ -8,6 +8,7 @@ import { LoaderService } from '../../shared/services/loader.service';
 import { MensagemService } from '../../shared/services/mensagem.service';
 import { Usuario } from './../dominio/usuario';
 import { UtilService } from '../../shared/services/util.service';
+import { environment } from '../../../../environments/environment';
 
 @Injectable()
 export class LoginService {
@@ -27,7 +28,8 @@ export class LoginService {
 
   public fazerLogin(usuario: any): Observable<any> {
     this.loaderService.display( true );
-    return this.http.post( this.httpService.backendPrefix + 'seguranca/login', usuario )
+
+    return this.http.post( environment.backend + 'seguranca/login', usuario )
       .map( this.loginHandleSuccess ).catch( this.loginHandleError );
   }
 
