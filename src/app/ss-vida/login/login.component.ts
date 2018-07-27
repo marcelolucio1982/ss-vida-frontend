@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Usuario } from './dominio/usuario';
 import { LoginService } from './service/login.service';
 import { UtilService } from '../shared/services/util.service';
-
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +12,7 @@ import { UtilService } from '../shared/services/util.service';
 })
 export class LoginComponent implements OnInit {
 
+  ambiente = environment;
   usuario: Usuario = new Usuario();
 
   constructor (

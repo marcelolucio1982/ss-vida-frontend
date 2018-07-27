@@ -1,5 +1,7 @@
 <div class="bg-full">
     <div class="row">
+       <div *ngIf="ambiente.ambiente != 'LOCAL'">Versão: {{ambiente.versao}}</div>
+       <div *ngIf="ambiente.ambiente != 'LOCAL'">Ambiente: {{ambiente.ambiente}}</div>
        <div class="col s12" >
            <div class="row grid">
               <div class="logo"><img src="./assets/img/logo-ss.png"></div>
