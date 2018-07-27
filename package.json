@@ -2,6 +2,7 @@
   "name": "ss-vida-frontend",
   "version": "2.0.0",
   "author": "Caixa Seguradora-DIRVI/DISIO",
+  "description":"SS Vida Frontend",
   "license": "MIT",
   "repository": {
     "type": "git",
